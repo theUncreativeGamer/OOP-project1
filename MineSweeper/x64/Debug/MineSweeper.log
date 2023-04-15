@@ -6,6 +6,5 @@
   MineSweeper.cpp
   SoundEffect.cpp
   Tile.cpp
-  Generating Code...
-D:\_UserDocuments\Desktop\workpath\_111_2\物件導向程式設計實習(重修)\Projects\GroupX_P1\src\Minesweeper\MineSweeper\MineSweeper\Tile.cpp(75): warning C4715: 'Tile::getAnswer': not all control paths return a value
-  MineSweeper.vcxproj -> D:\_UserDocuments\Desktop\workpath\_111_2\物件導向程式設計實習(重修)\Projects\GroupX_P1\src\Minesweeper\MineSweeper\x64\Debug\MineSweeper.exe
+  正在產生程式碼...
+  MineSweeper.vcxproj -> D:\Coding\C++\OOP-project1\x64\Debug\MineSweeper.exe
