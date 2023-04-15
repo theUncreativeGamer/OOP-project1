@@ -6,7 +6,7 @@
 #include <fstream>
 #include <regex>
 #include <sstream>
-#include "Tile.cpp"
+#include "Tile.h"
 
 class GameBoardException : public std::exception
 {

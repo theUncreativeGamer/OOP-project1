@@ -214,7 +214,7 @@ void GameBoard::RevealTile(int row, int col)
 	}
 	//if target tile is 
 
-	board[row * width + col].setReveal();
+	board[row * width + col].SetReveal();
 
 }
 
