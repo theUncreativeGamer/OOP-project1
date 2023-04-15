@@ -1,3 +1,8 @@
 ﻿  MineSweeper.cpp
+<<<<<<< HEAD
 D:\_UserDocuments\Desktop\workpath\_111_2\物件導向程式設計實習(重修)\Projects\GroupX_P1\src\OOP-project1\MineSweeper\MineSweeper.cpp(30,41): warning C4305: 'argument': truncation from 'double' to 'float'
   MineSweeper.vcxproj -> D:\_UserDocuments\Desktop\workpath\_111_2\物件導向程式設計實習(重修)\Projects\GroupX_P1\src\OOP-project1\x64\Debug\MineSweeper.exe
+=======
+D:\Coding\C++\OOP-project1\MineSweeper\MineSweeper.cpp(34,25): warning C4244: '引數': 將 'int' 轉換為 'float'，由於類型不同，可能導致資料遺失
+  MineSweeper.vcxproj -> D:\Coding\C++\OOP-project1\x64\Debug\MineSweeper.exe
+>>>>>>> 21e3b74675d17a78f3c7134e216019d17fbf8d92

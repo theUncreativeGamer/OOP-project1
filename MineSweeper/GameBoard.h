@@ -51,11 +51,11 @@ private:
 	int remainClosedTileCount;// only adds when tile is closed and not mine
 
 private:
-	
+
 	void ChangeGameInput();
 	void EnableGameInput();
 	void DisableGameInput();
-	
+
 	bool ValidPosition(int x, int y);
 	void CalculateMines();
 
@@ -76,7 +76,13 @@ public:
 	void FlagTile(int row, int col);
 
 	//actions
-	bool CheckGame();
-	std::string GetGameStateString();
-	
+	bool checkGame();
+	void StartGame();
+
+	GameBoardState getBoardState();
+	int getMineCount() { return MineCount; };
+	int getFlagCount() { return FlagCount; };
+	int getOpenedTileCount() { return OpenedTileCount; };
+	int getRemainClosedTileCount() { return RemainClosedTileCount; };
+	bool getIsEnableGameInput() { return isEnableGameInput; };
 };
