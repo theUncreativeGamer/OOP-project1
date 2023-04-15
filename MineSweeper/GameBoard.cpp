@@ -1,9 +1,14 @@
 #include "GameBoard.h"
 #include <vector>
 
+GameBoard::GameBoard()
+{
+}
+
 
 void GameBoard::ChangeGameInput() {
-
+	//enable or disable game input
+	//but seems unneeded, processed by GameController lul.
 }
 
 void GameBoard::EnableGameInput()
@@ -60,7 +65,7 @@ void GameBoard::LoadBoardFile(std::string relative_path)
 	// load file format:
 	// row, column in first line
 	// mine map in other lines, which O means no mine, and X means mine
-
+	
 	//load file
 	//load width, height
 	//load board
@@ -280,8 +285,6 @@ void GameBoard::PrintGameState()
 	{
 		{GameBoardState::Idle, "Idle"},
 		{GameBoardState::Playing, "Playing"},
-		{GameBoardState::Win, "Win"},
-		{GameBoardState::Lose, "Lose"},
 		{GameBoardState::End, "End"}
 	};
 	//print game state
@@ -299,6 +302,11 @@ std::string GameBoard::GetGameStateString()
 	};
 	//print game state
 	return GameBoardStateString[gameBoardState];
+}
+
+GameBoardState GameBoard::getBoardState()
+{
+	return gameBoardState;
 }
 
 
@@ -469,4 +477,11 @@ bool GameBoard::CheckGame()
 
 	
 	return false;
+}
+
+void GameBoard::StartGame() 
+{
+	//start game
+	//set game state to playing
+	gameBoardState = GameBoardState::Playing;
 }
