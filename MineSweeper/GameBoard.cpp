@@ -248,6 +248,16 @@ bool GameBoard::checkGame()
 	return false;
 }
 
+void GameBoard::StartGame() {
+
+}
+
+GameBoardState GameBoard::getBoardState() {
+	return gameBoardState;
+}
+
+
+
 //std::map<GameBoardState, std::string> GameBoardStateString
 //{
 //	{GameBoardState::Idle, "Idle"},

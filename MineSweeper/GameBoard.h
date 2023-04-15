@@ -80,6 +80,12 @@ public:
 
 	//actions
 	bool checkGame();
+	void StartGame();
 
-
+	GameBoardState getBoardState();
+	int getMineCount() { return MineCount; };
+	int getFlagCount() { return FlagCount; };
+	int getOpenedTileCount() { return OpenedTileCount; };
+	int getRemainClosedTileCount() { return RemainClosedTileCount; };
+	bool getIsEnableGameInput() { return isEnableGameInput; };
 };

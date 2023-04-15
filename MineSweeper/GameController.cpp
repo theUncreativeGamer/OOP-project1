@@ -10,28 +10,82 @@ MineSweeper.exe GUI
 */
 
 //entry point
+#include "GameController.h"
+
+void GameController::LoadPath(string path) {
+	board->LoadBoardFile(path);
+}
+
+void GameController::LoadRate(int m, int n, float rate) {
+	board->LoadRandomGenerateMine(m, n, rate);
+}
+
+void GameController::LoadCount(int m, int n, int c) {
+	board->LoadRandomCountMine(m, n, c);
+}
+
+void GameController::StartGame() {
+	if (board->getIsEnableGameInput()) {
+		cout << "©|¥¼¸ü¤J½L­±\n";
+	}
+	else {
+		board->StartGame();
+	}
+}
+
+void GameController::Print(string inst) {
+	if (inst == "GameBoard") {
+		board->PrintBoardWithMask();
+	}
+	else if (inst == "GameState") {
+		GameBoardState state = board->getBoardState();
+		if (state == GameBoardState::Idle) {
+			cout << "Standby\n";
+		}
+		else if (state == GameBoardState::Playing) {
+			cout << "Playing\n";
+		}
+		else {
+			cout << "GameOver";
+		}
+	}
+	else if (inst == "GameAnswer") {
+		board->PrintBoard();
+	}
+	else if (inst == "BombCount") {
+		cout << board->getMineCount() << '\n';
+	}
+	else if (inst == "FlagCount") {
+		cout << board->getFlagCount() << '\n';
+	}
+	else if (inst == "OpenBlankCount") {
+		cout << board->getOpenedTileCount() << '\n';
+	}
+	else if (inst == "RemainBlankCount") {
+		cout << board->getRemainClosedTileCount() << '\n';
+	}
+}
+
+void GameController::LeftClick(int rol, int col) {
+	board->RevealTile(rol, col);
+}
+
+void GameController::RightClick(int rol, int col) {
+	board->FlagTile(rol, col);
+}
+
+void GameController::Replay() {
+	board = new GameBoard();
+}
+
+void GameController::Quit() {
+	exit(0);
+}
 
 
 
 
 
-
-
-
-
-// commands: execute correspond commands if command exist, else make error message
-
-// commands          idle ,		playing,		end
-	// Load			yes			no				no
-		// format: Load <mineMapFile>
-		// format2: Load RandomRate <row> <column> <mineNumber> <minePossibility>
-		// format3: Load RandomCount <row> <column> <mineNumber>
-	// startgame 	yes			no				no
-	// print 		yes			yes				yes
-	// leftclick 	no			yes				no, "left click" the binding function will be replace to other events when not in game play
-	// rightclick 	no			yes				no
-	// replay 		no			no				yes
-	// quit 		no			no				yes
 
 
 
