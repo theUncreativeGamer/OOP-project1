@@ -67,7 +67,11 @@ void GameController::Print(string inst) {
 }
 
 void GameController::LeftClick(int rol, int col) {
-	board->RevealTile(rol, col);
+	if (board->getBoardState() == GameBoardState::Playing)
+		board->RevealTile(rol, col);
+	else {
+
+	}
 }
 
 void GameController::RightClick(int rol, int col) {
@@ -79,7 +83,12 @@ void GameController::Replay() {
 }
 
 void GameController::Quit() {
-	exit(0);
+	if (board->getBoardState() == GameBoardState::End) {
+		exit(0);
+	}
+	else {
+		cout << "You can't quit now.";
+	}
 }
 
 

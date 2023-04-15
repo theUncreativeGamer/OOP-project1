@@ -55,7 +55,7 @@ int main()
 			game.Replay();
 		}
 		else if (input == "Quit") {
-			exit(0);
+			game.Quit();
 		}
 		else {
 			cout << "Input Error, try again.";
