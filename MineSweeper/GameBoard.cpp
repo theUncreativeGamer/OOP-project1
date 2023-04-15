@@ -295,8 +295,6 @@ std::string GameBoard::GetGameStateString()
 	{
 		{GameBoardState::Idle, "Idle"},
 		{GameBoardState::Playing, "Playing"},
-		{GameBoardState::Win, "Win"},
-		{GameBoardState::Lose, "Lose"},
 		{GameBoardState::End, "End"}
 	};
 	//print game state
@@ -353,7 +351,7 @@ void GameBoard::RevealTile(int row, int col)
 	// if is mine, turn game to lose
 	if (board[row * width + col].IsMine())
 	{
-		gameBoardState = GameBoardState::Lose;
+		gameBoardResult = GameBoardResult::Lose;
 		return;
 	}
 

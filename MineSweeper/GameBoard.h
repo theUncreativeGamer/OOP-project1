@@ -20,17 +20,17 @@ private:
 
 enum class GameBoardState
 {
-	//Idle
 	Idle,
-
-	//Gaming
 	Playing,
+	End
+};
 
-	//End
+//³Ó­t 
+enum class GameBoardResult
+{
 	Win,
 	Lose,
-	End
-
+	Playing//?
 };
 
 class GameBoard
@@ -43,6 +43,7 @@ private:
 
 	bool isEnableGameInput;
 	GameBoardState gameBoardState;
+	GameBoardResult gameBoardResult;
 
 	int mineCount;
 	int flagCount;
@@ -61,6 +62,9 @@ private:
 
 public:
 
+	//constructor
+	GameBoard();
+	
 	//loaders
 	void LoadBoardFile(std::string relative_path);
 	void LoadRandomGenerateMine(int height, int width, int mineCount);
@@ -76,13 +80,15 @@ public:
 	void FlagTile(int row, int col);
 
 	//actions
-	bool checkGame();
+	bool CheckGame();
 	void StartGame();
 
 	GameBoardState getBoardState();
-	int getMineCount() { return MineCount; };
-	int getFlagCount() { return FlagCount; };
-	int getOpenedTileCount() { return OpenedTileCount; };
-	int getRemainClosedTileCount() { return RemainClosedTileCount; };
+	int getMineCount() { return mineCount; };
+	int getFlagCount() { return flagCount; };
+	int getOpenedTileCount() { return openedTileCount; };
+	int getRemainClosedTileCount() { return remainClosedTileCount; };
 	bool getIsEnableGameInput() { return isEnableGameInput; };
+	std::string GetGameStateString();
+
 };
