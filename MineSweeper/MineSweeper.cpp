@@ -14,10 +14,7 @@
 
 int main()
 {
-
-
-	GameBoard gameBoard;
-	gameBoard.LoadBoardFile("board1.txt");
+		
 
 }
 

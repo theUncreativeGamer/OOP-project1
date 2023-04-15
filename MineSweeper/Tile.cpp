@@ -13,6 +13,28 @@ bool Tile::IsMine()
 {
 	return isMine;
 }
+
+bool Tile::IsMasking()
+{
+	return mask;
+}
+
+
+bool Tile::isClean()
+{
+	return state == TileState::Clean;
+}
+
+bool Tile::IsFlagged()
+{
+	return state == TileState::Flagged;
+}
+
+bool Tile::IsQuestionMark()
+{
+	return state == TileState::QuestionMark;
+}
+
 void Tile::AddMineCount()
 {
 	mineSurroundCount++;
@@ -27,7 +49,22 @@ std::string Tile::getMask()
 {
 	if (mask)
 	{
-		return "#";
+		if (state == TileState::Clean)
+		{
+			return "#";
+		}
+		else if (state == TileState::Flagged)
+		{
+			return "F";
+		}
+		else if (state == TileState::QuestionMark)
+		{
+			return "?";
+		}
+		else
+		{
+			return "Errrrrrrrrr";
+		}
 	}
 	else
 	{
@@ -41,29 +78,16 @@ std::string Tile::getAnswer()
 	{
 		return "X";
 	}
-	else if (state == TileState::Clean)
+	else
 	{
 		return std::to_string(mineSurroundCount);
 	}
-	else if (state == TileState::Flagged)
-	{
-		return "F";
-	}
-	else if (state == TileState::QuestionMark)
-	{
-		return "?";
-	}
-
+	
 }
 
 void Tile::SetMine()
 {
 	isMine = true;
-}
-
-bool Tile::IsMasking()
-{
-	return mask;
 }
 
 void Tile::SetReveal()
@@ -85,4 +109,9 @@ void Tile::FlagMark()
 		state = TileState::Clean;
 		break;
 	}
+}
+
+int Tile::GetMineCount()
+{
+	return mineSurroundCount;
 }

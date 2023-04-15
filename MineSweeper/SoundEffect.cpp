@@ -7,8 +7,8 @@
 //#pragma comment(lib,"winmm.lib")
 //#include <process.h>
 //
-////#include <AL/al.h>
-////#include <AL/alc.h>
+//#include <AL/al.h>
+//#include <AL/alc.h>
 //
 //class Sound_BGM_Effect_Manager 
 //{

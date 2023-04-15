@@ -30,9 +30,15 @@ public:
 	bool IsMine();
 	bool IsMasking();
 
+	bool isClean();
+	bool IsFlagged();
+	bool IsQuestionMark();
+
 	void SetMine();
 	void SetReveal();
 	void FlagMark();
 	void AddMineCount();
+
+	int GetMineCount();
 
 };

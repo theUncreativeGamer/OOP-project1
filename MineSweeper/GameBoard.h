@@ -7,6 +7,7 @@
 #include <regex>
 #include <sstream>
 #include "Tile.h"
+#include <set>
 
 class GameBoardException : public std::exception
 {
@@ -43,34 +44,30 @@ private:
 	bool isEnableGameInput;
 	GameBoardState gameBoardState;
 
-	int MineCount;
-	int FlagCount;
+	int mineCount;
+	int flagCount;
 	int QuestionMarkCount;
-	int OpenedTileCount;// only adds when tile is opened and not mine
-	int RemainClosedTileCount;// only adds when tile is closed and not mine
-	//command handler
+	int openedTileCount;// only adds when tile is opened and not mine
+	int remainClosedTileCount;// only adds when tile is closed and not mine
 
 private:
+	
 	void ChangeGameInput();
 	void EnableGameInput();
 	void DisableGameInput();
+	
 	bool ValidPosition(int x, int y);
 	void CalculateMines();
 
 public:
+
 	//loaders
 	void LoadBoardFile(std::string relative_path);
 	void LoadRandomGenerateMine(int height, int width, int mineCount);
 	void LoadRandomCountMine(int height, int width, float mineGenerateRate);
 
 	// printer
-	//void PrintGameState()
-	//{
-	//	//print game state
-	//	std::cout << "Game State: " << GameBoardStateString[gameBoardState] << std::endl;
-	//	
-	//}
-
+	void PrintGameState();
 	void PrintBoard();
 	void PrintBoardWithMask();
 
@@ -79,7 +76,7 @@ public:
 	void FlagTile(int row, int col);
 
 	//actions
-	bool checkGame();
-
-
+	bool CheckGame();
+	std::string GetGameStateString();
+	
 };
