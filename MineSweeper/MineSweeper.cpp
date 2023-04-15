@@ -8,19 +8,20 @@
 #include <functional>
 
 //#include "Command.cpp"
-#include "GameBoard.cpp"
+#include "GameBoard.h"
 
 
 
 int main()
 {
+
+
 	GameBoard gameBoard;
 	gameBoard.LoadBoardFile("board1.txt");
-	
+
 }
 
 
 // Intent:
 // Pre:
 // Post:
-	

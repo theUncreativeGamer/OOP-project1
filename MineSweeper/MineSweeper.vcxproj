@@ -144,6 +144,9 @@
     <ClCompile Include="SoundEffect.cpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameBoard.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

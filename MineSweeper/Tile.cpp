@@ -1,108 +1,88 @@
-#include <iostream>
-#include <string>
+#include "Tile.h"
 
-enum class TileState
+
+Tile::Tile()
 {
-	Clean,
-	Flagged,
-	QuestionMark
-};
+	isMine = false;
+	mask = true;
+	state = TileState::Clean;
+	mineSurroundCount = 0;
+}
 
-class Tile
+bool Tile::IsMine()
 {
-private:
-	bool isMine;
-	bool mask;
-	TileState state;
-	int mineSurroundCount;
+	return isMine;
+}
+void Tile::AddMineCount()
+{
+	mineSurroundCount++;
+}
 
+TileState Tile::GetState()
+{
+	return state;
+}
 
-public:
-	
-	Tile() 
+std::string Tile::getMask()
+{
+	if (mask)
 	{
-		isMine = false;
-		mask = true;
+		return "#";
+	}
+	else
+	{
+		return getAnswer();
+	}
+
+}
+std::string Tile::getAnswer()
+{
+	if (isMine)
+	{
+		return "X";
+	}
+	else if (state == TileState::Clean)
+	{
+		return std::to_string(mineSurroundCount);
+	}
+	else if (state == TileState::Flagged)
+	{
+		return "F";
+	}
+	else if (state == TileState::QuestionMark)
+	{
+		return "?";
+	}
+
+}
+
+void Tile::SetMine()
+{
+	isMine = true;
+}
+
+bool Tile::IsMasking()
+{
+	return mask;
+}
+
+void Tile::SetReveal()
+{
+	mask = false;
+}
+
+void Tile::FlagMark()
+{
+	switch (state)
+	{
+	case TileState::Clean:
+		state = TileState::Flagged;
+		break;
+	case TileState::Flagged:
+		state = TileState::QuestionMark;
+		break;
+	case TileState::QuestionMark:
 		state = TileState::Clean;
-		mineSurroundCount = 0;
+		break;
 	}
-	
-	bool IsMine() 
-	{
-		return isMine;
-	}
-	void AddMineCount() 
-	{
-		mineSurroundCount++;
-	}
-
-	TileState GetState()
-	{
-		return state;
-	}
-
-	std::string getMask()
-	{
-		if (mask)
-		{
-			return "#";
-		}
-		else
-		{
-			return getAnswer();
-		}
-		
-	}
-	std::string getAnswer()
-	{
-		if (isMine)
-		{
-			return "X";
-		}
-		else if (state == TileState::Clean)
-		{
-			return std::to_string(mineSurroundCount);
-		}
-		else if (state == TileState::Flagged)
-		{
-			return "F";
-		}
-		else if (state == TileState::QuestionMark)
-		{
-			return "?";
-		}
-		
-	}
-	
-	void SetMine()
-	{
-		isMine = true;
-	}
-
-	bool IsMasking()
-	{
-		return mask;
-	}
-
-	void setReveal() 
-	{
-		mask = false;
-	}
-
-	void FlagMark()
-	{
-		switch (state)
-		{
-		case TileState::Clean:
-			state = TileState::Flagged;
-			break;
-		case TileState::Flagged:
-			state = TileState::QuestionMark;
-			break;
-		case TileState::QuestionMark:
-			state = TileState::Clean;
-			break;
-		}
-	}
-
-};
+}
