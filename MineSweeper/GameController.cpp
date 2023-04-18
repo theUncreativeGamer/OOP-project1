@@ -45,7 +45,7 @@ void GameController::LoadCount(int m, int n, int c)
 
 void GameController::StartGame() 
 {
-	if (board->getIsEnableGameInput()) 
+	if (board->getIsEnableGameInput() == false)
 	{
 		cout << "©|¥¼¸ü¤J½L­±\n";
 	}
@@ -156,7 +156,7 @@ void GameController::Quit()
 	}
 	else 
 	{
-		cout << "You can't quit now.";
+		cout << "You can't quit now.\n";
 	}
 }
 

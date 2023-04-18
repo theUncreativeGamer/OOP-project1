@@ -1,12 +1,19 @@
 #include "GameBoard.h"
 #include <vector>
 
+std::map<GameBoardState, std::string> GameBoard::GameBoardStateString
+{
+	{GameBoardState::Idle, "Idle"},
+	{GameBoardState::Playing, "Playing"},
+	{GameBoardState::End, "End"}
+};
+
 GameBoard::GameBoard()
 {
 	width = 0;
 	height = 0;
 
-	board = NULL;
+	board = NULL;//tile array
 
 	isEnableGameInput = false;
 	gameBoardState = GameBoardState::Idle;
@@ -14,11 +21,10 @@ GameBoard::GameBoard()
 
 	mineCount = 0;
 	flagCount = 0;
-	QuestionMarkCount = 0;
+	questionMarkCount = 0;
 	openedTileCount = 0;
 	remainClosedTileCount = 0;
 }
-
 
 void GameBoard::ChangeGameInput() 
 {
@@ -47,29 +53,33 @@ bool GameBoard::ValidPosition(int x, int y)
 	return true;
 }
 
+void GameBoard::IncrementSurroundMineCounts(int row_center, int col_center)
+{
+	for (int m = -1; m <= 1; m++)
+	{
+		for (int n = -1; n <= 1; n++)
+		{
+			//if not out of range
+			if (ValidPosition(row_center + m, col_center + n))
+			{
+				board[(row_center + m) * width + (col_center + n)].AddMineCount();
+			}
+		}
+	}
+}
+
+
 void GameBoard::CalculateMines() //after the gameboard created
 {
-	//A: for all tiles
-	for (int i = 0; i < width; i++)
+	//for all tiles find mine and add 1 minecount to 3x3 tiles
+	for (int i = 0; i < height; i++)
 	{
-		for (int j = 0; j < height; j++)
+		for (int j = 0; j < width; j++)
 		{
 			if (board[i * width + j].IsMine())
 			{
-				//B: surrouding tiles	
-							// surround all ++
-				for (int k = -1; k <= 1; k++)
-				{
-					for (int l = -1; l <= 1; l++)
-					{
-						//if not out of range
-						if (ValidPosition(i + k, j + l))
-						{
-							board[(i + k) * width + (j + l)].AddMineCount();
-						}
-					}
-				}
-
+				//surrouding tiles all +=1
+				IncrementSurroundMineCounts(i, j);
 			}
 		}
 	}
@@ -81,11 +91,6 @@ void GameBoard::LoadBoardFile(std::string relative_path)
 	// row, column in first line
 	// mine map in other lines, which O means no mine, and X means mine
 
-	//load file
-	//load width, height
-	//load board
-	//calculate mines
-
 	//open file
 	std::ifstream file(relative_path);
 	if (!file.is_open())
@@ -95,12 +100,11 @@ void GameBoard::LoadBoardFile(std::string relative_path)
 		return;
 	}
 
-
 	std::string line;
+	
 	std::getline(file, line);
 
-	//first row must be only two integer
-	//std::regex widthHeightChecker(R"(((\d+)\s+(\d+))");
+	// check first row is composed by 2 integers
 	std::regex widthHeightChecker(R"(^(\d+)\s+(\d+)$)");
 
 	//then check first line is two integer or not, then put integers to width and height
@@ -111,25 +115,25 @@ void GameBoard::LoadBoardFile(std::string relative_path)
 		return;
 	}
 
-	//put integers to width and height
-	//conver string to stringstream, and read integers to width and height
+	//load these two integers as width and height
 	std::stringstream ss(line);
 	ss >> width >> height;
-
+	//close stringstream
 	//delete &ss;
 
+	//create board(allocate)
 	board = new Tile[height * width];//construct
 
 	//remain row must with O or X in all
 	std::regex rowContentChecker(R"(^[OX]+$)");
-
-
-	//check each row length is same as width
-	//check each row only contains O or X
-	//read board
+	
 	int currentHeight = 0;
+	// read file line by line
 	while (file >> line)
 	{
+		//check each row length is same as width
+		//check each row only contains O or X
+		//readi n board info
 		if (line.length() != width)
 		{
 			throw GameBoardException("Invalid file format with row length in map");
@@ -150,7 +154,9 @@ void GameBoard::LoadBoardFile(std::string relative_path)
 		}
 		currentHeight++;
 	}
-
+	
+	file.close();
+	
 	// if height is not same as currentHeight, then throw exception
 	if (currentHeight != height)
 	{
@@ -159,6 +165,7 @@ void GameBoard::LoadBoardFile(std::string relative_path)
 	}
 
 	//initialize members
+	EnableGameInput();
 	flagCount = 0;
 	openedTileCount = 0;
 	remainClosedTileCount = width * height - mineCount;
@@ -166,7 +173,6 @@ void GameBoard::LoadBoardFile(std::string relative_path)
 	//initialize mine count to every tile
 	CalculateMines();
 
-	file.close();
 }
 
 
@@ -185,8 +191,6 @@ void GameBoard::LoadRandomGenerateMine(int height, int width, int mineCount)
 
 	//set mine count
 	mineCount = mineCount;
-
-
 
 	//set board
 	board = new Tile[height * width];//construct
@@ -220,27 +224,28 @@ void GameBoard::LoadRandomGenerateMine(int height, int width, int mineCount)
 	}
 
 	//initialize members
-	isEnableGameInput = true;
+	EnableGameInput();
 	gameBoardState = GameBoardState::Playing;
-	flagCount = 0;
-	openedTileCount = 0;
-	remainClosedTileCount = width * height - mineCount;
+	flagCount = 0;// no flags will be set at begin
+	openedTileCount = 0;// no tiles will be opened at begin
+	remainClosedTileCount = width * height - mineCount;// all tiles are closed at begin
 
 	CalculateMines();
 }
 
 void GameBoard::LoadRandomCountMine(int height, int width, float mineGenerateRate)
 {
-	//load width, height
-	//load mines
-	//load board
-	//calculate mines
+	//assign width, height
+	//allocate board
+	//generate mines
+	
 
 	// if rate is not between 0 and 1, then throw exception
 	if (mineGenerateRate < 0 || mineGenerateRate >= 1)
 	{
 		//throw GameBoardException("Invalid mine generate rate");
 		std::cout << "Invalid mine generate rate" << std::endl;
+		return;
 	}
 
 	//set width and height
@@ -288,18 +293,13 @@ void GameBoard::LoadRandomCountMine(int height, int width, float mineGenerateRat
 	openedTileCount = 0;
 	remainClosedTileCount = width * height - mineCount;
 
+	//calculate mines
 	CalculateMines();
 }
 
 // printer
 void GameBoard::PrintGameState()
 {
-	std::map<GameBoardState, std::string> GameBoardStateString
-	{
-		{GameBoardState::Idle, "Idle"},
-		{GameBoardState::Playing, "Playing"},
-		{GameBoardState::End, "End"}
-	};
 	//print game state
 	std::cout << "Game State: " << GameBoardStateString[gameBoardState] << std::endl;
 
@@ -307,12 +307,6 @@ void GameBoard::PrintGameState()
 
 std::string GameBoard::GetGameStateString()
 {
-	std::map<GameBoardState, std::string> GameBoardStateString
-	{
-		{GameBoardState::Idle, "Idle"},
-		{GameBoardState::Playing, "Playing"},
-		{GameBoardState::End, "End"}
-	};
 	//print game state
 	return GameBoardStateString[gameBoardState];
 }
@@ -330,7 +324,7 @@ void GameBoard::PrintBoard()//print answer
 	{
 		for (int j = 0; j < height; j++)
 		{
-			std::cout << board[i * width + j].getAnswer();//cout tiles with overloaded stream operator to decide its print
+			std::cout << board[i * width + j].getAnswer();
 		}
 		std::cout << std::endl;
 	}
@@ -343,7 +337,7 @@ void GameBoard::PrintBoardWithMask()
 	{
 		for (int j = 0; j < height; j++)
 		{
-			std::cout << board[i * width + j].GetMask();//cout tiles with overloaded stream operator to decide its print
+			std::cout << board[i * width + j].GetMask();
 		}
 		std::cout << std::endl;
 	}
@@ -366,7 +360,9 @@ void GameBoard::RevealTile(int row, int col)
 
 	if (!ValidPosition(row, col))
 	{
-		throw GameBoardException("Invalid position");
+		//throw GameBoardException("Invalid position");
+		std::cout << "Invalid position" << std::endl;
+		return;
 	}
 
 	// if is mine, turn game to lose
@@ -381,10 +377,21 @@ void GameBoard::RevealTile(int row, int col)
 	{
 		//cout error
 		std::cout << "Tile already opened" << std::endl;
+		return;
 	}
 
-	bool isOpened;
-	bool isFlagged;
+	//if flagged or question marked, return error message
+	if (board[row * width + col].IsFlagged() || 
+		board[row * width + col].IsQuestionMarked())
+	{
+		//cout true of two conditions
+		std::cout << (board[row * width + col].IsFlagged() ? "flag true" : "flag false") << "\n";
+		std::cout << (board[row * width + col].IsQuestionMarked() ? "question true" : "question false") << "\n";
+		//cout error
+		std::cout << "Tile is flagged or question marked" << std::endl;
+		return;
+	}
+
 	bool isIteratorOpened;
 	bool isIteratorFlagged;
 
@@ -455,23 +462,34 @@ void GameBoard::FlagTile(int row, int col)
 {
 	// mark the tile: tile can be only marked when it is not opened
 
-	// in order of :
-		//Blank-> Flagged
-		//Flagged -> QuestionMark
-		//QuestionMark -> Blank
 	//if not valid position
 	if (!ValidPosition(row, col))
 	{
-		throw GameBoardException("Invalid position");
+		//throw GameBoardException("Invalid position");
+		std::cout << "Invalid position" << std::endl;
 	}
 	// and if not Masked
 	if (!board[row * width + col].IsMasking())
 	{
-		throw GameBoardException("Invalid operation");
+		//throw GameBoardException("Invalid operation");
+		std::cout << "Invalid operation" << std::endl;
 	}
 
-
-	board[row * width + col].FlagMark();
+	TileState afterDoFlagMarkTileState = board[row * width + col].FlagMark();
+	if (afterDoFlagMarkTileState == TileState::Flagged)
+	{
+		flagCount++;
+	}
+	else if (afterDoFlagMarkTileState == TileState::QuestionMark)
+	{
+		questionMarkCount++;
+		flagCount--;
+	}
+	else if (afterDoFlagMarkTileState == TileState::Clean)
+	{
+		questionMarkCount--;
+	}
+	
 }
 
 //actions
@@ -482,7 +500,7 @@ bool GameBoard::CheckGame()
 	// wingame
 		// if whole the plane have no more flags justly on mines, then the game wins
 
-	//if all mines are flagged
+	//iff all mines are flagged
 	//if all tiles are opened
 	//if mine is opened
 

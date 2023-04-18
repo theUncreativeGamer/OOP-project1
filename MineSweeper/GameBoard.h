@@ -48,11 +48,15 @@ private:
 	GameBoardState gameBoardState;
 	GameBoardResult gameBoardResult;	//??
 
-	int mineCount;
-	int flagCount;
-	int QuestionMarkCount;
+	int mineCount;//after initialized, it was a fixed value
+	
+	int flagCount;// mark will add or decrease this
+	int questionMarkCount;// mark will add or decrease this
+	
 	int openedTileCount;// only adds when tile is opened and not mine
 	int remainClosedTileCount;// only adds when tile is closed and not mine
+	
+	static std::map<GameBoardState, std::string> GameBoardStateString;
 	
 private:
 
@@ -79,12 +83,18 @@ private:
 	// Intent:
 	// Pre:
 	// Post:
+	void IncrementSurroundMineCounts(int row_center, int col_center);
+
+	// Intent:
+	// Pre:
+	// Post:
 	void CalculateMines();
 
 public:
 
 	//constructor
 	GameBoard();
+	GameBoard(int m, int n);
 
 
 //loaders

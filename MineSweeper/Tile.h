@@ -65,7 +65,7 @@ public:
 	// Intent:
 	// Pre:
 	// Post:
-	bool IsQuestionMark();
+	bool IsQuestionMarked();
 
 	// Intent:
 	// Pre:
@@ -80,7 +80,7 @@ public:
 	// Intent:
 	// Pre:
 	// Post:
-	void FlagMark();
+	TileState FlagMark();
 
 	// Intent:
 	// Pre:

@@ -30,7 +30,7 @@ bool Tile::IsFlagged()
 	return state == TileState::Flagged;
 }
 
-bool Tile::IsQuestionMark()
+bool Tile::IsQuestionMarked()
 {
 	return state == TileState::QuestionMark;
 }
@@ -95,8 +95,14 @@ void Tile::SetReveal()
 	mask = false;
 }
 
-void Tile::FlagMark()
+TileState Tile::FlagMark()
 {
+	if (mask == false)
+	{
+		//output error
+		std::cout << "Error: Tile is already revealed." << std::endl;
+		return;
+	}
 	switch (state)
 	{
 	case TileState::Clean:
@@ -109,6 +115,8 @@ void Tile::FlagMark()
 		state = TileState::Clean;
 		break;
 	}
+	//return state to add or decrease flag/question/clean count
+	return state;
 }
 
 int Tile::GetMineCount()

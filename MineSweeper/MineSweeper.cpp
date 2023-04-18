@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <vector>
+#include <fstream>
 #include <functional>
 
 #include "GameController.h"
@@ -17,64 +18,87 @@ int main(int argc, char* argv[])
 	MineSweeper.exe CommandInput
 	MineSweeper.exe GUI
 	*/
-	if (argc == 4 && argv[1] == "CommandFile") {
+	//到時候應該寫成根據 CommandFile CommandInput切換輸入流(共用)
+	if (argc == 4 && argv[1] == "CommandFile") 
+	{
 		//MineSweeper.exe CommandFile command.txt output.txt
 	}
-	else if (argc == 2 && argv[1] == "CommandInput") {
+	else if (argc == 2 && argv[1] == "CommandInput") 
+	{
 		//MineSweeper.exe CommandInput
 	}
-	else if (argc == 2 && argv[1] == "GUI") {
+	else if (argc == 2 && argv[1] == "GUI") 
+	{
 		//MineSweeper.exe GUI
 	}
-	else {
+	else 
+	{
 		//fail, due to wrong syntax
+		std::cout << "Wrong syntax, please follow syntax like:\n";
+		std::cout << "MineSweeper.exe CommandFile <command.txt> <output.txt>\n";
+		std::cout << "MineSweeper.exe CommandInput\n";
+		std::cout << "MineSweeper.exe GUI\n";
+		//return 0;
 	}
 
+	//command input
 	GameController game;
 	string input;
-	while (cin >> input) {
+	while (cin >> input) 
+	{
 
-		if (input == "Load") {
+		if (input == "Load") 
+		{
 			cin >> input;
-			if (input == "BoardFile") {
+			if (input == "BoardFile") 
+			{
 				cin >> input;
 				game.LoadPath(input);
 			}
-			else if (input == "RandomCount") {
+			else if (input == "RandomCount") 
+			{
 				int m, n, c;
 				cin >> m >> n >> c;
 				game.LoadCount(m, n, c);
 			}
-			else if (input == "RandomRate") {
+			else if (input == "RandomRate") 
+			{
 				int m, n, r;
 				cin >> m >> n >> r;
 				game.LoadRate(m, n, r);
 			}
 		}
-		else if (input == "StartGame") {
+		else if (input == "StartGame") 
+		{
 			game.StartGame();
 		}
-		else if (input == "Print") {
+		else if (input == "Print") 
+		{
 			cin >> input;
 			game.Print(input);
 		}
-		else if (input == "LeftClick") {
+		else if (input == "LeftClick") 
+		{
 			int m, n;
 			cin >> m >> n;
 			game.LeftClick(m, n);
 		}
-		else if (input == "RightClick") {
+		else if (input == "RightClick") 
+		{
 			int m, n;
 			cin >> m >> n;
 			game.RightClick(m, n);
 		}
-		else if (input == "Replay") {
+		else if (input == "Replay") 
+		{
 			game.Replay();
 		}
-		else if (input == "Quit") {
+		else if (input == "Quit") 
+		{
 			game.Quit();
 		}
-		else {
+		else 
+		{
 			cout << "Input Error, try again.\n";
 		}
 		fflush(stdin);
