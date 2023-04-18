@@ -1,18 +1,34 @@
-﻿// Author:
-// Created Date:
-// Last Modified Date:
-// Description: This program is a game of MineSweeper.
+﻿// Author: 沈登獻 謝嘉銘 蔡耀羽
+// Created Date: Apr.11 2023
+// Last Modified Date: Apr.19 2023
+// Description: This program is a game of MineSweeper. with multi mode and layered class design.
 
 #include <iostream>
 #include <vector>
 #include <functional>
 
-//#include "Command.cpp"
 #include "GameController.h"
 
 
-int main()
+int main(int argc, char* argv[])
 {
+	/*
+	MineSweeper.exe CommandFile command.txt output.txt
+	MineSweeper.exe CommandInput
+	MineSweeper.exe GUI
+	*/
+	if (argc == 4 && argv[1] == "CommandFile") {
+		//MineSweeper.exe CommandFile command.txt output.txt
+	}
+	else if (argc == 2 && argv[1] == "CommandInput") {
+		//MineSweeper.exe CommandInput
+	}
+	else if (argc == 2 && argv[1] == "GUI") {
+		//MineSweeper.exe GUI
+	}
+	else {
+		//fail, due to wrong syntax
+	}
 
 	GameController game;
 	string input;
@@ -65,8 +81,3 @@ int main()
 	}
 
 }
-
-
-// Intent:
-// Pre:
-// Post:

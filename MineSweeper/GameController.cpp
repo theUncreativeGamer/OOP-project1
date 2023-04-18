@@ -2,138 +2,163 @@
 // then  let Command Handler to handle the command
 // then let GameBoard to handle the command
 
-
-/*
-MineSweeper.exe CommandFile command.txt output.txt
-MineSweeper.exe CommandInput
-MineSweeper.exe GUI
-*/
-
-//entry point
 #include "GameController.h"
 
-void GameController::LoadPath(string path) {
-	if (board->getBoardState() == GameBoardState::Idle) {
+void GameController::LoadPath(string path) 
+{
+	if (board->getBoardState() == GameBoardState::Idle) 
+	{
 		board->LoadBoardFile(path);
-		cout << "Success\n";
+		cout << "< Success >\n";
 	}
-	else {
-		cout << "Failed\n";
+	else
+	{
+		cout << "< Failed >\n";
 	}
 }
 
-void GameController::LoadRate(int m, int n, float rate) {
-	if (board->getBoardState() == GameBoardState::Idle) {
+void GameController::LoadRate(int m, int n, float rate) 
+{
+	if (board->getBoardState() == GameBoardState::Idle) 
+	{
 		board->LoadRandomGenerateMine(m, n, rate);
-		cout << "Success\n";
+		cout << "< Success >\n";
 	}
-	else {
-		cout << "Failed\n";
+	else 
+	{
+		cout << "< Failed >\n";
 	}
 }
 
-void GameController::LoadCount(int m, int n, int c) {
-	if (board->getBoardState() == GameBoardState::Idle) {
+void GameController::LoadCount(int m, int n, int c) 
+{
+	if (board->getBoardState() == GameBoardState::Idle) 
+	{
 		board->LoadRandomCountMine(m, n, c);
-		cout << "Success\n";
+		cout << "< Success >\n";
 	}
-	else {
-		cout << "Failed\n";
+	else
+	{
+		cout << "< Failed >\n";
 	}
 }
 
-void GameController::StartGame() {
-	if (board->getIsEnableGameInput()) {
+void GameController::StartGame() 
+{
+	if (board->getIsEnableGameInput()) 
+	{
 		cout << "©|¥¼¸ü¤J½L­±\n";
 	}
-	else if (board->getBoardState() != GameBoardState::Idle) {
-		cout << "Failed\n";
+	else if (board->getBoardState() != GameBoardState::Idle) 
+	{
+		cout << "< Failed >\n";
 	}
-	else {
+	else 
+	{
 		board->StartGame();
-		cout << "Success\n";
+		cout << "< Success >\n";
 	}
 }
 
-void GameController::Print(string inst) {
-	if (inst == "GameBoard") {
+void GameController::Print(string inst) 
+{
+	if (inst == "GameBoard") 
+	{
 		board->PrintBoardWithMask();
 	}
-	else if (inst == "GameState") {
+	else if (inst == "GameState") 
+	{
+		//
 		GameBoardState state = board->getBoardState();
-		if (state == GameBoardState::Idle) {
+		if (state == GameBoardState::Idle) 
+		{
 			cout << "Idle\n";
 		}
-		else if (state == GameBoardState::Playing) {
+		else if (state == GameBoardState::Playing) 
+		{
 			cout << "Playing\n";
 		}
-		else if (state == GameBoardState::End) {
+		else if (state == GameBoardState::End) 
+		{
 			cout << "GameOver";
 		}
 	}
-	else if (inst == "GameAnswer") {
+	else if (inst == "GameAnswer") 
+	{
 		board->PrintBoard();
 	}
-	else if (inst == "BombCount") {
+	else if (inst == "BombCount") 
+	{
 		cout << board->getMineCount() << '\n';
 	}
-	else if (inst == "FlagCount") {
+	else if (inst == "FlagCount") 
+	{
 		cout << board->getFlagCount() << '\n';
 	}
-	else if (inst == "OpenBlankCount") {
+	else if (inst == "OpenBlankCount") 
+	{
 		cout << board->getOpenedTileCount() << '\n';
 	}
-	else if (inst == "RemainBlankCount") {
+	else if (inst == "RemainBlankCount") 
+	{
 		cout << board->getRemainClosedTileCount() << '\n';
 	}
-	else {
+	else 
+	{
 		cout << "Failed\n";
 	}
 }
 
-void GameController::LeftClick(int rol, int col) {
-	if (board->getBoardState() == GameBoardState::Playing) {
+void GameController::LeftClick(int rol, int col) 
+{
+	if (board->getBoardState() == GameBoardState::Playing) 
+	{
 		board->RevealTile(rol, col);
 		cout << "Success\n";
 	}
-	else {
+	else 
+	{
 		cout << "Failed\n";
 	}
 }
 
-void GameController::RightClick(int rol, int col) {
-	if (board->getBoardState() == GameBoardState::Playing) {
+void GameController::RightClick(int rol, int col) 
+{
+	if (board->getBoardState() == GameBoardState::Playing) 
+	{
 		board->FlagTile(rol, col);
 		cout << "Success\n";
 	}
-	else {
+	else 
+	{
 		cout << "Failed\n";
 	}
 }
 
-void GameController::Replay() {
-	if (board->getBoardState() == GameBoardState::End) {
+void GameController::Replay() 
+{
+	if (board->getBoardState() == GameBoardState::End) 
+	{
 		board = new GameBoard();
 		cout << "Success\n";
 	}
+	else
+	{
+		cout << "Failed\n";
+	}
 }
 
-void GameController::Quit() {
-	if (board->getBoardState() == GameBoardState::End) {
+void GameController::Quit() 
+{
+	if (board->getBoardState() == GameBoardState::End) 
+	{
 		exit(0);
 	}
-	else {
+	else 
+	{
 		cout << "You can't quit now.";
 	}
 }
-
-
-
-
-
-
-
-
 
 // command handler: handle the command with situation can be executed or not, if not , throw a error message
 

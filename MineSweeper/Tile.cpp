@@ -20,7 +20,7 @@ bool Tile::IsMasking()
 }
 
 
-bool Tile::isClean()
+bool Tile::IsClean()
 {
 	return state == TileState::Clean;
 }
@@ -37,7 +37,7 @@ bool Tile::IsQuestionMark()
 
 void Tile::AddMineCount()
 {
-	mineSurroundCount++;
+	++mineSurroundCount;
 }
 
 TileState Tile::GetState()
@@ -45,7 +45,7 @@ TileState Tile::GetState()
 	return state;
 }
 
-std::string Tile::getMask()
+std::string Tile::GetMask()
 {
 	if (mask)
 	{

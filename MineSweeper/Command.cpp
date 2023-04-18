@@ -5,23 +5,7 @@
 //#include <sstream>
 //
 //#include "GameBoard.cpp"
-//// commands         
-//	// Load			
-//		// format: Load <mineMapFile>
-//		// format2: Load RandomRate <row> <column> <mineNumber> <minePossibility>
-//		// format3: Load RandomCount <row> <column> <mineNumber>
-//	// startgame 	
-//		// format: startgame
-//	// print 		
-//		// format: print [gameboard,gamestate,gamestate]
-//	// leftclick 	
-//		// format: leftclick <x> <y>
-//	// rightclick 	
-//		// format: rightclick <x> <y>
-//	// replay
-//		// format: replay
-//	// quit
-//		// format: quit
+
 //
 //class Command
 //{

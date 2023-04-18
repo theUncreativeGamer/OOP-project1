@@ -20,7 +20,8 @@ GameBoard::GameBoard()
 }
 
 
-void GameBoard::ChangeGameInput() {
+void GameBoard::ChangeGameInput() 
+{
 	//enable or disable game input
 	//but seems unneeded, processed by GameController lul.
 }
@@ -179,7 +180,7 @@ void GameBoard::LoadRandomGenerateMine(int height, int width, int mineCount)
 	if (mineCount >= width * height)
 	{
 		//throw GameBoardException("Mine count is bigger than total tiles");
-		std::cout << "Mine count is bigger than total tiles" << std::endl;
+		std::cout << "Error: Mine count is bigger than total tiles" << std::endl;
 	}
 
 	//set mine count
@@ -206,13 +207,15 @@ void GameBoard::LoadRandomGenerateMine(int height, int width, int mineCount)
 
 	std::set<int> random_numbers;
 
-	while (random_numbers.size() < mineCount) {
+	while (random_numbers.size() < mineCount) 
+	{
 		std::uniform_int_distribution<> dis(minBoardIndex, maxBoardIndex);
 		random_numbers.insert(dis(gen));
 	}
 
 	//set these mines into board
-	for (auto num : random_numbers) {
+	for (auto num : random_numbers) 
+	{
 		board[num].SetMine();
 	}
 
@@ -266,13 +269,15 @@ void GameBoard::LoadRandomCountMine(int height, int width, float mineGenerateRat
 
 	std::set<int> random_numbers;
 
-	while (random_numbers.size() < mineCount) {
+	while (random_numbers.size() < mineCount) 
+	{
 		std::uniform_int_distribution<> dis(minBoardIndex, maxBoardIndex);
 		random_numbers.insert(dis(gen));
 	}
 
 	//set these mines into board
-	for (auto num : random_numbers) {
+	for (auto num : random_numbers) 
+	{
 		board[num].SetMine();
 	}
 
@@ -338,7 +343,7 @@ void GameBoard::PrintBoardWithMask()
 	{
 		for (int j = 0; j < height; j++)
 		{
-			std::cout << board[i * width + j].getMask();//cout tiles with overloaded stream operator to decide its print
+			std::cout << board[i * width + j].GetMask();//cout tiles with overloaded stream operator to decide its print
 		}
 		std::cout << std::endl;
 	}

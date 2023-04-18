@@ -1,5 +1,3 @@
-//
-//
 //#ifndef SOUND_EFFECT
 //
 //// for play sounds

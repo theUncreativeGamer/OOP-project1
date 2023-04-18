@@ -6,20 +6,60 @@
 
 using namespace std;
 
-class GameController {
+class GameController 
+{
+private:
 	GameBoard* board;
+	
 public:
-	GameController() {
+	GameController() 
+	{
 		board = new GameBoard();
 	};
+	
+	// Intent:
+	// Pre:
+	// Post:
 	void LoadPath(string path);
+	
+	// Intent:
+	// Pre:
+	// Post:
 	void LoadRate(int m, int n, float rate);
+
+	// Intent:
+	// Pre:
+	// Post:
 	void LoadCount(int m, int n, int c);
+
+	// Intent:
+	// Pre:
+	// Post:
 	void StartGame();
+	
+	// Intent:
+	// Pre:
+	// Post:
 	void Print(string inst);
+	
+	// Intent:
+	// Pre:
+	// Post:
 	void LeftClick(int rol, int col);
+	
+	// Intent:
+	// Pre:
+	// Post:
 	void RightClick(int rol, int col);
+
+	// Intent:
+	// Pre:
+	// Post:
 	void Replay();
+
+	// Intent:
+	// Pre:
+	// Post:
 	void Quit();
 };
 
@@ -37,3 +77,22 @@ public:
 	// rightclick 	no			yes				no
 	// replay 		no			no				yes
 	// quit 		no			no				yes
+
+
+//// commands         
+//	// Load			
+//		// format: Load <mineMapFile>
+//		// format2: Load RandomRate <row> <column> <minePossibility>
+//		// format3: Load RandomCount <row> <column> <mineNumber>
+//	// startgame 	
+//		// format: startgame
+//	// print 		
+//		// format: print [gameboard,gamestate,gamestate]
+//	// leftclick 	
+//		// format: leftclick <x> <y>
+//	// rightclick 	
+//		// format: rightclick <x> <y>
+//	// replay
+//		// format: replay
+//	// quit
+//		// format: quit

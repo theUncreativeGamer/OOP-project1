@@ -1,4 +1,9 @@
-﻿  GameController.cpp
-D:\Coding\C++\OOP-project1\MineSweeper\GameController.cpp(27,39): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
-D:\Coding\C++\OOP-project1\MineSweeper\GameController.cpp(37,36): warning C4244: '引數': 將 'int' 轉換為 'float'，由於類型不同，可能導致資料遺失
-  MineSweeper.vcxproj -> D:\Coding\C++\OOP-project1\x64\Debug\MineSweeper.exe
+﻿  GameBoard.cpp
+D:\_UserDocuments\Desktop\workpath\_111_2\物件導向程式設計實習(重修)\Projects\GroupX_P1\src\OOP-project1\MineSweeper\GameBoard.cpp(251,29): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\_UserDocuments\Desktop\workpath\_111_2\物件導向程式設計實習(重修)\Projects\GroupX_P1\src\OOP-project1\MineSweeper\GameBoard.cpp(387,7): warning C4101: 'isFlagged': unreferenced local variable
+D:\_UserDocuments\Desktop\workpath\_111_2\物件導向程式設計實習(重修)\Projects\GroupX_P1\src\OOP-project1\MineSweeper\GameBoard.cpp(386,7): warning C4101: 'isOpened': unreferenced local variable
+  GameController.cpp
+D:\_UserDocuments\Desktop\workpath\_111_2\物件導向程式設計實習(重修)\Projects\GroupX_P1\src\OOP-project1\MineSweeper\GameController.cpp(24,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\_UserDocuments\Desktop\workpath\_111_2\物件導向程式設計實習(重修)\Projects\GroupX_P1\src\OOP-project1\MineSweeper\GameController.cpp(37,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  MineSweeper.vcxproj -> D:\_UserDocuments\Desktop\workpath\_111_2\物件導向程式設計實習(重修)\Projects\GroupX_P1\src\OOP-project1\x64\Debug\MineSweeper.exe
