@@ -9,6 +9,9 @@ using namespace std;
 class GameController {
 	GameBoard* board;
 public:
+	GameController() {
+		board = new GameBoard();
+	};
 	void LoadPath(string path);
 	void LoadRate(int m, int n, float rate);
 	void LoadCount(int m, int n, int c);

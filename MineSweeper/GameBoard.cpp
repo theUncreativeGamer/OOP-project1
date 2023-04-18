@@ -3,6 +3,20 @@
 
 GameBoard::GameBoard()
 {
+	width = 0;
+	height = 0;
+
+	board = NULL;
+
+	isEnableGameInput = false;
+	gameBoardState = GameBoardState::Idle;
+	gameBoardResult = GameBoardResult::Playing;		//??
+
+	mineCount = 0;
+	flagCount = 0;
+	QuestionMarkCount = 0;
+	openedTileCount = 0;
+	remainClosedTileCount = 0;
 }
 
 
@@ -65,7 +79,7 @@ void GameBoard::LoadBoardFile(std::string relative_path)
 	// load file format:
 	// row, column in first line
 	// mine map in other lines, which O means no mine, and X means mine
-	
+
 	//load file
 	//load width, height
 	//load board
@@ -83,7 +97,7 @@ void GameBoard::LoadBoardFile(std::string relative_path)
 
 	std::string line;
 	std::getline(file, line);
-	
+
 	//first row must be only two integer
 	//std::regex widthHeightChecker(R"(((\d+)\s+(\d+))");
 	std::regex widthHeightChecker(R"(^(\d+)\s+(\d+)$)");
@@ -135,7 +149,7 @@ void GameBoard::LoadBoardFile(std::string relative_path)
 		}
 		currentHeight++;
 	}
-	
+
 	// if height is not same as currentHeight, then throw exception
 	if (currentHeight != height)
 	{
@@ -144,8 +158,6 @@ void GameBoard::LoadBoardFile(std::string relative_path)
 	}
 
 	//initialize members
-	isEnableGameInput = true;
-	gameBoardState = GameBoardState::Playing;
 	flagCount = 0;
 	openedTileCount = 0;
 	remainClosedTileCount = width * height - mineCount;
@@ -162,7 +174,7 @@ void GameBoard::LoadRandomGenerateMine(int height, int width, int mineCount)
 	//set width and height
 	this->width = width;
 	this->height = height;
-	
+
 	// if mineCount is bigger than total tiles, then throw exception
 	if (mineCount >= width * height)
 	{
@@ -173,8 +185,6 @@ void GameBoard::LoadRandomGenerateMine(int height, int width, int mineCount)
 	//set mine count
 	mineCount = mineCount;
 
-	isEnableGameInput = true;
-	gameBoardState = GameBoardState::Playing;
 
 
 	//set board
@@ -184,7 +194,7 @@ void GameBoard::LoadRandomGenerateMine(int height, int width, int mineCount)
 	{
 		board[i] = Tile();
 	}
-	
+
 
 	//set mines
 	//random generate mines
@@ -205,14 +215,14 @@ void GameBoard::LoadRandomGenerateMine(int height, int width, int mineCount)
 	for (auto num : random_numbers) {
 		board[num].SetMine();
 	}
-	
+
 	//initialize members
 	isEnableGameInput = true;
 	gameBoardState = GameBoardState::Playing;
 	flagCount = 0;
 	openedTileCount = 0;
 	remainClosedTileCount = width * height - mineCount;
-	
+
 	CalculateMines();
 }
 
@@ -233,13 +243,11 @@ void GameBoard::LoadRandomCountMine(int height, int width, float mineGenerateRat
 	//set width and height
 	this->width = width;
 	this->height = height;
-	
+
 	//set mine count
 	mineCount = height * width * mineGenerateRate;
-	
-	isEnableGameInput = true;
-	gameBoardState = GameBoardState::Playing;
-	
+
+
 	//set board
 	board = new Tile[height * width];//construct
 	//initialize all tiles
@@ -247,17 +255,17 @@ void GameBoard::LoadRandomCountMine(int height, int width, float mineGenerateRat
 	{
 		board[i] = Tile();
 	}
-	
+
 	//set mines
 	//random generate mines
 	int minBoardIndex = 0;
 	int maxBoardIndex = height * width - 1;
-	
+
 	std::random_device rd;
 	std::mt19937 gen(rd());
-	
+
 	std::set<int> random_numbers;
-		
+
 	while (random_numbers.size() < mineCount) {
 		std::uniform_int_distribution<> dis(minBoardIndex, maxBoardIndex);
 		random_numbers.insert(dis(gen));
@@ -274,7 +282,7 @@ void GameBoard::LoadRandomCountMine(int height, int width, float mineGenerateRat
 	flagCount = 0;
 	openedTileCount = 0;
 	remainClosedTileCount = width * height - mineCount;
-	
+
 	CalculateMines();
 }
 
@@ -289,7 +297,7 @@ void GameBoard::PrintGameState()
 	};
 	//print game state
 	std::cout << "Game State: " << GameBoardStateString[gameBoardState] << std::endl;
-	
+
 }
 
 std::string GameBoard::GetGameStateString()
@@ -341,13 +349,13 @@ void GameBoard::PrintBoardWithMask()
 void GameBoard::RevealTile(int row, int col)
 {
 	// open tiles: only unmarked tiles can be opened
-	
+
 	//if valid position
 	//if not mine
 	//if mine
 	//if already opened
 	//if not flagged
-	
+
 	//還要擴散到周圍
 	//直到遇到數字為止
 
@@ -369,7 +377,7 @@ void GameBoard::RevealTile(int row, int col)
 		//cout error
 		std::cout << "Tile already opened" << std::endl;
 	}
-	
+
 	bool isOpened;
 	bool isFlagged;
 	bool isIteratorOpened;
@@ -380,7 +388,7 @@ void GameBoard::RevealTile(int row, int col)
 
 	//push the first tile to spread blank tile map
 	current.push_back(std::make_pair(row, col));
-	
+
 	//if target tile mine count is 0, then keep reveal surround until meet a minecount number is bigger than 0
 	//using BFS
 
@@ -468,18 +476,18 @@ bool GameBoard::CheckGame()
 		// the position pass in of your pick if it's a mine, then lose the game, terminate current play
 	// wingame
 		// if whole the plane have no more flags justly on mines, then the game wins
-	
+
 	//if all mines are flagged
 	//if all tiles are opened
 	//if mine is opened
 
 
 
-	
+
 	return false;
 }
 
-void GameBoard::StartGame() 
+void GameBoard::StartGame()
 {
 	//start game
 	//set game state to playing

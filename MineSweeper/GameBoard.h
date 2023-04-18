@@ -43,7 +43,7 @@ private:
 
 	bool isEnableGameInput;
 	GameBoardState gameBoardState;
-	GameBoardResult gameBoardResult;
+	GameBoardResult gameBoardResult;	//??
 
 	int mineCount;
 	int flagCount;
@@ -64,7 +64,7 @@ public:
 
 	//constructor
 	GameBoard();
-	
+
 	//loaders
 	void LoadBoardFile(std::string relative_path);
 	void LoadRandomGenerateMine(int height, int width, int mineCount);

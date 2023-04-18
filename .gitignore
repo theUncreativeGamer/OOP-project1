@@ -361,3 +361,23 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+x64/Debug/MineSweeper.pdb
+x64/Debug/MineSweeper.exe
+MineSweeper/x64/Debug/Tile.obj
+MineSweeper/x64/Debug/SoundEffect.obj
+MineSweeper/x64/Debug/MineSweeper.tlog/MineSweeper.lastbuildstate
+MineSweeper/x64/Debug/MineSweeper.tlog/link.write.1.tlog
+MineSweeper/x64/Debug/MineSweeper.tlog/link.read.1.tlog
+MineSweeper/x64/Debug/MineSweeper.tlog/link.command.1.tlog
+MineSweeper/x64/Debug/MineSweeper.tlog/CL.write.1.tlog
+MineSweeper/x64/Debug/MineSweeper.tlog/CL.read.1.tlog
+MineSweeper/x64/Debug/MineSweeper.tlog/CL.command.1.tlog
+MineSweeper/x64/Debug/MineSweeper.obj
+MineSweeper/x64/Debug/MineSweeper.log
+MineSweeper/x64/Debug/MineSweeper.ilk
+MineSweeper/x64/Debug/MineSweeper.exe.recipe
+MineSweeper/x64/Debug/GameGUI.obj
+MineSweeper/x64/Debug/GameController.obj
+MineSweeper/x64/Debug/GameCLI.obj
+MineSweeper/x64/Debug/GameBoard.obj
+MineSweeper/x64/Debug/Command.obj

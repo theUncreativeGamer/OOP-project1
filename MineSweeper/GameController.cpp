@@ -13,23 +13,45 @@ MineSweeper.exe GUI
 #include "GameController.h"
 
 void GameController::LoadPath(string path) {
-	board->LoadBoardFile(path);
+	if (board->getBoardState() == GameBoardState::Idle) {
+		board->LoadBoardFile(path);
+		cout << "Success\n";
+	}
+	else {
+		cout << "Failed\n";
+	}
 }
 
 void GameController::LoadRate(int m, int n, float rate) {
-	board->LoadRandomGenerateMine(m, n, rate);
+	if (board->getBoardState() == GameBoardState::Idle) {
+		board->LoadRandomGenerateMine(m, n, rate);
+		cout << "Success\n";
+	}
+	else {
+		cout << "Failed\n";
+	}
 }
 
 void GameController::LoadCount(int m, int n, int c) {
-	board->LoadRandomCountMine(m, n, c);
+	if (board->getBoardState() == GameBoardState::Idle) {
+		board->LoadRandomCountMine(m, n, c);
+		cout << "Success\n";
+	}
+	else {
+		cout << "Failed\n";
+	}
 }
 
 void GameController::StartGame() {
 	if (board->getIsEnableGameInput()) {
 		cout << "©|¥¼¸ü¤J½L­±\n";
 	}
+	else if (board->getBoardState() != GameBoardState::Idle) {
+		cout << "Failed\n";
+	}
 	else {
 		board->StartGame();
+		cout << "Success\n";
 	}
 }
 
@@ -40,12 +62,12 @@ void GameController::Print(string inst) {
 	else if (inst == "GameState") {
 		GameBoardState state = board->getBoardState();
 		if (state == GameBoardState::Idle) {
-			cout << "Standby\n";
+			cout << "Idle\n";
 		}
 		else if (state == GameBoardState::Playing) {
 			cout << "Playing\n";
 		}
-		else {
+		else if (state == GameBoardState::End) {
 			cout << "GameOver";
 		}
 	}
@@ -64,22 +86,36 @@ void GameController::Print(string inst) {
 	else if (inst == "RemainBlankCount") {
 		cout << board->getRemainClosedTileCount() << '\n';
 	}
+	else {
+		cout << "Failed\n";
+	}
 }
 
 void GameController::LeftClick(int rol, int col) {
-	if (board->getBoardState() == GameBoardState::Playing)
+	if (board->getBoardState() == GameBoardState::Playing) {
 		board->RevealTile(rol, col);
+		cout << "Success\n";
+	}
 	else {
-
+		cout << "Failed\n";
 	}
 }
 
 void GameController::RightClick(int rol, int col) {
-	board->FlagTile(rol, col);
+	if (board->getBoardState() == GameBoardState::Playing) {
+		board->FlagTile(rol, col);
+		cout << "Success\n";
+	}
+	else {
+		cout << "Failed\n";
+	}
 }
 
 void GameController::Replay() {
-	board = new GameBoard();
+	if (board->getBoardState() == GameBoardState::End) {
+		board = new GameBoard();
+		cout << "Success\n";
+	}
 }
 
 void GameController::Quit() {

@@ -17,6 +17,7 @@ int main()
 	GameController game;
 	string input;
 	while (cin >> input) {
+
 		if (input == "Load") {
 			cin >> input;
 			if (input == "BoardFile") {
@@ -58,8 +59,9 @@ int main()
 			game.Quit();
 		}
 		else {
-			cout << "Input Error, try again.";
+			cout << "Input Error, try again.\n";
 		}
+		fflush(stdin);
 	}
 
 }
