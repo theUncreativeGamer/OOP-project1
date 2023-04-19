@@ -385,8 +385,8 @@ void GameBoard::RevealTile(int row, int col)
 		board[row * width + col].IsQuestionMarked())
 	{
 		//cout true of two conditions
-		std::cout << (board[row * width + col].IsFlagged() ? "flag true" : "flag false") << "\n";
-		std::cout << (board[row * width + col].IsQuestionMarked() ? "question true" : "question false") << "\n";
+		/*std::cout << (board[row * width + col].IsFlagged() ? "flag true" : "flag false") << "\n";
+		std::cout << (board[row * width + col].IsQuestionMarked() ? "question true" : "question false") << "\n";*/
 		//cout error
 		std::cout << "Tile is flagged or question marked" << std::endl;
 		return;
@@ -496,14 +496,47 @@ void GameBoard::FlagTile(int row, int col)
 bool GameBoard::CheckGame()
 {
 	// losegame
-		// the position pass in of your pick if it's a mine, then lose the game, terminate current play
-	// wingame
-		// if whole the plane have no more flags justly on mines, then the game wins
-
+		// the position pass in of your pick if it's a mine, then lose the game, terminate current play -> responsible by in the charge of GameController
+		
 	//iff all mines are flagged
-	//if all tiles are opened
-	//if mine is opened
+	if (gameBoardResult == GameBoardResult::Lose)
+	{
+		//output lose message
+		std::cout << "You lose the game" << std::endl;
+		return true;
+	}
 
+	
+	// wingame
+		// if and only if all flags are on all mines
+		// all blank tiles are opened 
+	int totalTileCount = width * height;
+	
+	// if all tiles are opened
+	if (totalTileCount - openedTileCount == mineCount)
+	{
+		gameBoardResult = GameBoardResult::Win;
+		return true;
+	}
+	// probably disable this condition, due to with last several mines, player will try to flag all mines in order to win
+	//else if all flags only on mines
+	else if (flagCount == mineCount)
+	{
+		//check if all flags are on mines
+		for (int i = 0; i < height; i++)
+		{
+			for (int j = 0; j < width; j++)
+			{
+				if (board[i * width + j].IsFlagged() && !board[i * width + j].IsMine())
+				{
+					return false;
+				}
+			}
+		}
+
+		gameBoardResult = GameBoardResult::Win;
+		return true;
+	}
 
 
 

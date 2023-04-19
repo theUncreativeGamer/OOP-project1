@@ -105,6 +105,14 @@ void GameController::Print(string inst)
 	}
 	else 
 	{
+		//debug snnippet fragment
+		//print all counts in board
+		cout << "BombCount: " << board->getMineCount() << '\n';
+		cout << "FlagCount: " << board->getFlagCount() << '\n';
+		cout << "OpenBlankCount: " << board->getOpenedTileCount() << '\n';
+		cout << "RemainBlankCount: " << board->getRemainClosedTileCount() << '\n';
+		//debug snnippet fragment
+
 		cout << "Failed\n";
 	}
 }
