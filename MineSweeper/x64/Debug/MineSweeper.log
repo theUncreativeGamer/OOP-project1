@@ -1,2 +1,3 @@
-﻿  Tile.cpp
+﻿  GameBoard.cpp
+D:\_UserDocuments\Desktop\workpath\_111_2\物件導向程式設計實習(重修)\Projects\GroupX_P1\src\OOP-project1\MineSweeper\GameBoard.cpp(256,29): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   MineSweeper.vcxproj -> D:\_UserDocuments\Desktop\workpath\_111_2\物件導向程式設計實習(重修)\Projects\GroupX_P1\src\OOP-project1\x64\Debug\MineSweeper.exe

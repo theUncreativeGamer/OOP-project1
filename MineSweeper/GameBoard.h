@@ -54,7 +54,7 @@ private:
 	int questionMarkCount;// mark will add or decrease this
 	
 	int openedTileCount;// only adds when tile is opened and not mine
-	int remainClosedTileCount;// only adds when tile is closed and not mine
+	int remainClosedBlankTileCount;// only adds when tile is closed and not mine
 	
 	static std::map<GameBoardState, std::string> GameBoardStateString;
 	
@@ -89,6 +89,9 @@ private:
 	// Pre:
 	// Post:
 	void CalculateMines();
+
+	void UpdateOpenedTileCount();
+	void UpdateRemainClosedBlankTileCount();
 
 public:
 
@@ -174,7 +177,8 @@ public:
 	// Intent:
 	// Pre:
 	// Post:
-	int getRemainClosedTileCount() { return remainClosedTileCount; };
+	// rename it as getRemainClosedBlankTileCount()
+	int getRemainClosedTileCount() { return remainClosedBlankTileCount; };
 	
 	// Intent:
 	// Pre:

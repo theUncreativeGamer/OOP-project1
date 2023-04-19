@@ -23,7 +23,7 @@ GameBoard::GameBoard()
 	flagCount = 0;
 	questionMarkCount = 0;
 	openedTileCount = 0;
-	remainClosedTileCount = 0;
+	remainClosedBlankTileCount = 0;
 }
 
 void GameBoard::ChangeGameInput() 
@@ -168,7 +168,7 @@ void GameBoard::LoadBoardFile(std::string relative_path)
 	EnableGameInput();
 	flagCount = 0;
 	openedTileCount = 0;
-	remainClosedTileCount = width * height - mineCount;
+	remainClosedBlankTileCount = width * height - mineCount;
 
 	//initialize mine count to every tile
 	CalculateMines();
@@ -228,7 +228,7 @@ void GameBoard::LoadRandomGenerateMine(int height, int width, int mineCount)
 	gameBoardState = GameBoardState::Playing;
 	flagCount = 0;// no flags will be set at begin
 	openedTileCount = 0;// no tiles will be opened at begin
-	remainClosedTileCount = width * height - mineCount;// all tiles are closed at begin
+	remainClosedBlankTileCount = width * height - mineCount;// all tiles are closed at begin
 
 	CalculateMines();
 }
@@ -291,7 +291,7 @@ void GameBoard::LoadRandomCountMine(int height, int width, float mineGenerateRat
 	gameBoardState = GameBoardState::Playing;
 	flagCount = 0;
 	openedTileCount = 0;
-	remainClosedTileCount = width * height - mineCount;
+	remainClosedBlankTileCount = width * height - mineCount;
 
 	//calculate mines
 	CalculateMines();
@@ -349,15 +349,10 @@ void GameBoard::RevealTile(int row, int col)
 {
 	// open tiles: only unmarked tiles can be opened
 
-	//if valid position
-	//if not mine
-	//if mine
-	//if already opened
-	//if not flagged
-
 	//還要擴散到周圍
 	//直到遇到數字為止
 
+	//if valid position
 	if (!ValidPosition(row, col))
 	{
 		//throw GameBoardException("Invalid position");
@@ -372,10 +367,9 @@ void GameBoard::RevealTile(int row, int col)
 		return;
 	}
 
-	//if opened, return error mesage
+	//if already opened, return error mesage
 	if (!board[row * width + col].IsMasking())
 	{
-		//cout error
 		std::cout << "Tile already opened" << std::endl;
 		return;
 	}
@@ -392,6 +386,11 @@ void GameBoard::RevealTile(int row, int col)
 		return;
 	}
 
+	//if target tile mine count is 0, then keep reveal surround until meet a minecount number is bigger than 0
+	//using BFS
+	// if current this tile has 0 mine count, then add surround to next(expect flagged) to reveal
+	// if current this tile has mine count (1~8), stop spread, but reveal
+
 	bool isIteratorOpened;
 	bool isIteratorFlagged;
 
@@ -400,26 +399,18 @@ void GameBoard::RevealTile(int row, int col)
 
 	//push the first tile to spread blank tile map
 	current.push_back(std::make_pair(row, col));
-
-	//if target tile mine count is 0, then keep reveal surround until meet a minecount number is bigger than 0
-	//using BFS
-
-	// if current this tile has 0 mine count, then add surround to next(expect flagged) to reveal
-	// if current this tile has mine count (1~8), stop spread, but reveal
-
+	
 	while (!current.empty())
 	{
 		//clear next
 		next.clear();
-
+		
 		//for each tile in current
 		for (auto& tile : current)
 		{
 			//then reveal it
 			board[tile.first * width + tile.second].SetReveal();
-			openedTileCount++;
-			remainClosedTileCount--;
-
+			
 			//if current tile is not mine, and mine count is 0, then add surround to next
 			if (board[tile.first * width + tile.second].GetMineCount() == 0)
 			{
@@ -439,7 +430,7 @@ void GameBoard::RevealTile(int row, int col)
 						{
 							//if is not opened
 							isIteratorOpened = !board[(tile.first + i) * width + tile.second + j].IsMasking();
-							//if is not flagged
+							//if is not flagged // this is no need.
 							isIteratorFlagged = board[(tile.first + i) * width + tile.second + j].IsFlagged();
 
 							if (!isIteratorOpened && !isIteratorFlagged)
@@ -451,10 +442,15 @@ void GameBoard::RevealTile(int row, int col)
 				}
 			}
 		}
+		
 
 		//swap current and next
 		current.swap(next);
 	}
+	
+	UpdateOpenedTileCount();
+	UpdateRemainClosedBlankTileCount();
+	
 }
 
 // click operation
@@ -508,13 +504,24 @@ bool GameBoard::CheckGame()
 
 	
 	// wingame
+		// if remainClosedBlankTileCount == 0, then win the game, terminate current play -> responsible by in the charge of GameController
 		// if and only if all flags are on all mines
 		// all blank tiles are opened 
 	int totalTileCount = width * height;
 	
+	if (remainClosedBlankTileCount == 0 && flagCount == mineCount)
+	{
+		//output win message
+		std::cout << "You win the game" << std::endl;
+		gameBoardResult = GameBoardResult::Win;
+		return true;
+	}
+
 	// if all tiles are opened
 	if (totalTileCount - openedTileCount == mineCount)
 	{
+		//output win message
+		std::cout << "You win the game" << std::endl;
 		gameBoardResult = GameBoardResult::Win;
 		return true;
 	}
@@ -548,4 +555,36 @@ void GameBoard::StartGame()
 	//start game
 	//set game state to playing
 	gameBoardState = GameBoardState::Playing;
+}
+
+
+void GameBoard::UpdateOpenedTileCount() 
+{
+	openedTileCount = 0;
+	for (int i = 0; i < height; i++)
+	{
+		for (int j = 0; j < width; j++)
+		{
+			if (!board[i * width + j].IsMasking())
+			{
+				openedTileCount++;
+			}
+		}
+	}
+
+}
+
+void GameBoard::UpdateRemainClosedBlankTileCount() 
+{
+	remainClosedBlankTileCount = 0;
+	for (int i = 0; i < height; i++)
+	{
+		for (int j = 0; j < width; j++)
+		{
+			if (board[i * width + j].IsMasking() && board[i * width + j].IsMine()==false)
+			{
+				remainClosedBlankTileCount++;
+			}
+		}
+	}
 }
