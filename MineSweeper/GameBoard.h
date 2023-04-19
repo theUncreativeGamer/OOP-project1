@@ -185,9 +185,9 @@ public:
 	// Post:
 	bool getIsEnableGameInput() { return isEnableGameInput; };
 	
-	// Intent:
-	// Pre:
-	// Post:
+	// Intent: To get the game state as a string.
+	// Pre: GameBoard object must be instantiated.
+	// Post: Returns the game state as a string.
 	std::string GetGameStateString();
 
 };

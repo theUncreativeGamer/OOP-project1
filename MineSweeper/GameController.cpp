@@ -6,19 +6,23 @@
 
 void GameController::LoadPath(string path) 
 {
+	string outputString = "<Load BoardFile " + path + " : ";
+	cout << outputString << endl;
+	
 	if (board->getBoardState() == GameBoardState::Idle) 
 	{
 		board->LoadBoardFile(path);
-		cout << "< Success >\n";
+		cout << "Success\n";
 	}
 	else
 	{
-		cout << "< Failed >\n";
+		cout << "Failed\n";
 	}
 }
 
 void GameController::LoadRate(int m, int n, float rate) 
 {
+	
 	if (board->getBoardState() == GameBoardState::Idle) 
 	{
 		board->LoadRandomGenerateMine(m, n, rate);
@@ -56,7 +60,7 @@ void GameController::StartGame()
 	else 
 	{
 		board->StartGame();
-		cout << "< Success >\n";
+		cout << "<StartGame> : Success\n";
 	}
 }
 
@@ -64,10 +68,18 @@ void GameController::Print(string inst)
 {
 	if (inst == "GameBoard") 
 	{
+		cout << "<Print GameBoard> : \n";
 		board->PrintBoardWithMask();
+	}
+	else if (inst == "GameAnswer") 
+	{
+		cout << "<Print GameAnswer> : \n";
+		board->PrintBoard();
 	}
 	else if (inst == "GameState") 
 	{
+		cout << "<Print GameState> : ";
+		
 		//
 		GameBoardState state = board->getBoardState();
 		if (state == GameBoardState::Idle) 
@@ -82,10 +94,6 @@ void GameController::Print(string inst)
 		{
 			cout << "GameOver";
 		}
-	}
-	else if (inst == "GameAnswer") 
-	{
-		board->PrintBoard();
 	}
 	else if (inst == "BombCount") 
 	{
@@ -105,13 +113,13 @@ void GameController::Print(string inst)
 	}
 	else 
 	{
-		//debug snnippet fragment
-		//print all counts in board
-		cout << "BombCount: " << board->getMineCount() << '\n';
-		cout << "FlagCount: " << board->getFlagCount() << '\n';
-		cout << "OpenBlankCount: " << board->getOpenedTileCount() << '\n';
-		cout << "RemainBlankCount: " << board->getRemainClosedTileCount() << '\n';
-		//debug snnippet fragment
+		////debug snnippet fragment
+		////print all counts in board
+		//cout << "BombCount: " << board->getMineCount() << '\n';
+		//cout << "FlagCount: " << board->getFlagCount() << '\n';
+		//cout << "OpenBlankCount: " << board->getOpenedTileCount() << '\n';
+		//cout << "RemainBlankCount: " << board->getRemainClosedTileCount() << '\n';
+		////debug snnippet fragment
 
 		cout << "Failed\n";
 	}
@@ -119,6 +127,10 @@ void GameController::Print(string inst)
 
 void GameController::LeftClick(int rol, int col) 
 {
+	// <LeftClick 5 1> :
+	string outputString = "<LeftClick " + to_string(rol) + " " + to_string(col) + "> : ";
+	cout << outputString;
+	
 	if (board->getBoardState() == GameBoardState::Playing) 
 	{
 		board->RevealTile(rol, col);
@@ -132,6 +144,10 @@ void GameController::LeftClick(int rol, int col)
 
 void GameController::RightClick(int rol, int col) 
 {
+	// <RightClick 5 1> :
+	string outputString = "<RightClick " + to_string(rol) + " " + to_string(col) + "> : ";
+	cout << outputString;
+	
 	if (board->getBoardState() == GameBoardState::Playing) 
 	{
 		board->FlagTile(rol, col);
@@ -160,6 +176,7 @@ void GameController::Quit()
 {
 	if (board->getBoardState() == GameBoardState::End) 
 	{
+		cout << "<Quit> : Success\n";
 		exit(0);
 	}
 	else 

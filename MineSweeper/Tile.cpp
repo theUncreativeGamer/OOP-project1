@@ -55,7 +55,7 @@ std::string Tile::GetMask()
 		}
 		else if (state == TileState::Flagged)
 		{
-			return "F";
+			return "f";
 		}
 		else if (state == TileState::QuestionMark)
 		{
