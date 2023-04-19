@@ -63,7 +63,7 @@ std::string Tile::GetMask()
 		}
 		else
 		{
-			return "Errrrrrrrrr";
+			return "Error: Undefined output";
 		}
 	}
 	else

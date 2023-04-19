@@ -17,9 +17,9 @@ public:
 		board = new GameBoard();
 	};
 	
-	// Intent:
-	// Pre:
-	// Post:
+	// Intent: Load the game board from a file specified by the input path.
+	// Pre: GameController object is created and a valid path is provided.
+	// Post: If the game board state is idle, load the board from the file and set the game board state to Playing. Otherwise, output an error message indicating that the board cannot be loaded while a game is in progress.
 	void LoadPath(string path);
 	
 	// Intent:
