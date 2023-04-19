@@ -101,7 +101,7 @@ TileState Tile::FlagMark()
 	{
 		//output error
 		std::cout << "Error: Tile is already revealed." << std::endl;
-		return;
+		return state;
 	}
 	switch (state)
 	{
