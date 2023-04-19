@@ -19,17 +19,27 @@ int main(int argc, char* argv[])
 	MineSweeper.exe GUI
 	*/
 	//到時候應該寫成根據 CommandFile CommandInput切換輸入流(共用)
-	if (argc == 4 && argv[1] == "CommandFile") 
+
+	istream* iStream = &cin;
+	
+	if (argc == 4 && string(argv[1]) == "CommandFile") 
 	{
 		//MineSweeper.exe CommandFile command.txt output.txt
+		ifstream commandFile(argv[2]);
+		ofstream outputFile(argv[3]);
+		
+		iStream = &commandFile;
+		
 	}
-	else if (argc == 2 && argv[1] == "CommandInput") 
+	else if (argc == 2 && string(argv[1]) == "CommandInput") 
 	{
 		//MineSweeper.exe CommandInput
+		iStream = &cin;
 	}
-	else if (argc == 2 && argv[1] == "GUI") 
+	else if (argc == 2 && string(argv[1]) == "GUI") 
 	{
 		//MineSweeper.exe GUI
+		return 0;
 	}
 	else 
 	{
@@ -44,27 +54,27 @@ int main(int argc, char* argv[])
 	//command input
 	GameController game;
 	string input;
-	while (cin >> input) 
+	while (*iStream >> input) 
 	{
 
 		if (input == "Load") 
 		{
-			cin >> input;
+			*iStream >> input;
 			if (input == "BoardFile") 
 			{
-				cin >> input;
+				*iStream >> input;
 				game.LoadPath(input);
 			}
 			else if (input == "RandomCount") 
 			{
 				int m, n, c;
-				cin >> m >> n >> c;
+				*iStream >> m >> n >> c;
 				game.LoadCount(m, n, c);
 			}
 			else if (input == "RandomRate") 
 			{
 				int m, n, r;
-				cin >> m >> n >> r;
+				*iStream >> m >> n >> r;
 				game.LoadRate(m, n, r);
 			}
 		}
@@ -74,19 +84,19 @@ int main(int argc, char* argv[])
 		}
 		else if (input == "Print") 
 		{
-			cin >> input;
+			*iStream >> input;
 			game.Print(input);
 		}
 		else if (input == "LeftClick") 
 		{
 			int m, n;
-			cin >> m >> n;
+			*iStream >> m >> n;
 			game.LeftClick(m, n);
 		}
 		else if (input == "RightClick") 
 		{
 			int m, n;
-			cin >> m >> n;
+			*iStream >> m >> n;
 			game.RightClick(m, n);
 		}
 		else if (input == "Replay") 

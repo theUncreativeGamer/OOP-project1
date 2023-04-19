@@ -6,13 +6,21 @@
 
 void GameController::LoadPath(string path) 
 {
-	string outputString = "<Load BoardFile " + path + " : ";
-	cout << outputString << endl;
+	string outputString = "<Load BoardFile " + path + "> : ";
+	cout << outputString ;
 	
 	if (board->getBoardState() == GameBoardState::Idle) 
 	{
-		board->LoadBoardFile(path);
-		cout << "Success\n";
+		bool allRight = board->LoadBoardFile(path);
+		//cout << "Success\n";
+		if (allRight)
+		{
+			cout << "Success\n";
+		}
+		else
+		{
+			cout << "Failed\n";
+		}
 	}
 	else
 	{
@@ -84,7 +92,7 @@ void GameController::Print(string inst)
 		GameBoardState state = board->getBoardState();
 		if (state == GameBoardState::Idle) 
 		{
-			cout << "Idle\n";
+			cout << "Standby\n";
 		}
 		else if (state == GameBoardState::Playing) 
 		{
@@ -133,8 +141,16 @@ void GameController::LeftClick(int rol, int col)
 	
 	if (board->getBoardState() == GameBoardState::Playing) 
 	{
-		board->RevealTile(rol, col);
-		cout << "Success\n";
+		bool allRight = board->RevealTile(rol, col);
+		//cout << "Success\n";
+		if (allRight)
+		{
+			cout << "Success\n";
+		}
+		else
+		{
+			cout << "Failed\n";
+		}
 	}
 	else 
 	{
@@ -150,8 +166,16 @@ void GameController::RightClick(int rol, int col)
 	
 	if (board->getBoardState() == GameBoardState::Playing) 
 	{
-		board->FlagTile(rol, col);
-		cout << "Success\n";
+		bool allRight = board->FlagTile(rol, col);
+		//cout << "Success\n";
+		if (allRight)
+		{
+			cout << "Success\n";
+		}
+		else
+		{
+			cout << "Fail\n";
+		}
 	}
 	else 
 	{

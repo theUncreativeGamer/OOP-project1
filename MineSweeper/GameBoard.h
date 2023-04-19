@@ -111,7 +111,7 @@ public:
 	// Intent: Loads a mine map from a file with a specific format and initializes the game board.
 	// Pre: A valid file path is passed as a parameter.
 	// Post: If the file exists and has a valid format, the game board is initialized with the information from the file.
-	void LoadBoardFile(std::string relative_path);
+	bool LoadBoardFile(std::string relative_path);
 	
 	// Intent: This function loads a game board with randomly generated mines
 	// Pre: The height, width, and mineCount parameters are valid integers
@@ -148,12 +148,12 @@ public:
 	// Intent:
 	// Pre:
 	// Post:
-	void RevealTile(int row, int col);
+	bool RevealTile(int row, int col);
 	
 	// Intent: This function marks a tile with a flag or a question mark based on user input.
 	// Pre: The GameBoard object has been initialized and a game has been started. row and col represent valid positions on the game board.
 	// Post: The tile at the given position has been marked with a flag or question mark, or unmarked if it was already marked. The flagCount and questionMarkCount member variables are updated accordingly. If an invalid position or operation is provided, an error message is displayed.
-	void FlagTile(int row, int col);
+	bool FlagTile(int row, int col);
 
 //actions
 	// Intent: To check the game status and determine if the game is over.

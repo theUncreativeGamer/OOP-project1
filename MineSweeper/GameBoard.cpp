@@ -3,9 +3,9 @@
 
 std::map<GameBoardState, std::string> GameBoard::GameBoardStateString
 {
-	{GameBoardState::Idle, "Idle"},
+	{GameBoardState::Idle, "Standby"},
 	{GameBoardState::Playing, "Playing"},
-	{GameBoardState::End, "End"}
+	{GameBoardState::End, "GameOver"}
 };
 
 GameBoard::GameBoard()
@@ -85,7 +85,7 @@ void GameBoard::CalculateMines() //after the gameboard created
 	}
 }
 
-void GameBoard::LoadBoardFile(std::string relative_path)
+bool GameBoard::LoadBoardFile(std::string relative_path)
 {
 	// load file format:
 	// row, column in first line
@@ -97,7 +97,7 @@ void GameBoard::LoadBoardFile(std::string relative_path)
 	{
 		//throw GameBoardException("File not found");
 		std::cout << "File not found" << std::endl;
-		return;
+		return false;
 	}
 
 	std::string line;
@@ -112,7 +112,7 @@ void GameBoard::LoadBoardFile(std::string relative_path)
 	{
 		//throw GameBoardException("Invalid file format");
 		std::cout << "Invalid file format" << std::endl;
-		return;
+		return false;
 	}
 
 	//load these two integers as width and height
@@ -136,11 +136,15 @@ void GameBoard::LoadBoardFile(std::string relative_path)
 		//readi n board info
 		if (line.length() != width)
 		{
-			throw GameBoardException("Invalid file format with row length in map");
+			//throw GameBoardException("Invalid file format with row length in map");
+			std::cout << "Invalid file format with row length in map" << std::endl;
+			return false;
 		}
 		if (!std::regex_match(line, rowContentChecker))
 		{
-			throw GameBoardException("Invalid file format with content");
+			//throw GameBoardException("Invalid file format with content");
+			std::cout << "Invalid file format with content" << std::endl;
+			return false;
 		}
 
 		//then put each character if is mine,put to board
@@ -162,6 +166,7 @@ void GameBoard::LoadBoardFile(std::string relative_path)
 	{
 		//throw GameBoardException("Invalid file format with height");
 		std::cout << "Invalid file format with height" << std::endl;
+		return false;
 	}
 
 	//initialize members
@@ -172,7 +177,8 @@ void GameBoard::LoadBoardFile(std::string relative_path)
 
 	//initialize mine count to every tile
 	CalculateMines();
-
+	
+	return true;
 }
 
 
@@ -345,7 +351,7 @@ void GameBoard::PrintBoardWithMask()
 
 
 //click operation
-void GameBoard::RevealTile(int row, int col)
+bool GameBoard::RevealTile(int row, int col)
 {
 	// open tiles: only unmarked tiles can be opened
 
@@ -356,35 +362,32 @@ void GameBoard::RevealTile(int row, int col)
 	if (!ValidPosition(row, col))
 	{
 		//throw GameBoardException("Invalid position");
-		std::cout << "Invalid position" << std::endl;
-		return;
-	}
-
-	// if is mine, turn game to lose
-	if (board[row * width + col].IsMine())
-	{
-		gameBoardResult = GameBoardResult::Lose;
-		return;
+		//std::cout << "Invalid position" << std::endl;
+		return false;
 	}
 
 	//if already opened, return error mesage
-	if (!board[row * width + col].IsMasking())
+	else if (!board[row * width + col].IsMasking())
 	{
-		std::cout << "Tile already opened" << std::endl;
-		return;
+		//std::cout << "Tile already opened" << std::endl;
+		return false;
 	}
-
 	//if flagged or question marked, return error message
-	if (board[row * width + col].IsFlagged() || 
+	else if (board[row * width + col].IsFlagged() || 
 		board[row * width + col].IsQuestionMarked())
 	{
-		//cout true of two conditions
-		/*std::cout << (board[row * width + col].IsFlagged() ? "flag true" : "flag false") << "\n";
-		std::cout << (board[row * width + col].IsQuestionMarked() ? "question true" : "question false") << "\n";*/
 		//cout error
-		std::cout << "Tile is flagged or question marked" << std::endl;
-		return;
+		//std::cout << "Tile is flagged or question marked" << std::endl;
+		return false;
 	}
+	// if is mine, turn game to lose
+	else if (board[row * width + col].IsMine())
+	{
+		gameBoardResult = GameBoardResult::Lose;
+		return true;
+	}
+
+
 
 	//if target tile mine count is 0, then keep reveal surround until meet a minecount number is bigger than 0
 	//using BFS
@@ -451,10 +454,13 @@ void GameBoard::RevealTile(int row, int col)
 	UpdateOpenedTileCount();
 	UpdateRemainClosedBlankTileCount();
 	
+	if (CheckGame());
+	
+	return true;
 }
 
 // click operation
-void GameBoard::FlagTile(int row, int col)
+bool GameBoard::FlagTile(int row, int col)
 {
 	// mark the tile: tile can be only marked when it is not opened
 
@@ -463,12 +469,14 @@ void GameBoard::FlagTile(int row, int col)
 	{
 		//throw GameBoardException("Invalid position");
 		std::cout << "Invalid position" << std::endl;
+		return false;
 	}
 	// and if not Masked
 	if (!board[row * width + col].IsMasking())
 	{
 		//throw GameBoardException("Invalid operation");
 		std::cout << "Invalid operation" << std::endl;
+		return false;
 	}
 
 	TileState afterDoFlagMarkTileState = board[row * width + col].FlagMark();
@@ -486,6 +494,7 @@ void GameBoard::FlagTile(int row, int col)
 		questionMarkCount--;
 	}
 	
+	return true;
 }
 
 //actions
@@ -494,59 +503,57 @@ bool GameBoard::CheckGame()
 	// losegame
 		// the position pass in of your pick if it's a mine, then lose the game, terminate current play -> responsible by in the charge of GameController
 		
+	// wingame
+		// if remainClosedBlankTileCount == 0, then win the game, terminate current play -> responsible by in the charge of GameController
+		// if and only if all flags are on all mines
+		// all blank tiles are opened 
+		
 	//iff all mines are flagged
 	if (gameBoardResult == GameBoardResult::Lose)
 	{
 		//output lose message
 		std::cout << "You lose the game" << std::endl;
+		gameBoardState = GameBoardState::End;
 		return true;
-	}
-
-	
-	// wingame
-		// if remainClosedBlankTileCount == 0, then win the game, terminate current play -> responsible by in the charge of GameController
-		// if and only if all flags are on all mines
-		// all blank tiles are opened 
-	int totalTileCount = width * height;
-	
-	if (remainClosedBlankTileCount == 0 && flagCount == mineCount)
+	}	
+	else if (remainClosedBlankTileCount == 0 )
 	{
 		//output win message
 		std::cout << "You win the game" << std::endl;
 		gameBoardResult = GameBoardResult::Win;
+		gameBoardState = GameBoardState::End;
 		return true;
 	}
 
-	// if all tiles are opened
-	if (totalTileCount - openedTileCount == mineCount)
-	{
-		//output win message
-		std::cout << "You win the game" << std::endl;
-		gameBoardResult = GameBoardResult::Win;
-		return true;
-	}
+	//// if all tiles are opened
+	//int totalTileCount = width * height;
+	//if (totalTileCount - openedTileCount == mineCount)
+	//{
+	//	//output win message
+	//	std::cout << "You win the game" << std::endl;
+	//	gameBoardResult = GameBoardResult::Win;
+	//	return true;
+	//}
 	// probably disable this condition, due to with last several mines, player will try to flag all mines in order to win
 	//else if all flags only on mines
-	else if (flagCount == mineCount)
-	{
-		//check if all flags are on mines
-		for (int i = 0; i < height; i++)
-		{
-			for (int j = 0; j < width; j++)
-			{
-				if (board[i * width + j].IsFlagged() && !board[i * width + j].IsMine())
-				{
-					return false;
-				}
-			}
-		}
+	//else if (flagCount == mineCount)
+	//{
+	//	//check if all flags are on mines
+	//	for (int i = 0; i < height; i++)
+	//	{
+	//		for (int j = 0; j < width; j++)
+	//		{
+	//			if (board[i * width + j].IsFlagged() && !board[i * width + j].IsMine())
+	//			{
+	//				return false;
+	//			}
+	//		}
+	//	}
 
-		gameBoardResult = GameBoardResult::Win;
-		return true;
-	}
-
-
-
+	//	gameBoardResult = GameBoardResult::Win;
+	//	return true;
+	//}
+	
 	return false;
 }
 
