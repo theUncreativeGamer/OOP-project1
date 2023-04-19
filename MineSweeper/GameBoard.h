@@ -57,6 +57,8 @@ private:
 	int remainClosedBlankTileCount;// only adds when tile is closed and not mine
 	
 	static std::map<GameBoardState, std::string> GameBoardStateString;
+
+	std::ostream* oStream;
 	
 private:
 
@@ -104,6 +106,7 @@ public:
 
 	//constructor
 	GameBoard();
+	GameBoard(std::ostream* oStream);
 	GameBoard(int m, int n);
 
 

@@ -18,9 +18,9 @@ int main(int argc, char* argv[])
 	MineSweeper.exe CommandInput
 	MineSweeper.exe GUI
 	*/
-	//到時候應該寫成根據 CommandFile CommandInput切換輸入流(共用)
 
 	istream* iStream = &cin;
+	ostream* oStream = &cout;
 	
 	if (argc == 4 && string(argv[1]) == "CommandFile") 
 	{
@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
 		ofstream outputFile(argv[3]);
 		
 		iStream = &commandFile;
-		
+		oStream = &outputFile;		
 	}
 	else if (argc == 2 && string(argv[1]) == "CommandInput") 
 	{
@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
 	}
 
 	//command input
-	GameController game;
+	GameController game(oStream);
 	string input;
 	while (*iStream >> input) 
 	{

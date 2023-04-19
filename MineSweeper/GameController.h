@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <stdlib.h>
 #include "GameBoard.h"
@@ -10,11 +11,19 @@ class GameController
 {
 private:
 	GameBoard* board;
+	ostream* oStream;
 	
 public:
 	GameController() 
 	{
+		this->oStream = &cout;
 		board = new GameBoard();
+	};
+	
+	GameController(ostream * oStream)
+	{
+		this->oStream = oStream;
+		board = new GameBoard(oStream);
 	};
 	
 	// Intent: Load the game board from a file specified by the input path.
@@ -61,6 +70,7 @@ public:
 	// Pre:
 	// Post:
 	void Quit();
+
 };
 
 

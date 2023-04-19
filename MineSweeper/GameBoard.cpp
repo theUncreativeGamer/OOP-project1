@@ -24,6 +24,28 @@ GameBoard::GameBoard()
 	questionMarkCount = 0;
 	openedTileCount = 0;
 	remainClosedBlankTileCount = 0;
+
+}
+
+GameBoard::GameBoard(std::ostream* oStream)
+{
+	width = 0;
+	height = 0;
+
+	board = NULL;//tile array
+
+	isEnableGameInput = false;
+	gameBoardState = GameBoardState::Idle;
+	gameBoardResult = GameBoardResult::Playing;		//??
+
+	mineCount = 0;
+	flagCount = 0;
+	questionMarkCount = 0;
+	openedTileCount = 0;
+	remainClosedBlankTileCount = 0;
+	
+	this->oStream = oStream;
+
 }
 
 void GameBoard::ChangeGameInput() 
@@ -96,7 +118,7 @@ bool GameBoard::LoadBoardFile(std::string relative_path)
 	if (!file.is_open())
 	{
 		//throw GameBoardException("File not found");
-		std::cout << "File not found" << std::endl;
+		*oStream << "File not found" << std::endl;
 		return false;
 	}
 
@@ -111,7 +133,7 @@ bool GameBoard::LoadBoardFile(std::string relative_path)
 	if (!std::regex_match(line, widthHeightChecker))
 	{
 		//throw GameBoardException("Invalid file format");
-		std::cout << "Invalid file format" << std::endl;
+		*oStream << "Invalid file format" << std::endl;
 		return false;
 	}
 
@@ -137,13 +159,13 @@ bool GameBoard::LoadBoardFile(std::string relative_path)
 		if (line.length() != width)
 		{
 			//throw GameBoardException("Invalid file format with row length in map");
-			std::cout << "Invalid file format with row length in map" << std::endl;
+			*oStream << "Invalid file format with row length in map" << std::endl;
 			return false;
 		}
 		if (!std::regex_match(line, rowContentChecker))
 		{
 			//throw GameBoardException("Invalid file format with content");
-			std::cout << "Invalid file format with content" << std::endl;
+			*oStream << "Invalid file format with content" << std::endl;
 			return false;
 		}
 
@@ -165,7 +187,7 @@ bool GameBoard::LoadBoardFile(std::string relative_path)
 	if (currentHeight != height)
 	{
 		//throw GameBoardException("Invalid file format with height");
-		std::cout << "Invalid file format with height" << std::endl;
+		*oStream << "Invalid file format with height" << std::endl;
 		return false;
 	}
 
@@ -192,7 +214,7 @@ void GameBoard::LoadRandomGenerateMine(int height, int width, int mineCount)
 	if (mineCount >= width * height)
 	{
 		//throw GameBoardException("Mine count is bigger than total tiles");
-		std::cout << "Error: Mine count is bigger than total tiles" << std::endl;
+		*oStream << "Error: Mine count is bigger than total tiles" << std::endl;
 	}
 
 	//set mine count
@@ -250,7 +272,7 @@ void GameBoard::LoadRandomCountMine(int height, int width, float mineGenerateRat
 	if (mineGenerateRate < 0 || mineGenerateRate >= 1)
 	{
 		//throw GameBoardException("Invalid mine generate rate");
-		std::cout << "Invalid mine generate rate" << std::endl;
+		*oStream << "Invalid mine generate rate" << std::endl;
 		return;
 	}
 
@@ -307,7 +329,7 @@ void GameBoard::LoadRandomCountMine(int height, int width, float mineGenerateRat
 void GameBoard::PrintGameState()
 {
 	//print game state
-	std::cout << "Game State: " << GameBoardStateString[gameBoardState] << std::endl;
+	*oStream << "Game State: " << GameBoardStateString[gameBoardState] << std::endl;
 
 }
 
@@ -330,9 +352,9 @@ void GameBoard::PrintBoard()//print answer
 	{
 		for (int j = 0; j < height; j++)
 		{
-			std::cout << board[i * width + j].getAnswer();
+			*oStream << board[i * width + j].getAnswer();
 		}
-		std::cout << std::endl;
+		*oStream << std::endl;
 	}
 }
 
@@ -343,9 +365,9 @@ void GameBoard::PrintBoardWithMask()
 	{
 		for (int j = 0; j < height; j++)
 		{
-			std::cout << board[i * width + j].GetMask();
+			*oStream << board[i * width + j].GetMask();
 		}
-		std::cout << std::endl;
+		*oStream << std::endl;
 	}
 }
 
@@ -362,14 +384,14 @@ bool GameBoard::RevealTile(int row, int col)
 	if (!ValidPosition(row, col))
 	{
 		//throw GameBoardException("Invalid position");
-		//std::cout << "Invalid position" << std::endl;
+		//*oStream << "Invalid position" << std::endl;
 		return false;
 	}
 
 	//if already opened, return error mesage
 	else if (!board[row * width + col].IsMasking())
 	{
-		//std::cout << "Tile already opened" << std::endl;
+		//*oStream << "Tile already opened" << std::endl;
 		return false;
 	}
 	//if flagged or question marked, return error message
@@ -377,7 +399,7 @@ bool GameBoard::RevealTile(int row, int col)
 		board[row * width + col].IsQuestionMarked())
 	{
 		//cout error
-		//std::cout << "Tile is flagged or question marked" << std::endl;
+		//*oStream << "Tile is flagged or question marked" << std::endl;
 		return false;
 	}
 	// if is mine, turn game to lose
@@ -454,7 +476,7 @@ bool GameBoard::RevealTile(int row, int col)
 	UpdateOpenedTileCount();
 	UpdateRemainClosedBlankTileCount();
 	
-	if (CheckGame());
+	//if (CheckGame());
 	
 	return true;
 }
@@ -468,14 +490,14 @@ bool GameBoard::FlagTile(int row, int col)
 	if (!ValidPosition(row, col))
 	{
 		//throw GameBoardException("Invalid position");
-		std::cout << "Invalid position" << std::endl;
+		*oStream << "Invalid position" << std::endl;
 		return false;
 	}
 	// and if not Masked
 	if (!board[row * width + col].IsMasking())
 	{
 		//throw GameBoardException("Invalid operation");
-		std::cout << "Invalid operation" << std::endl;
+		*oStream << "Invalid operation" << std::endl;
 		return false;
 	}
 
@@ -512,14 +534,14 @@ bool GameBoard::CheckGame()
 	if (gameBoardResult == GameBoardResult::Lose)
 	{
 		//output lose message
-		std::cout << "You lose the game" << std::endl;
+		*oStream << "You lose the game" << std::endl;
 		gameBoardState = GameBoardState::End;
 		return true;
 	}	
 	else if (remainClosedBlankTileCount == 0 )
 	{
 		//output win message
-		std::cout << "You win the game" << std::endl;
+		*oStream << "You win the game" << std::endl;
 		gameBoardResult = GameBoardResult::Win;
 		gameBoardState = GameBoardState::End;
 		return true;
@@ -530,7 +552,7 @@ bool GameBoard::CheckGame()
 	//if (totalTileCount - openedTileCount == mineCount)
 	//{
 	//	//output win message
-	//	std::cout << "You win the game" << std::endl;
+	//	*oStream << "You win the game" << std::endl;
 	//	gameBoardResult = GameBoardResult::Win;
 	//	return true;
 	//}
