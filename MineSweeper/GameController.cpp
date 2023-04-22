@@ -137,14 +137,13 @@ void GameController::Print(string inst)
 
 void GameController::LeftClick(int rol, int col) 
 {
-	// <LeftClick 5 1> :
 	string outputString = "<LeftClick " + to_string(rol) + " " + to_string(col) + "> : ";
 	*oStream << outputString;
 	
 	if (board->getBoardState() == GameBoardState::Playing) 
 	{
 		bool allRight = board->RevealTile(rol, col);
-		//*oStream << "Success\n";
+		
 		if (allRight)
 		{
 			*oStream << "Success\n";
@@ -164,7 +163,6 @@ void GameController::LeftClick(int rol, int col)
 
 void GameController::RightClick(int rol, int col) 
 {
-	// <RightClick 5 1> :
 	string outputString = "<RightClick " + to_string(rol) + " " + to_string(col) + "> : ";
 	*oStream << outputString;
 	
@@ -212,9 +210,6 @@ void GameController::Quit()
 		*oStream << "You can't quit now.\n";
 	}
 }
-
-
-
 
 // command handler: handle the command with situation can be executed or not, if not , throw a error message
 

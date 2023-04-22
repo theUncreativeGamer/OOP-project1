@@ -111,8 +111,6 @@ int main(int argc, char* argv[])
 		fflush(stdin);
 		oStream->flush();
 	}
-
-	//ofstream output hello
 		  
 	//close ostream
 	if (oStream != &cout)
