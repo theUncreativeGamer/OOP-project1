@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0F5DA4BC-92F5-339C-9FD9-D777FB93084E}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Programming Tools\fltk_build;D:\Programming Tools\fltk-1.3.8;D:\Programming Tools\fltk-1.3.8\zlib;D:\Programming Tools\fltk-1.3.8\jpeg;D:\Programming Tools\fltk-1.3.8\png;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Programming Tools\fltk_build;D:\Programming Tools\fltk-1.3.8;D:\Programming Tools\fltk-1.3.8\zlib;D:\Programming Tools\fltk-1.3.8\jpeg;D:\Programming Tools\fltk-1.3.8\png;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Programming Tools\fltk_build;D:\Programming Tools\fltk-1.3.8;D:\Programming Tools\fltk-1.3.8\zlib;D:\Programming Tools\fltk-1.3.8\jpeg;D:\Programming Tools\fltk-1.3.8\png;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Programming Tools\fltk_build;D:\Programming Tools\fltk-1.3.8;D:\Programming Tools\fltk-1.3.8\zlib;D:\Programming Tools\fltk-1.3.8\jpeg;D:\Programming Tools\fltk-1.3.8\png;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Programming Tools\fltk-1.3.8\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/Programming Tools/fltk-1.3.8/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SD:/Programming Tools/fltk-1.3.8" "-BD:/Programming Tools/fltk_build" --check-stamp-file "D:/Programming Tools/fltk_build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCCompilerABI.c;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCXXCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCXXCompilerABI.cpp;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeConfigurableFile.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCompileFeatures.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeParseLibraryArchitecture.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeRCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeTestCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeTestCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeTestRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckFunctionExists.c;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFile.c.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFileCXX.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFiles.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckTypeSize.c.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckTypeSize.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\NVHPC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-3.21\Modules\FLTKCompatibility.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FeatureSummary.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindDoxygen.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindJPEG.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPNG.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPkgConfig.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindZLIB.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-Determine-CXX.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\SelectLibraryConfigurations.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\TestBigEndian.cmake;D:\Programming Tools\fltk-1.3.8\CMake\FLTK-Functions.cmake;D:\Programming Tools\fltk-1.3.8\CMake\FLTKConfig.cmake.in;D:\Programming Tools\fltk-1.3.8\CMake\UseFLTK.cmake.in;D:\Programming Tools\fltk-1.3.8\CMake\cmake_uninstall.cmake.in;D:\Programming Tools\fltk-1.3.8\CMake\export.cmake;D:\Programming Tools\fltk-1.3.8\CMake\fl_add_library.cmake;D:\Programming Tools\fltk-1.3.8\CMake\fl_debug_var.cmake;D:\Programming Tools\fltk-1.3.8\CMake\install.cmake;D:\Programming Tools\fltk-1.3.8\CMake\options.cmake;D:\Programming Tools\fltk-1.3.8\CMake\resources.cmake;D:\Programming Tools\fltk-1.3.8\CMake\setup.cmake;D:\Programming Tools\fltk-1.3.8\CMake\variables.cmake;D:\Programming Tools\fltk-1.3.8\abi-version.cmake.in;D:\Programming Tools\fltk-1.3.8\configh.cmake.in;D:\Programming Tools\fltk-1.3.8\fltk-config.in;D:\Programming Tools\fltk_build\CMakeFiles\3.21.3\CMakeCCompiler.cmake;D:\Programming Tools\fltk_build\CMakeFiles\3.21.3\CMakeCXXCompiler.cmake;D:\Programming Tools\fltk_build\CMakeFiles\3.21.3\CMakeRCCompiler.cmake;D:\Programming Tools\fltk_build\CMakeFiles\3.21.3\CMakeSystem.cmake;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_ALSA_ASOUNDLIB_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_DIRENT_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_DLFCN_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_GL_GLU_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_LIBPNG_PNG_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_LOCALE_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_NDIR_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_OPENGL_GLU_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_PNG_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_STDIO_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_STRINGS_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_SYS_DIR_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_SYS_NDIR_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_SYS_SELECT_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_SYS_STDTYPES_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_X11_XREGION_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_XDBE_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckTypeSize\HAVE_LONG_LONG.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckTypeSize\SIZEOF_INT.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckTypeSize\SIZEOF_LONG.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckTypeSize\SIZEOF_SHORT.c;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Programming Tools\fltk_build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/Programming Tools/fltk-1.3.8/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SD:/Programming Tools/fltk-1.3.8" "-BD:/Programming Tools/fltk_build" --check-stamp-file "D:/Programming Tools/fltk_build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCCompilerABI.c;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCXXCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCXXCompilerABI.cpp;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeConfigurableFile.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCompileFeatures.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeParseLibraryArchitecture.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeRCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeTestCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeTestCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeTestRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckFunctionExists.c;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFile.c.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFileCXX.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFiles.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckTypeSize.c.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckTypeSize.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\NVHPC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-3.21\Modules\FLTKCompatibility.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FeatureSummary.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindDoxygen.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindJPEG.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPNG.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPkgConfig.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindZLIB.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-Determine-CXX.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\SelectLibraryConfigurations.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\TestBigEndian.cmake;D:\Programming Tools\fltk-1.3.8\CMake\FLTK-Functions.cmake;D:\Programming Tools\fltk-1.3.8\CMake\FLTKConfig.cmake.in;D:\Programming Tools\fltk-1.3.8\CMake\UseFLTK.cmake.in;D:\Programming Tools\fltk-1.3.8\CMake\cmake_uninstall.cmake.in;D:\Programming Tools\fltk-1.3.8\CMake\export.cmake;D:\Programming Tools\fltk-1.3.8\CMake\fl_add_library.cmake;D:\Programming Tools\fltk-1.3.8\CMake\fl_debug_var.cmake;D:\Programming Tools\fltk-1.3.8\CMake\install.cmake;D:\Programming Tools\fltk-1.3.8\CMake\options.cmake;D:\Programming Tools\fltk-1.3.8\CMake\resources.cmake;D:\Programming Tools\fltk-1.3.8\CMake\setup.cmake;D:\Programming Tools\fltk-1.3.8\CMake\variables.cmake;D:\Programming Tools\fltk-1.3.8\abi-version.cmake.in;D:\Programming Tools\fltk-1.3.8\configh.cmake.in;D:\Programming Tools\fltk-1.3.8\fltk-config.in;D:\Programming Tools\fltk_build\CMakeFiles\3.21.3\CMakeCCompiler.cmake;D:\Programming Tools\fltk_build\CMakeFiles\3.21.3\CMakeCXXCompiler.cmake;D:\Programming Tools\fltk_build\CMakeFiles\3.21.3\CMakeRCCompiler.cmake;D:\Programming Tools\fltk_build\CMakeFiles\3.21.3\CMakeSystem.cmake;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_ALSA_ASOUNDLIB_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_DIRENT_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_DLFCN_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_GL_GLU_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_LIBPNG_PNG_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_LOCALE_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_NDIR_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_OPENGL_GLU_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_PNG_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_STDIO_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_STRINGS_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_SYS_DIR_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_SYS_NDIR_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_SYS_SELECT_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_SYS_STDTYPES_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_X11_XREGION_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_XDBE_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckTypeSize\HAVE_LONG_LONG.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckTypeSize\SIZEOF_INT.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckTypeSize\SIZEOF_LONG.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckTypeSize\SIZEOF_SHORT.c;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Programming Tools\fltk_build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/Programming Tools/fltk-1.3.8/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SD:/Programming Tools/fltk-1.3.8" "-BD:/Programming Tools/fltk_build" --check-stamp-file "D:/Programming Tools/fltk_build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCCompilerABI.c;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCXXCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCXXCompilerABI.cpp;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeConfigurableFile.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCompileFeatures.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeParseLibraryArchitecture.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeRCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeTestCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeTestCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeTestRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckFunctionExists.c;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFile.c.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFileCXX.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFiles.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckTypeSize.c.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckTypeSize.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\NVHPC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-3.21\Modules\FLTKCompatibility.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FeatureSummary.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindDoxygen.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindJPEG.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPNG.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPkgConfig.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindZLIB.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-Determine-CXX.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\SelectLibraryConfigurations.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\TestBigEndian.cmake;D:\Programming Tools\fltk-1.3.8\CMake\FLTK-Functions.cmake;D:\Programming Tools\fltk-1.3.8\CMake\FLTKConfig.cmake.in;D:\Programming Tools\fltk-1.3.8\CMake\UseFLTK.cmake.in;D:\Programming Tools\fltk-1.3.8\CMake\cmake_uninstall.cmake.in;D:\Programming Tools\fltk-1.3.8\CMake\export.cmake;D:\Programming Tools\fltk-1.3.8\CMake\fl_add_library.cmake;D:\Programming Tools\fltk-1.3.8\CMake\fl_debug_var.cmake;D:\Programming Tools\fltk-1.3.8\CMake\install.cmake;D:\Programming Tools\fltk-1.3.8\CMake\options.cmake;D:\Programming Tools\fltk-1.3.8\CMake\resources.cmake;D:\Programming Tools\fltk-1.3.8\CMake\setup.cmake;D:\Programming Tools\fltk-1.3.8\CMake\variables.cmake;D:\Programming Tools\fltk-1.3.8\abi-version.cmake.in;D:\Programming Tools\fltk-1.3.8\configh.cmake.in;D:\Programming Tools\fltk-1.3.8\fltk-config.in;D:\Programming Tools\fltk_build\CMakeFiles\3.21.3\CMakeCCompiler.cmake;D:\Programming Tools\fltk_build\CMakeFiles\3.21.3\CMakeCXXCompiler.cmake;D:\Programming Tools\fltk_build\CMakeFiles\3.21.3\CMakeRCCompiler.cmake;D:\Programming Tools\fltk_build\CMakeFiles\3.21.3\CMakeSystem.cmake;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_ALSA_ASOUNDLIB_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_DIRENT_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_DLFCN_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_GL_GLU_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_LIBPNG_PNG_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_LOCALE_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_NDIR_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_OPENGL_GLU_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_PNG_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_STDIO_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_STRINGS_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_SYS_DIR_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_SYS_NDIR_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_SYS_SELECT_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_SYS_STDTYPES_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_X11_XREGION_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_XDBE_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckTypeSize\HAVE_LONG_LONG.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckTypeSize\SIZEOF_INT.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckTypeSize\SIZEOF_LONG.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckTypeSize\SIZEOF_SHORT.c;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Programming Tools\fltk_build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/Programming Tools/fltk-1.3.8/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SD:/Programming Tools/fltk-1.3.8" "-BD:/Programming Tools/fltk_build" --check-stamp-file "D:/Programming Tools/fltk_build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCCompilerABI.c;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCXXCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCXXCompilerABI.cpp;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCompilerIdDetection.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeConfigurableFile.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCompileFeatures.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCompilerABI.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineCompilerId.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeFindBinUtils.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeParseImplicitIncludeInfo.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeParseLibraryArchitecture.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeRCCompiler.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeTestCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeTestCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeTestCompilerCommon.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeTestRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckFunctionExists.c;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFile.c.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFileCXX.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFiles.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckTypeSize.c.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckTypeSize.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\ADSP-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\ARMCC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\ARMClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\AppleClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Borland-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Bruce-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Clang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Clang-DetermineCompilerInternal.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Compaq-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Cray-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Embarcadero-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Fujitsu-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\GHS-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\GNU-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\HP-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\HP-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\IAR-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Intel-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\MSVC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\NVHPC-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\NVIDIA-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\PGI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\PathScale-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\SCO-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\SDCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\SunPro-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\TI-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\Watcom-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\XL-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\XL-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\XLClang-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\zOS-C-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CompilerId\VS-10.vcxproj.in;C:\Program Files\CMake\share\cmake-3.21\Modules\FLTKCompatibility.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FeatureSummary.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindDoxygen.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindJPEG.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPNG.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPkgConfig.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindZLIB.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Internal\FeatureTesting.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-Determine-CXX.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\SelectLibraryConfigurations.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\TestBigEndian.cmake;D:\Programming Tools\fltk-1.3.8\CMake\FLTK-Functions.cmake;D:\Programming Tools\fltk-1.3.8\CMake\FLTKConfig.cmake.in;D:\Programming Tools\fltk-1.3.8\CMake\UseFLTK.cmake.in;D:\Programming Tools\fltk-1.3.8\CMake\cmake_uninstall.cmake.in;D:\Programming Tools\fltk-1.3.8\CMake\export.cmake;D:\Programming Tools\fltk-1.3.8\CMake\fl_add_library.cmake;D:\Programming Tools\fltk-1.3.8\CMake\fl_debug_var.cmake;D:\Programming Tools\fltk-1.3.8\CMake\install.cmake;D:\Programming Tools\fltk-1.3.8\CMake\options.cmake;D:\Programming Tools\fltk-1.3.8\CMake\resources.cmake;D:\Programming Tools\fltk-1.3.8\CMake\setup.cmake;D:\Programming Tools\fltk-1.3.8\CMake\variables.cmake;D:\Programming Tools\fltk-1.3.8\abi-version.cmake.in;D:\Programming Tools\fltk-1.3.8\configh.cmake.in;D:\Programming Tools\fltk-1.3.8\fltk-config.in;D:\Programming Tools\fltk_build\CMakeFiles\3.21.3\CMakeCCompiler.cmake;D:\Programming Tools\fltk_build\CMakeFiles\3.21.3\CMakeCXXCompiler.cmake;D:\Programming Tools\fltk_build\CMakeFiles\3.21.3\CMakeRCCompiler.cmake;D:\Programming Tools\fltk_build\CMakeFiles\3.21.3\CMakeSystem.cmake;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_ALSA_ASOUNDLIB_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_DIRENT_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_DLFCN_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_GL_GLU_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_LIBPNG_PNG_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_LOCALE_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_NDIR_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_OPENGL_GLU_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_PNG_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_STDIO_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_STRINGS_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_SYS_DIR_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_SYS_NDIR_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_SYS_SELECT_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_SYS_STDTYPES_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_X11_XREGION_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckIncludeFiles\HAVE_XDBE_H.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckTypeSize\HAVE_LONG_LONG.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckTypeSize\SIZEOF_INT.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckTypeSize\SIZEOF_LONG.c;D:\Programming Tools\fltk_build\CMakeFiles\CheckTypeSize\SIZEOF_SHORT.c;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Programming Tools\fltk_build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\ZERO_CHECK.vcxproj">
+      <Project>{C6CC3CE1-9167-3BDA-B629-B6A4E6905337}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\CubeView.vcxproj">
+      <Project>{548AD896-5E31-388F-A9D5-5642F28571B6}</Project>
+      <Name>CubeView</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\adjuster.vcxproj">
+      <Project>{8EF57EF0-DCB3-351C-8BEF-1AD8F8E4985A}</Project>
+      <Name>adjuster</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\animated.vcxproj">
+      <Project>{1451B99C-728D-36FB-B03E-E8A687ECE54B}</Project>
+      <Name>animated</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\arc.vcxproj">
+      <Project>{C74E9275-EDFF-35EF-B88C-A68DF60FF101}</Project>
+      <Name>arc</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\ask.vcxproj">
+      <Project>{DA4FD5EA-4B68-3FFE-A1F8-71C550494826}</Project>
+      <Name>ask</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\bitmap.vcxproj">
+      <Project>{19C2F200-DFF2-36DB-BFC0-8E8E0DF8F2D0}</Project>
+      <Name>bitmap</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\blocks.vcxproj">
+      <Project>{1478E039-8CD4-3327-B71E-F05B768DD81E}</Project>
+      <Name>blocks</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\boxtype.vcxproj">
+      <Project>{66481803-AE23-398E-A677-A1E07BB1F2D3}</Project>
+      <Name>boxtype</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\browser.vcxproj">
+      <Project>{F3B753FF-1ACC-3D31-AD79-8132952C8C4D}</Project>
+      <Name>browser</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\button.vcxproj">
+      <Project>{77CCC2B1-6E7B-31CB-82C6-BB7849E0CA58}</Project>
+      <Name>button</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\buttons.vcxproj">
+      <Project>{DAE13F79-57FC-31D4-BA3B-5261C937D8B6}</Project>
+      <Name>buttons</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\cairo_test.vcxproj">
+      <Project>{5E13EA64-29FA-306B-96CB-3E329A00E552}</Project>
+      <Name>cairo_test</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\checkers.vcxproj">
+      <Project>{06681DFD-AB82-32DE-B3CE-E983E16D7921}</Project>
+      <Name>checkers</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\clock.vcxproj">
+      <Project>{B439E3F0-3301-3BB2-8239-9B4B120B0CAE}</Project>
+      <Name>clock</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\colbrowser.vcxproj">
+      <Project>{4912520D-365B-3CA6-B3C5-E5793F900AAC}</Project>
+      <Name>colbrowser</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\color_chooser.vcxproj">
+      <Project>{BCF8D19D-36BB-3913-89DA-EC07C021C79B}</Project>
+      <Name>color_chooser</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\cube.vcxproj">
+      <Project>{8ED694E3-EE2A-32C4-B56D-2A2E11A97119}</Project>
+      <Name>cube</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\cursor.vcxproj">
+      <Project>{428BAAAE-E234-362B-997D-85906155CDE4}</Project>
+      <Name>cursor</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\curve.vcxproj">
+      <Project>{F5FD87F3-98E1-3E6D-A4D1-75B5A18AA400}</Project>
+      <Name>curve</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\demo.vcxproj">
+      <Project>{F0CBBF5D-8A4E-35A3-96B9-90511409CB7A}</Project>
+      <Name>demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\device.vcxproj">
+      <Project>{A0631348-0974-3F59-8491-44EA49C73C54}</Project>
+      <Name>device</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\doublebuffer.vcxproj">
+      <Project>{CA4270FE-1F0C-3B1B-BFA9-A488DB510A75}</Project>
+      <Name>doublebuffer</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\editor.vcxproj">
+      <Project>{6A99AD81-6C37-31C1-B9F6-2300B97540A7}</Project>
+      <Name>editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\fast_slow.vcxproj">
+      <Project>{B9E42F32-AF50-338D-BB96-B1FBFE196540}</Project>
+      <Name>fast_slow</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\file_chooser.vcxproj">
+      <Project>{91816BAE-B653-3208-B0D9-81F9F5001D43}</Project>
+      <Name>file_chooser</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\src\fltk.vcxproj">
+      <Project>{49B372E7-EB37-3847-9118-97B8D1D32FAD}</Project>
+      <Name>fltk</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\fltk-versions.vcxproj">
+      <Project>{F010F762-E071-3C3B-B5B9-92528D8167F5}</Project>
+      <Name>fltk-versions</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\src\fltk_forms.vcxproj">
+      <Project>{A63B1429-0F74-3963-8FE4-10E5DA8B90F6}</Project>
+      <Name>fltk_forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\src\fltk_gl.vcxproj">
+      <Project>{EC7ABAEE-66E8-35B1-BB4A-900D24C3AE54}</Project>
+      <Name>fltk_gl</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\src\fltk_images.vcxproj">
+      <Project>{5DFE20D9-F8BB-3EC4-8C57-99A4FA7826A1}</Project>
+      <Name>fltk_images</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\jpeg\fltk_jpeg.vcxproj">
+      <Project>{48D24CC7-0994-3E11-B9A0-3DFA695FAA01}</Project>
+      <Name>fltk_jpeg</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\png\fltk_png.vcxproj">
+      <Project>{C79A4371-BA47-341D-809D-4D74E4F24F5D}</Project>
+      <Name>fltk_png</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\zlib\fltk_z.vcxproj">
+      <Project>{CB7D0D10-50F9-301D-B19C-3731CC5172E0}</Project>
+      <Name>fltk_z</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\fluid\fluid.vcxproj">
+      <Project>{3AA5C2DE-4C6D-3A42-A6E8-1880DBE135E5}</Project>
+      <Name>fluid</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\fonts.vcxproj">
+      <Project>{1F54FD78-F0A8-3763-938A-B06685C96385}</Project>
+      <Name>fonts</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\forms.vcxproj">
+      <Project>{64B22425-4D53-338F-BB35-B227FC6FD2F5}</Project>
+      <Name>forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\fractals.vcxproj">
+      <Project>{9FEAF453-2135-3EC2-B5F4-051F9B6EB1E3}</Project>
+      <Name>fractals</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\fullscreen.vcxproj">
+      <Project>{3FFB7053-2F15-3AD9-AA97-77C3856E3471}</Project>
+      <Name>fullscreen</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\gl_overlay.vcxproj">
+      <Project>{96059B5A-CB4C-3510-B0EB-5FDBAF0F3221}</Project>
+      <Name>gl_overlay</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\glpuzzle.vcxproj">
+      <Project>{161D1A77-E4A1-3B49-B5A9-AEB30B72748E}</Project>
+      <Name>glpuzzle</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\hello.vcxproj">
+      <Project>{2271D109-8CBB-3BF8-9E15-B93CA77097AE}</Project>
+      <Name>hello</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\help_dialog.vcxproj">
+      <Project>{2D598653-9404-3283-8E6B-30C2EAFDB15E}</Project>
+      <Name>help_dialog</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\icon.vcxproj">
+      <Project>{EF4003A8-0679-3FBC-8342-1E8A10602E3B}</Project>
+      <Name>icon</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\iconize.vcxproj">
+      <Project>{83E69CA0-ACBD-3E9F-AF12-3E0A571C77A2}</Project>
+      <Name>iconize</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\image.vcxproj">
+      <Project>{9CAF3F83-E44C-3898-B721-7E0272B83100}</Project>
+      <Name>image</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\inactive.vcxproj">
+      <Project>{527551EA-32B6-3244-B1D8-10886143AF6A}</Project>
+      <Name>inactive</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\input.vcxproj">
+      <Project>{EBDF1C31-F871-3015-BDDD-0F57A6546865}</Project>
+      <Name>input</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\input_choice.vcxproj">
+      <Project>{1F2253A9-B268-3C9A-9A78-B52ABA5690C7}</Project>
+      <Name>input_choice</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\keyboard.vcxproj">
+      <Project>{DE910359-6F16-3575-A3CD-C6E6CF809ECC}</Project>
+      <Name>keyboard</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\label.vcxproj">
+      <Project>{D26C8C74-3537-3B2C-A399-B76689913FDD}</Project>
+      <Name>label</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\line_style.vcxproj">
+      <Project>{B96A4724-FF62-3104-9891-B249656B7DA0}</Project>
+      <Name>line_style</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\list_visuals.vcxproj">
+      <Project>{BC3456DB-A546-3FA4-A1CD-770ACCFEA1C7}</Project>
+      <Name>list_visuals</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\mandelbrot.vcxproj">
+      <Project>{C81D40A9-A1A0-34ED-A7F9-86372CEE7AD7}</Project>
+      <Name>mandelbrot</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\menubar.vcxproj">
+      <Project>{948A36E4-DD1E-3CAB-BEA5-A61FBBB71163}</Project>
+      <Name>menubar</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\message.vcxproj">
+      <Project>{635F0A36-063A-3C7C-A002-3F4A38968C34}</Project>
+      <Name>message</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\minimum.vcxproj">
+      <Project>{BAA32FE3-DED5-3554-A38B-A4F58C2B51AA}</Project>
+      <Name>minimum</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\native-filechooser.vcxproj">
+      <Project>{FDF5E3B2-1427-37E0-BDA0-646F9ED8FB8F}</Project>
+      <Name>native-filechooser</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\navigation.vcxproj">
+      <Project>{9BCA3908-A64A-3B00-A484-78EEF8ECB154}</Project>
+      <Name>navigation</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\offscreen.vcxproj">
+      <Project>{225263F2-DBE7-3F19-BD52-FB4F351D4022}</Project>
+      <Name>offscreen</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\output.vcxproj">
+      <Project>{D6297DA4-501C-35B0-A6B0-986216BA89C5}</Project>
+      <Name>output</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\overlay.vcxproj">
+      <Project>{5FAE2F39-FF72-319B-B376-A88CE0A1973E}</Project>
+      <Name>overlay</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\pack.vcxproj">
+      <Project>{C26E536C-3935-3D90-93F1-4CE39038ABF2}</Project>
+      <Name>pack</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\pixmap.vcxproj">
+      <Project>{9E7DC374-E07C-3CC8-A954-264FB5355250}</Project>
+      <Name>pixmap</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\pixmap_browser.vcxproj">
+      <Project>{9B305E8F-73C3-3550-ACA9-F585EDD7EABF}</Project>
+      <Name>pixmap_browser</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\preferences.vcxproj">
+      <Project>{A07AE40B-386D-31AA-9EF4-59088295CE63}</Project>
+      <Name>preferences</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\radio.vcxproj">
+      <Project>{88EA44CE-5613-3D73-BAD0-38A3041DF61C}</Project>
+      <Name>radio</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\resize.vcxproj">
+      <Project>{F1DF3936-F7B5-3E1F-B136-ABDB68822B60}</Project>
+      <Name>resize</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\resizebox.vcxproj">
+      <Project>{E53EACC0-F645-3232-97F9-3B5A6886D63B}</Project>
+      <Name>resizebox</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\rotated_text.vcxproj">
+      <Project>{727E7D5C-C9AE-3559-A245-60EEF0AFF478}</Project>
+      <Name>rotated_text</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\scroll.vcxproj">
+      <Project>{5B50416C-955E-3DBD-BA1F-5A5FFA4ED16C}</Project>
+      <Name>scroll</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\shape.vcxproj">
+      <Project>{ADDE6282-B3A0-350C-B5C0-917B4D474C6C}</Project>
+      <Name>shape</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\subwindow.vcxproj">
+      <Project>{1C1B3145-79B9-3806-A8A5-BEAA2DEC93D7}</Project>
+      <Name>subwindow</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\sudoku.vcxproj">
+      <Project>{0DCDAB02-1ED2-310E-9CCC-5EF5604C9638}</Project>
+      <Name>sudoku</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\symbols.vcxproj">
+      <Project>{CCC21CCC-38F1-3178-A236-36FAAE77FDB6}</Project>
+      <Name>symbols</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\table.vcxproj">
+      <Project>{DFF9A06B-D636-32D4-8233-88DD75E19CE0}</Project>
+      <Name>table</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\tabs.vcxproj">
+      <Project>{CF4E5835-1210-369E-B54F-AB3F3D3A04DA}</Project>
+      <Name>tabs</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\threads.vcxproj">
+      <Project>{3ADF2158-F5C6-3B92-B1CE-440DD6E53CDC}</Project>
+      <Name>threads</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\tile.vcxproj">
+      <Project>{69B7A073-E89C-30AB-A8D6-543389A9187A}</Project>
+      <Name>tile</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\tiled_image.vcxproj">
+      <Project>{EEB71AD3-2491-35CA-84FA-42399FC4F7B0}</Project>
+      <Name>tiled_image</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\tree.vcxproj">
+      <Project>{49A1E566-B177-3E20-9E7A-1C4E7449D19B}</Project>
+      <Name>tree</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\twowin.vcxproj">
+      <Project>{2A4A7443-0A06-3F90-B64C-75DE2D33A574}</Project>
+      <Name>twowin</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\unittests.vcxproj">
+      <Project>{7B6215EC-647C-332A-AD73-0C6C8EC79850}</Project>
+      <Name>unittests</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\utf8.vcxproj">
+      <Project>{AFE99EF6-0040-32A2-B741-BEF55B5A3770}</Project>
+      <Name>utf8</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\valuators.vcxproj">
+      <Project>{C8D0C622-BEE7-3D0A-B075-BDC0CD7CDC08}</Project>
+      <Name>valuators</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Programming Tools\fltk_build\test\windowfocus.vcxproj">
+      <Project>{A3F1E213-82F3-352A-8E96-86470B915A2A}</Project>
+      <Name>windowfocus</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
