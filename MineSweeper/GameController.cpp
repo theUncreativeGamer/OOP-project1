@@ -26,7 +26,7 @@ void GameController::LoadPath(string path)
 	{
 		*oStream << "Failed\n";
 	}
-	*oStream << std::endl;
+	
 	oStream->flush();
 }
 
