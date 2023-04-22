@@ -31,44 +31,44 @@ public:
 	// Post: If the game board state is idle, load the board from the file and set the game board state to Playing. Otherwise, output an error message indicating that the board cannot be loaded while a game is in progress.
 	void LoadPath(string path);
 	
-	// Intent:
-	// Pre:
-	// Post:
+	// Intent: Load the game board with random mine count based on given dimensions and mine count
+	// Pre: Board state must be idle
+	// Post: If board state is idle, the game board will be loaded with random mine count based on given dimensions and mine count, and a success message will be printed to the output stream. Otherwise, a failed message will be printed to the output stream.(Note: This function is calculating the mine count by the given rate, so proof that rate is in range of 0 to 1.)
 	void LoadRate(int m, int n, float rate);
 
-	// Intent:
-	// Pre:
-	// Post:
+	// Intent: Load the game board with a randomly generated mine count with given dimensions
+	// Pre: The game board must be in Idle state
+	// Post: The game board is loaded with randomly generated mine count and Success is printed to the output stream, or Failed is printed if the game board is not in Idle state.
 	void LoadCount(int m, int n, int c);
 
-	// Intent:
-	// Pre:
-	// Post:
+	// Intent: Start a new game.
+	// Pre: A game board has been loaded and game input is enabled.
+	// Post: The game has started and the board state has changed to 'Playing'. If the precondition is not met, output an error message.
 	void StartGame();
 	
-	// Intent:
-	// Pre:
-	// Post:
+	// Intent: Print out game-related information according to the input instruction.
+	// Pre: GameController object has been initialized.
+	// Post: The requested game information is printed to the output stream. If the input instruction is invalid, "Failed" is printed.
 	void Print(string inst);
 	
-	// Intent:
-	// Pre:
-	// Post:
+	// Intent: Perform a left click operation on the tile located at the given row and column position.
+	// Pre: GameController object and GameBoard object have been initialized and connected. The game board is in the "Playing" state.
+	// Post: If the tile at the given position is successfully revealed, the function returns true and updates the game state accordingly. If the tile contains a mine, the game is over and the function returns false. If all non-mine tiles are revealed, the game is won and the function returns true. Additionally, the function checks the game state after the click operation and updates the game state accordingly. The result of the operation (success or failure) is printed to the output stream.
 	void LeftClick(int rol, int col);
 	
-	// Intent:
-	// Pre:
-	// Post:
+	// Intent: Perform right-click operation on a tile.
+	// Pre: GameController object is instantiated, and GameBoard object is loaded with a board file.
+	// Post: The state of the tile in the specified row and column is changed to Flagged or QuestionMark, and the number of flagged tiles is incremented or decremented accordingly. A message indicating whether the operation was successful or not is printed to the output stream.
 	void RightClick(int rol, int col);
 
-	// Intent:
-	// Pre:
-	// Post:
+	// Intent: To replay the game
+	// Pre: None
+	// Post: If the game board state is "End", creates a new game board and sets it as the current board. Prints "Success" if current state is able to replay, and "Failed" if not.
 	void Replay();
 
-	// Intent:
-	// Pre:
-	// Post:
+	// Intent: Quit the game if the board is in end state.
+	// Pre: The board state is either Idle or End.
+	// Post: If the board state is End, the game is terminated successfully. If the board state is not End, a message is printed indicating that the player cannot quit now.
 	void Quit();
 
 };
@@ -106,3 +106,9 @@ public:
 //		// format: replay
 //	// quit
 //		// format: quit
+
+// rightclick, with parameters x and y
+	// binding functions
+		// set flag, set question mark, set nothing accirding to the current state
+
+// replay: reset the game state, and reramdomize the plane if with parameters

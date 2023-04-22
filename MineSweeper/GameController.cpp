@@ -123,14 +123,6 @@ void GameController::Print(string inst)
 	}
 	else 
 	{
-		////debug snnippet fragment
-		////print all counts in board
-		//*oStream << "BombCount: " << board->getMineCount() << '\n';
-		//*oStream << "FlagCount: " << board->getFlagCount() << '\n';
-		//*oStream << "OpenBlankCount: " << board->getOpenedTileCount() << '\n';
-		//*oStream << "RemainBlankCount: " << board->getRemainClosedTileCount() << '\n';
-		////debug snnippet fragment
-
 		*oStream << "Failed\n";
 	}
 }
@@ -210,18 +202,3 @@ void GameController::Quit()
 		*oStream << "You can't quit now.\n";
 	}
 }
-
-// command handler: handle the command with situation can be executed or not, if not , throw a error message
-
-// operation events
-// rightclick, with parameters x and y
-	// binding functions
-		// set flag, set question mark, set nothing accirding to the current state
-
-// leftclick
-	// binding functions
-		// if it is a mine, game over
-		// if it is not a mine, show the number of mines around it
-		// if it is a blank, show the blank, and show the number of mines around it
-
-// replay: reset the game state, and reramdomize the plane if with parameters

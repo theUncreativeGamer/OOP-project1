@@ -39,8 +39,7 @@ enum class GameBoardResult
 
 class GameBoard
 {
-//private:
-public:
+private:
 	int width;
 	int height;
 
@@ -63,20 +62,15 @@ public:
 	std::ofstream* oStream;
 	
 private:
-
-	// Intent:
-	// Pre:
-	// Post:
-	void ChangeGameInput();
-
-	// Intent:
-	// Pre:
-	// Post:
+	
+	// Intent: Enable user input for the game board
+	// Pre: None
+	// Post: isEnableGameInput is set to true
 	void EnableGameInput();
 
-	// Intent:
-	// Pre:
-	// Post:
+	// Intent: Disable user input for the game board
+	// Pre: None
+	// Post: isEnableGameInput is set to false
 	void DisableGameInput();
 
 	// Intent: Check if the given coordinates are within the game board range and not already opened.
@@ -112,7 +106,7 @@ public:
 	GameBoard(int m, int n);
 
 
-//loaders
+// loaders
 	// Intent: Loads a mine map from a file with a specific format and initializes the game board.
 	// Pre: A valid file path is passed as a parameter.
 	// Post: If the file exists and has a valid format, the game board is initialized with the information from the file.
@@ -134,8 +128,7 @@ public:
 	// Post: The current game state has been printed to the console.
 	void PrintGameState();
 	
-	// Intent:
-	// To print the answer board of the game board, which shows where the mines are located and where the numbers are.
+	// Intent: To print the answer board of the game board, which shows where the mines are located and where the numbers are.
 	// Pre:
 	// - The game board must have been initialized and loaded with mines.
 	// - The board array must have been filled with Tile objects.
@@ -149,7 +142,7 @@ public:
 	// Post: The game board with the mask has been printed to the console.
 	void PrintBoardWithMask();
 
-//click operation
+// click operation
 	// Intent:
 	// Pre:
 	// Post:
@@ -160,7 +153,7 @@ public:
 	// Post: The tile at the given position has been marked with a flag or question mark, or unmarked if it was already marked. The flagCount and questionMarkCount member variables are updated accordingly. If an invalid position or operation is provided, an error message is displayed.
 	bool FlagTile(int row, int col);
 
-//actions
+// actions
 	// Intent: To check the game status and determine if the game is over.
 	// Pre: GameBoard object must be instantiated.
 	// Post: Returns true if the game is over, false otherwise.
@@ -171,6 +164,7 @@ public:
 	// Post: Sets the game state to playing.
 	void StartGame();
 
+// getters
 	// Intent: Return the current state of the game board
 	// Pre: None
 	// Post: The current state of the game board is returned as a GameBoardState enum value

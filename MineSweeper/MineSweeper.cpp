@@ -120,25 +120,3 @@ int main(int argc, char* argv[])
 
 }
 
-//int main() 
-//{
-//	GameBoard board(&std::cout);
-//	board.LoadRandomCountMine(10, 10, 0.7);
-//
-//	//print board
-//	//board.PrintBoard();
-//	std::cout << "BombCount: " << board.getMineCount() << '\n';
-//	std::cout << "FlagCount: " << board.getFlagCount() << '\n';
-//	std::cout << "OpenBlankCount: " << board.getOpenedTileCount() << '\n';
-//	std::cout << "RemainBlankCount: " << board.getRemainClosedTileCount() << '\n';
-//
-//	//ouotput height and width
-//	std::cout << "Height: " << board.height << '\n';
-//	std::cout << "Width: " << board.width << '\n';
-//
-//	//print board answer
-//	board.PrintBoard();
-//	//print ansewr
-//	board.PrintBoardWithMask();
-//	
-//}
