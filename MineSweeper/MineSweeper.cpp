@@ -13,12 +13,6 @@
 
 int main(int argc, char* argv[])
 {
-	/*
-	MineSweeper.exe CommandFile command.txt output.txt
-	MineSweeper.exe CommandInput
-	MineSweeper.exe GUI
-	*/
-
 	istream* iStream = &cin;
 	ostream* oStream = &cout;
 	
@@ -29,7 +23,10 @@ int main(int argc, char* argv[])
 		ofstream outputFile(argv[3]);
 		
 		iStream = &commandFile;
-		oStream = &outputFile;		
+		oStream = &outputFile;	
+		outputFile << "CommandFile " << argv[2] << " " << argv[3] << endl;
+		*oStream << "CommandFile " << argv[2] << " " << argv[3] << endl;
+
 	}
 	else if (argc == 2 && string(argv[1]) == "CommandInput") 
 	{
@@ -37,7 +34,7 @@ int main(int argc, char* argv[])
 		iStream = &cin;
 	}
 	else if (argc == 2 && string(argv[1]) == "GUI") 
-	{
+	{ 
 		//MineSweeper.exe GUI
 		return 0;
 	}
@@ -52,7 +49,7 @@ int main(int argc, char* argv[])
 	}
 
 	//command input
-	GameController game(oStream);
+	GameController game(((ofstream*)oStream));
 	string input;
 	while (*iStream >> input) 
 	{
@@ -112,6 +109,38 @@ int main(int argc, char* argv[])
 			cout << "Input Error, try again.\n";
 		}
 		fflush(stdin);
+		oStream->flush();
+	}
+
+	//ofstream output hello
+		  
+	//close ostream
+	if (oStream != &cout)
+	{
+		((ofstream*)oStream)->close();
 	}
 
 }
+
+//int main() 
+//{
+//	GameBoard board(&std::cout);
+//	board.LoadRandomCountMine(10, 10, 0.7);
+//
+//	//print board
+//	//board.PrintBoard();
+//	std::cout << "BombCount: " << board.getMineCount() << '\n';
+//	std::cout << "FlagCount: " << board.getFlagCount() << '\n';
+//	std::cout << "OpenBlankCount: " << board.getOpenedTileCount() << '\n';
+//	std::cout << "RemainBlankCount: " << board.getRemainClosedTileCount() << '\n';
+//
+//	//ouotput height and width
+//	std::cout << "Height: " << board.height << '\n';
+//	std::cout << "Width: " << board.width << '\n';
+//
+//	//print board answer
+//	board.PrintBoard();
+//	//print ansewr
+//	board.PrintBoardWithMask();
+//	
+//}

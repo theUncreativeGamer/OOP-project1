@@ -12,7 +12,7 @@ void GameController::LoadPath(string path)
 	if (board->getBoardState() == GameBoardState::Idle) 
 	{
 		bool allRight = board->LoadBoardFile(path);
-		//*oStream << "Success\n";
+		
 		if (allRight)
 		{
 			*oStream << "Success\n";
@@ -26,6 +26,8 @@ void GameController::LoadPath(string path)
 	{
 		*oStream << "Failed\n";
 	}
+	*oStream << std::endl;
+	oStream->flush();
 }
 
 void GameController::LoadRate(int m, int n, float rate) 
@@ -169,14 +171,14 @@ void GameController::RightClick(int rol, int col)
 	if (board->getBoardState() == GameBoardState::Playing) 
 	{
 		bool allRight = board->FlagTile(rol, col);
-		//*oStream << "Success\n";
+
 		if (allRight)
 		{
 			*oStream << "Success\n";
 		}
 		else
 		{
-			*oStream << "Fail\n";
+			*oStream << "Failed\n";
 		}
 	}
 	else 
@@ -189,7 +191,7 @@ void GameController::Replay()
 {
 	if (board->getBoardState() == GameBoardState::End) 
 	{
-		board = new GameBoard(oStream);
+		board = new GameBoard(((ofstream*)oStream));
 		*oStream << "Success\n";
 	}
 	else

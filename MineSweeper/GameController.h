@@ -23,7 +23,7 @@ public:
 	GameController(ostream * oStream)
 	{
 		this->oStream = oStream;
-		board = new GameBoard(oStream);
+		board = new GameBoard(((ofstream*)oStream));
 	};
 	
 	// Intent: Load the game board from a file specified by the input path.

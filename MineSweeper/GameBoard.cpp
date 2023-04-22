@@ -27,7 +27,7 @@ GameBoard::GameBoard()
 
 }
 
-GameBoard::GameBoard(std::ostream* oStream)
+GameBoard::GameBoard(std::ofstream* oStream)
 {
 	width = 0;
 	height = 0;
@@ -214,18 +214,20 @@ void GameBoard::LoadRandomGenerateMine(int height, int width, int mineCount)
 	if (mineCount >= width * height)
 	{
 		//throw GameBoardException("Mine count is bigger than total tiles");
-		*oStream << "Error: Mine count is bigger than total tiles" << std::endl;
+		//*oStream << "Error: Mine count is bigger than total tiles" << std::endl;
+		return;
 	}
 
 	//set mine count
-	mineCount = mineCount;
+	this->mineCount = mineCount;
 
 	//set board
-	board = new Tile[height * width];//construct
+	board = new Tile[this->height * this->width];//construct
 	//initialize all tiles
 	for (int i = 0; i < height * width; i++)
 	{
-		board[i] = Tile();
+		//board[i] = Tile();
+		new (&board[i]) Tile();
 	}
 
 
@@ -281,16 +283,18 @@ void GameBoard::LoadRandomCountMine(int height, int width, float mineGenerateRat
 	this->height = height;
 
 	//set mine count
-	mineCount = height * width * mineGenerateRate;
+	this->mineCount = height * width * mineGenerateRate;
 
 
 	//set board
-	board = new Tile[height * width];//construct
+	board = new Tile[this->height * this->width];//construct
 	//initialize all tiles
 	for (int i = 0; i < height * width; i++)
 	{
-		board[i] = Tile();
+		//board[i] = Tile();
+		new (&board[i]) Tile();
 	}
+
 
 	//set mines
 	//random generate mines
@@ -315,13 +319,12 @@ void GameBoard::LoadRandomCountMine(int height, int width, float mineGenerateRat
 	}
 
 	//initialize members
-	isEnableGameInput = true;
+	EnableGameInput();
 	gameBoardState = GameBoardState::Playing;
-	flagCount = 0;
-	openedTileCount = 0;
-	remainClosedBlankTileCount = width * height - mineCount;
+	flagCount = 0;// no flags will be set at begin
+	openedTileCount = 0;// no tiles will be opened at begin
+	remainClosedBlankTileCount = width * height - mineCount;// all tiles are closed at begin
 
-	//calculate mines
 	CalculateMines();
 }
 
@@ -490,14 +493,14 @@ bool GameBoard::FlagTile(int row, int col)
 	if (!ValidPosition(row, col))
 	{
 		//throw GameBoardException("Invalid position");
-		*oStream << "Invalid position" << std::endl;
+		//*oStream << "Invalid position" << std::endl;
 		return false;
 	}
 	// and if not Masked
 	if (!board[row * width + col].IsMasking())
 	{
 		//throw GameBoardException("Invalid operation");
-		*oStream << "Invalid operation" << std::endl;
+		//*oStream << "Invalid operation" << std::endl;
 		return false;
 	}
 

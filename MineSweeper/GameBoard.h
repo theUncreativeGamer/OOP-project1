@@ -7,6 +7,7 @@
 #include <set>
 #include <regex>
 #include <random>
+#include <new>
 
 #include "Tile.h"
 
@@ -38,7 +39,8 @@ enum class GameBoardResult
 
 class GameBoard
 {
-private:
+//private:
+public:
 	int width;
 	int height;
 
@@ -58,7 +60,7 @@ private:
 	
 	static std::map<GameBoardState, std::string> GameBoardStateString;
 
-	std::ostream* oStream;
+	std::ofstream* oStream;
 	
 private:
 
@@ -106,7 +108,7 @@ public:
 
 	//constructor
 	GameBoard();
-	GameBoard(std::ostream* oStream);
+	GameBoard(std::ofstream* oStream);
 	GameBoard(int m, int n);
 
 
