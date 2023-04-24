@@ -13,20 +13,21 @@
 
 int main(int argc, char* argv[])
 {
+	//default set I/O to console
 	istream* iStream = &cin;
 	ostream* oStream = &cout;
+	
+	ifstream commandFile;
+	ofstream outputFile;
 	
 	if (argc == 4 && string(argv[1]) == "CommandFile") 
 	{
 		//MineSweeper.exe CommandFile command.txt output.txt
-		ifstream commandFile(argv[2]);
-		ofstream outputFile(argv[3]);
+		commandFile.open(argv[2]);
+		outputFile.open(argv[3]);
 		
 		iStream = &commandFile;
-		oStream = &outputFile;	
-		outputFile << "CommandFile " << argv[2] << " " << argv[3] << endl;
-		*oStream << "CommandFile " << argv[2] << " " << argv[3] << endl;
-
+		oStream = &outputFile;
 	}
 	else if (argc == 2 && string(argv[1]) == "CommandInput") 
 	{
@@ -53,7 +54,7 @@ int main(int argc, char* argv[])
 	string input;
 	while (*iStream >> input) 
 	{
-
+		*oStream << input << " " << std::flush;
 		if (input == "Load") 
 		{
 			*iStream >> input;
@@ -112,11 +113,11 @@ int main(int argc, char* argv[])
 		oStream->flush();
 	}
 		  
-	//close ostream
-	if (oStream != &cout)
-	{
-		((ofstream*)oStream)->close();
-	}
+	////close ostream
+	//if (oStream != &cout)
+	//{
+	//	((ofstream*)oStream)->close();
+	//}
 
 }
 

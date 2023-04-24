@@ -27,7 +27,7 @@ GameBoard::GameBoard()
 
 }
 
-GameBoard::GameBoard(std::ofstream* oStream)
+GameBoard::GameBoard(std::ostream* oStream)
 {
 	width = 0;
 	height = 0;
@@ -200,10 +200,7 @@ bool GameBoard::LoadBoardFile(std::string relative_path)
 
 void GameBoard::LoadRandomGenerateMine(int height, int width, int mineCount)
 {
-	//set width and height
-	this->width = width;
-	this->height = height;
-
+	// generate mine by count
 	// if mineCount is bigger than total tiles, then throw exception
 	if (mineCount >= width * height)
 	{
@@ -211,12 +208,17 @@ void GameBoard::LoadRandomGenerateMine(int height, int width, int mineCount)
 		//*oStream << "Error: Mine count is bigger than total tiles" << std::endl;
 		return;
 	}
+	
+	//set width and height
+	this->width = width;
+	this->height = height;
 
 	//set mine count
 	this->mineCount = mineCount;
 
-	//set board
-	board = new Tile[this->height * this->width];//construct
+	//set construct board
+	board = new Tile[this->height * this->width];
+	
 	//initialize all tiles
 	for (int i = 0; i < height * width; i++)
 	{
@@ -224,28 +226,8 @@ void GameBoard::LoadRandomGenerateMine(int height, int width, int mineCount)
 		new (&board[i]) Tile();
 	}
 
-
-	//set mines
-	//random generate mines
-	int minBoardIndex = 0;
-	int maxBoardIndex = height * width - 1;
-
-	std::random_device rd;
-	std::mt19937 gen(rd());
-
-	std::set<int> random_numbers;
-
-	while (random_numbers.size() < mineCount) 
-	{
-		std::uniform_int_distribution<> dis(minBoardIndex, maxBoardIndex);
-		random_numbers.insert(dis(gen));
-	}
-
-	//set these mines into board
-	for (auto num : random_numbers) 
-	{
-		board[num].SetMine();
-	}
+	//generate random mine
+	GenerateMines(this->mineCount);
 
 	//initialize members
 	EnableGameInput();
@@ -259,16 +241,16 @@ void GameBoard::LoadRandomGenerateMine(int height, int width, int mineCount)
 
 void GameBoard::LoadRandomCountMine(int height, int width, float mineGenerateRate)
 {
+	// generate mine by rate
 	//assign width, height
 	//allocate board
 	//generate mines
 	
-
 	// if rate is not between 0 and 1, then throw exception
 	if (mineGenerateRate < 0 || mineGenerateRate >= 1)
 	{
 		//throw GameBoardException("Invalid mine generate rate");
-		*oStream << "Invalid mine generate rate" << std::endl;
+		//*oStream << "Invalid mine generate rate" << std::endl;
 		return;
 	}
 
@@ -277,11 +259,12 @@ void GameBoard::LoadRandomCountMine(int height, int width, float mineGenerateRat
 	this->height = height;
 
 	//set mine count
-	this->mineCount = height * width * mineGenerateRate;
+	this->mineCount = floor(height * width * mineGenerateRate);
 
 
-	//set board
-	board = new Tile[this->height * this->width];//construct
+	//set construct board
+	board = new Tile[this->height * this->width];
+	
 	//initialize all tiles
 	for (int i = 0; i < height * width; i++)
 	{
@@ -290,27 +273,8 @@ void GameBoard::LoadRandomCountMine(int height, int width, float mineGenerateRat
 	}
 
 
-	//set mines
-	//random generate mines
-	int minBoardIndex = 0;
-	int maxBoardIndex = height * width - 1;
-
-	std::random_device rd;
-	std::mt19937 gen(rd());
-
-	std::set<int> random_numbers;
-
-	while (random_numbers.size() < mineCount) 
-	{
-		std::uniform_int_distribution<> dis(minBoardIndex, maxBoardIndex);
-		random_numbers.insert(dis(gen));
-	}
-
-	//set these mines into board
-	for (auto num : random_numbers) 
-	{
-		board[num].SetMine();
-	}
+	//generate random mine
+	GenerateMines(this->mineCount);
 
 	//initialize members
 	EnableGameInput();
@@ -368,7 +332,6 @@ void GameBoard::PrintBoardWithMask()
 	}
 }
 
-
 //click operation
 bool GameBoard::RevealTile(int row, int col)
 {
@@ -403,13 +366,12 @@ bool GameBoard::RevealTile(int row, int col)
 		return true;
 	}
 
-
-
+	
 	// if target tile mine count is 0, then keep reveal surround until meet a minecount number is bigger than 0
 	// if current this tile has 0 mine count, then add surround to next(expect flagged) to reveal
 	// if current this tile has mine count (1~8), stop spread, but reveal
 	// using BFS
-
+	
 	bool isIteratorOpened;
 	bool isIteratorFlagged;
 
@@ -548,7 +510,6 @@ void GameBoard::StartGame()
 	gameBoardState = GameBoardState::Playing;
 }
 
-
 void GameBoard::UpdateOpenedTileCount() 
 {
 	openedTileCount = 0;
@@ -577,5 +538,32 @@ void GameBoard::UpdateRemainClosedBlankTileCount()
 				remainClosedBlankTileCount++;
 			}
 		}
+	}
+}
+
+
+void GameBoard::GenerateMines(int mineCount)
+{
+	// under the cases of mineCount is a valid number
+	//set mines
+	//random generate mines
+	int minBoardIndex = 0;
+	int maxBoardIndex = height * width - 1;
+
+	std::random_device rd;
+	std::mt19937 gen(rd());
+
+	std::set<int> random_numbers;
+
+	while (random_numbers.size() < mineCount)
+	{
+		std::uniform_int_distribution<> dis(minBoardIndex, maxBoardIndex);
+		random_numbers.insert(dis(gen));
+	}
+
+	//set these mines into board
+	for (auto num : random_numbers)
+	{
+		board[num].SetMine();
 	}
 }

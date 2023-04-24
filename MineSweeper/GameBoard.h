@@ -59,7 +59,7 @@ private:
 	
 	static std::map<GameBoardState, std::string> GameBoardStateString;
 
-	std::ofstream* oStream;
+	std::ostream* oStream;
 	
 private:
 	
@@ -88,6 +88,8 @@ private:
 	// Post: Calculates the mine counts for each tile on the game board.
 	void CalculateMines();
 
+	void GenerateMines(int mineCount);
+
 	// Intent: To update the count of opened tiles.
 	// Pre: GameBoard object must be instantiated.
 	// Post: Updates the count of opened tiles.
@@ -100,9 +102,9 @@ private:
 
 public:
 
-	//constructor
+	// constructors
 	GameBoard();
-	GameBoard(std::ofstream* oStream);
+	GameBoard(std::ostream* oStream);
 	GameBoard(int m, int n);
 
 
@@ -143,9 +145,9 @@ public:
 	void PrintBoardWithMask();
 
 // click operation
-	// Intent:
-	// Pre:
-	// Post:
+	// Intent: Reveal the tile at the given row and column position, and all surrounding blank tiles recursively until a non-blank tile is reached. Update the game board accordingly.
+	// Pre: The game board object must have been initialized, and the row and column positions must be within the valid range of the board.
+	// Post: The tile at the given row and column position is revealed, along with all surrounding blank tiles. The game board's opened tile count and remain closed blank tile count are updated accordingly. If the revealed tile is a mine, the game board result is set to "lose". Returns true if the tile is successfully revealed, and false otherwise.
 	bool RevealTile(int row, int col);
 	
 	// Intent: This function marks a tile with a flag or a question mark based on user input.
