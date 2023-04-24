@@ -27,33 +27,37 @@ void GameController::LoadPath(string path)
 		*oStream << "Failed\n";
 	}
 	
-	oStream->flush();
 }
 
 void GameController::LoadRate(int m, int n, float rate) 
 {
+	string outputString = "<Load RandomRate " + to_string(rate) + "> : ";
+	*oStream << outputString;
 	
 	if (board->getBoardState() == GameBoardState::Idle) 
 	{
 		board->LoadRandomGenerateMine(m, n, rate);
-		*oStream << "< Success >\n";
+		*oStream << "Success\n";
 	}
 	else 
 	{
-		*oStream << "< Failed >\n";
+		*oStream << "Failed\n";
 	}
 }
 
 void GameController::LoadCount(int m, int n, int c) 
 {
+	string outputString = "<Load RandomCount " + to_string(c) + "> : ";
+	*oStream << outputString;
+	
 	if (board->getBoardState() == GameBoardState::Idle) 
 	{
 		board->LoadRandomCountMine(m, n, c);
-		*oStream << "< Success >\n";
+		*oStream << "Success\n";
 	}
 	else
 	{
-		*oStream << "< Failed >\n";
+		*oStream << "Failed\n";
 	}
 }
 
@@ -61,11 +65,12 @@ void GameController::StartGame()
 {
 	if (board->getIsEnableGameInput() == false)
 	{
-		*oStream << "尚未載入盤面\n";
+		//*oStream << "尚未載入盤面\n";
+		*oStream << "<StartGame> : Failed\n";
 	}
 	else if (board->getBoardState() != GameBoardState::Idle) 
 	{
-		*oStream << "< Failed >\n";
+		*oStream << "<StartGame> : Failed\n";
 	}
 	else 
 	{
@@ -156,7 +161,7 @@ void GameController::LeftClick(int rol, int col)
 void GameController::RightClick(int rol, int col) 
 {
 	string outputString = "<RightClick " + to_string(rol) + " " + to_string(col) + "> : ";
-	*oStream << outputString;
+	//*oStream << outputString;
 	
 	if (board->getBoardState() == GameBoardState::Playing) 
 	{
@@ -164,17 +169,22 @@ void GameController::RightClick(int rol, int col)
 
 		if (allRight)
 		{
-			*oStream << "Success\n";
+			//*oStream << "Success\n";
+			outputString += "Success\n";
 		}
 		else
 		{
-			*oStream << "Failed\n";
+			//*oStream << "Failed\n";
+			outputString += "Failed\n";
 		}
 	}
 	else 
 	{
-		*oStream << "Failed\n";
+		//*oStream << "Failed\n";
+		outputString += "Failed\n";
 	}
+
+	*oStream << outputString;
 }
 
 void GameController::Replay() 

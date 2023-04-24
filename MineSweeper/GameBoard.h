@@ -88,6 +88,9 @@ private:
 	// Post: Calculates the mine counts for each tile on the game board.
 	void CalculateMines();
 
+	// Intent: Generate a specified number of mines randomly on the game board.
+	// Pre: The game board object must have been initialized, and the mineCount must be a valid positive integer that is less than or equal to the total number of tiles on the board.
+	// Post: The specified number of mines are randomly placed on the game board. The tiles with mines are updated accordingly.
 	void GenerateMines(int mineCount);
 
 	// Intent: To update the count of opened tiles.

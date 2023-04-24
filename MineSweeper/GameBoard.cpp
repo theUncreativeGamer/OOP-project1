@@ -272,7 +272,6 @@ void GameBoard::LoadRandomCountMine(int height, int width, float mineGenerateRat
 		new (&board[i]) Tile();
 	}
 
-
 	//generate random mine
 	GenerateMines(this->mineCount);
 
@@ -313,7 +312,7 @@ void GameBoard::PrintBoard()//print answer
 	{
 		for (int j = 0; j < height; j++)
 		{
-			*oStream << board[i * width + j].getAnswer();
+			*oStream << board[i * width + j].getAnswer() << " ";
 		}
 		*oStream << std::endl;
 	}
@@ -326,7 +325,7 @@ void GameBoard::PrintBoardWithMask()
 	{
 		for (int j = 0; j < height; j++)
 		{
-			*oStream << board[i * width + j].GetMask();
+			*oStream << board[i * width + j].GetMask() << " ";
 		}
 		*oStream << std::endl;
 	}

@@ -50,11 +50,10 @@ int main(int argc, char* argv[])
 	}
 
 	//command input
-	GameController game(((ofstream*)oStream));
+	GameController game(oStream);
 	string input;
 	while (*iStream >> input) 
 	{
-		*oStream << input << " " << std::flush;
 		if (input == "Load") 
 		{
 			*iStream >> input;
@@ -112,12 +111,6 @@ int main(int argc, char* argv[])
 		fflush(stdin);
 		oStream->flush();
 	}
-		  
-	////close ostream
-	//if (oStream != &cout)
-	//{
-	//	((ofstream*)oStream)->close();
-	//}
 
 }
 
