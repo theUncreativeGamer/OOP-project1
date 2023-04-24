@@ -135,9 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Command.cpp" />
     <ClCompile Include="GameBoard.cpp" />
-    <ClCompile Include="GameCLI.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="GameGUI.cpp" />
     <ClCompile Include="MineSweeper.cpp" />

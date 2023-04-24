@@ -19,7 +19,6 @@ bool Tile::IsMasking()
 	return mask;
 }
 
-
 bool Tile::IsClean()
 {
 	return state == TileState::Clean;
