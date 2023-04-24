@@ -19,12 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\MineSweeper\GameBoard.cpp" />
+    <ClCompile Include="..\MineSweeper\GameController.cpp" />
+    <ClCompile Include="..\MineSweeper\Tile.cpp" />
     <ClCompile Include="GameGUI.cxx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GameGUI.fl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\MineSweeper\GameBoard.h" />
+    <ClInclude Include="..\MineSweeper\GameController.h" />
+    <ClInclude Include="..\MineSweeper\Tile.h" />
     <ClInclude Include="GameGUI.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

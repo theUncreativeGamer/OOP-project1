@@ -18,12 +18,30 @@
     <ClCompile Include="GameGUI.cxx">
       <Filter>來源檔案</Filter>
     </ClCompile>
+    <ClCompile Include="..\MineSweeper\GameController.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MineSweeper\GameBoard.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MineSweeper\Tile.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="GameGUI.fl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameGUI.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MineSweeper\GameBoard.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MineSweeper\GameController.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MineSweeper\Tile.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>

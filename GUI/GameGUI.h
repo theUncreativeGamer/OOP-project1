@@ -3,6 +3,11 @@
 #ifndef GameGUI_h
 #define GameGUI_h
 #include <FL/Fl.H>
+#pragma once
+#include <iostream>
+#include "..\MineSweeper\GameController.h"
+#include "..\MineSweeper\GameBoard.h"
+GameController gameController; 
 void GenerateNewBoard(const int& height, const int& width, const int& mineCount);
 #include <FL/Fl_Double_Window.H>
 extern Fl_Double_Window *customGameWindow;

@@ -1,7 +1,1 @@
-﻿  GameController.cpp
-D:\_UserDocuments\Desktop\workpath\_111_2\物件導向程式設計實習(重修)\Projects\GroupX_P1\src\OOP-project1\MineSweeper\GameController.cpp(36,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\_UserDocuments\Desktop\workpath\_111_2\物件導向程式設計實習(重修)\Projects\GroupX_P1\src\OOP-project1\MineSweeper\GameController.cpp(49,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  MineSweeper.cpp
-D:\_UserDocuments\Desktop\workpath\_111_2\物件導向程式設計實習(重修)\Projects\GroupX_P1\src\OOP-project1\MineSweeper\MineSweeper.cpp(78,25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
-  MineSweeper.vcxproj -> D:\_UserDocuments\Desktop\workpath\_111_2\物件導向程式設計實習(重修)\Projects\GroupX_P1\src\OOP-project1\x64\Debug\MineSweeper.exe
+﻿  MineSweeper.vcxproj -> D:\Craps\OOP-project1\x64\Debug\MineSweeper.exe

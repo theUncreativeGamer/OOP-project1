@@ -2,7 +2,19 @@
 version 1.0308
 header_name {.h}
 code_name {.cxx}
-decl {\#include <iostream>} {private local
+decl {\#pragma once} {public global
+}
+
+decl {\#include <iostream>} {public global
+}
+
+decl {\#include "..\\MineSweeper\\GameController.h"} {public global
+}
+
+decl {\#include "..\\MineSweeper\\GameBoard.h"} {public global
+}
+
+decl {GameController gameController;} {public global
 }
 
 Function {GenerateNewBoard(const int& height, const int& width, const int& mineCount)} {open
@@ -13,8 +25,8 @@ Function {GenerateNewBoard(const int& height, const int& width, const int& mineC
 Function {MakeCustomBoardWindow()} {open
 } {
   Fl_Window customGameWindow {
-    label {New Game Setup}
-    xywh {884 430 376 204} type Double visible
+    label {New Game Setup} open
+    xywh {884 430 376 204} type Double hide
   } {
     Fl_Value_Input heightInputBox {
       label Height
@@ -52,6 +64,7 @@ Function {MakeCustomBoardWindow()} {open
     }
     Fl_Button cancelButton {
       label Cancel
+      callback {customGameWindow->hide()}
       xywh {270 160 90 30}
     }
   }
@@ -60,8 +73,10 @@ Function {MakeCustomBoardWindow()} {open
 Function {} {open
 } {
   Fl_Window mainWindow {
-    label Minesweeper open
-    xywh {855 276 350 400} type Double hide resizable
+    label Minesweeper
+    callback {std::cout<<"Closing main window!!!"<<std::endl;
+mainWindow->hide();} open selected
+    xywh {855 276 350 400} type Double resizable visible
   } {
     Fl_Menu_Bar menuBar {
       label {Tool Bar} open
@@ -75,7 +90,7 @@ Function {} {open
           label Custom
           callback {customGameWindow = MakeCustomBoardWindow();
 customGameWindow->show();
-std::cout<<"Make a new windoe!"<<std::endl} selected
+std::cout<<"Make a new windoe!"<<std::endl}
           xywh {0 0 100 20}
         }
       }
