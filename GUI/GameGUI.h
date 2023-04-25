@@ -5,32 +5,77 @@
 #include <FL/Fl.H>
 #pragma once
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <utility>
 #include "..\MineSweeper\GameController.h"
-#include "..\MineSweeper\GameBoard.h"
 GameController gameController; 
-void GenerateNewBoard(const int& height, const int& width, const int& mineCount);
+// Static Fl_Image s
+//////////////////////
+
+class Updateable {
+private:
+	static size_t nextObjectID;
+	size_t id;
+	static std::vector<Updateable *> stuffsToUpdate;
+
+public:
+  Updateable();
+  ~Updateable();
+  bool operator==(const Updateable& another);
+  virtual void Update();
+  static void UpdateAll();
+};
+#include <FL/Fl_Button.H>
+
+class TileButton : public Fl_Button, protected Updateable {
+private:
+	static const int width = 30;
+	static const int height = 30;
+	static const int tile00PositionX = 25;
+	static const int tile00PositionY = 100;
+	// The distance from the first row on the grid.
+	size_t row;
+	// The distance from the first column on the grid.
+	size_t column;
+	// Pointer to the board this tile is on. 
+	const GameBoard* board;
+	// Pointer to the tile this object represents.
+	const Tile* tile;
+
+	void Update();
+public:
+	TileButton(const GameBoard& boardReference, int row, int column);
+	static void ButtonCallback(Fl_Widget*, std::pair<int,int> *stuff);
+};
+void GenerateNewBoardWithFixedAmount(const int& height, const int& width, const int& mineCount);
+void GenerateNewBoardWithRandomChance(const int& height, const int& width, const float& mineRate);
+static std::vector<TileButton *> gameBoardUIButtons;
+void GenerateButtonsForTheNewBoard();
 #include <FL/Fl_Double_Window.H>
 extern Fl_Double_Window *customGameWindow;
 #include <FL/Fl_Value_Input.H>
 extern Fl_Value_Input *heightInputBox;
 extern Fl_Value_Input *widthInputBox;
-#include <FL/Fl_Input_Choice.H>
-extern Fl_Input_Choice *generateTypeSwitch;
-extern Fl_Value_Input *mineCountBox;
+#include <FL/Fl_Group.H>
+#include <FL/Fl_Round_Button.H>
+extern Fl_Round_Button *fixedAmountOption;
+extern Fl_Round_Button *randomChanceOption;
+extern Fl_Value_Input *mineAmountBox;
 extern Fl_Value_Input *mineChanceBox;
-#include <FL/Fl_Button.H>
-extern Fl_Button *okButton;
+extern Fl_Button *okButtonFixedAmount;
+extern Fl_Button *okButtonRandomChance;
 extern Fl_Button *cancelButton;
 Fl_Double_Window* MakeCustomBoardWindow();
-extern Fl_Menu_Item menu_generateTypeSwitch[];
-#define specificMineCount (menu_generateTypeSwitch+0)
-#define specificSpawnChance (menu_generateTypeSwitch+1)
 extern Fl_Double_Window *mainWindow;
 #include <FL/Fl_Menu_Bar.H>
 extern Fl_Menu_Bar *menuBar;
-#include <FL/Fl_Group.H>
+extern Fl_Group *statBar;
+#include <FL/Fl_Value_Output.H>
+extern Fl_Value_Output *remainingFlagCountDisplay;
 extern Fl_Group *gameArea;
 extern Fl_Menu_Item menu_menuBar[];
 #define newGameMenu (menu_menuBar+0)
 #define customGameOption (menu_menuBar+1)
+#define uselessTestButton (menu_menuBar+3)
 #endif

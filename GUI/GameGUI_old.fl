@@ -1,0 +1,182 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0308
+header_name {.h}
+code_name {.cxx}
+decl {\#pragma once} {public global
+}
+
+decl {\#include <iostream>} {public global
+}
+
+decl {\#include <vector>} {public global
+}
+
+decl {\#include <algorithm>} {public global
+}
+
+decl {\#include "..\\MineSweeper\\GameController.h"} {public global
+}
+
+decl {GameController gameController;} {public global
+}
+
+declblock {// Static Fl_Image s} {public after {//////////////////////}
+} {
+  decl {\#include <FL/Fl_PNG_Image.H>} {private local
+  }
+  decl {Fl_PNG_Image image_1("Images/1.png");} {private local
+  }
+}
+
+class Updateable {open
+} {
+  decl {static std::vector<Updateable> stuffsToUpdate;} {private local
+  }
+  Function {Updateable()} {
+    comment {Every inherited class should call this base constructor so that it can be called by the UpdateAll function.} open
+  } {
+    code {Updateable::stuffsToUpdate.push_back(*this);} {selected
+    }
+  }
+  Function {~Updateable()} {open
+  } {
+    code {auto it = std::find(stuffsToUpdate.begin(),stuffsToUpdate.end(),*this);
+if(it!=stuffsToUpdate.end())
+	stuffsToUpdate.erase(it);} {}
+  }
+  Function {Update();} {open return_type {virtual void}
+  } {}
+  Function {UpdateAll()} {open return_type {static void}
+  } {
+    codeblock {for(Updateable u : stuffsToUpdate)} {open
+    } {
+      code {u.Update();} {}
+    }
+  }
+}
+
+widget_class MineSpace {open
+  xywh {190 213 120 100} type Single hide
+  class Fl_Button
+} {}
+
+Function {GenerateNewBoardWithFixedAmount(const int& height, const int& width, const int& mineCount)} {} {
+  code {std::cout<<"Generating new board with Height: "<<height<<" Width: "<<width<<" Mine count: "<<mineCount << std::endl;} {}
+}
+
+Function {GenerateNewBoardWithRandomChance(const int& height, const int& width, const float& mineRate)} {open
+} {
+  code {std::cout<<"Generating new board with Height: "<<height<<" Width: "<<width<<" Mine rate: "<<mineRate << std::endl;} {}
+}
+
+Function {MakeCustomBoardWindow()} {open
+} {
+  Fl_Window customGameWindow {
+    label {New Game Setup} open
+    xywh {798 362 376 204} type Double hide
+  } {
+    Fl_Value_Input heightInputBox {
+      label Height
+      xywh {115 15 80 30} minimum 1 maximum 99 step 1 value 10
+    }
+    Fl_Value_Input widthInputBox {
+      label Width
+      xywh {115 50 80 30} minimum 1 maximum 99 step 1 value 10
+    }
+    Fl_Group {} {
+      label Mode open
+      xywh {115 85 235 30} align 292
+    } {
+      Fl_Round_Button fixedAmountOption {
+        label {Fixed Amount}
+        callback {mineChanceBox->hide();
+mineAmountBox->show();
+okButtonFixedAmount->show();
+okButtonFixedAmount->activate();
+okButtonRandomChance->hide();
+okButtonRandomChance->deactivate();}
+        xywh {115 85 15 30} type Radio down_box ROUND_DOWN_BOX align 296
+      }
+      Fl_Round_Button randomChanceOption {
+        label {Random Chance}
+        callback {mineAmountBox->hide();
+mineChanceBox->show();
+okButtonFixedAmount->hide();
+okButtonFixedAmount->deactivate();
+okButtonRandomChance->show();
+okButtonRandomChance->activate();}
+        xywh {224 85 15 30} type Radio down_box ROUND_DOWN_BOX align 8
+      }
+    }
+    Fl_Value_Input mineAmountBox {
+      label {Mine Amount}
+      xywh {115 120 80 30} minimum 1 maximum 999 step 1 value 10
+    }
+    Fl_Value_Input mineChanceBox {
+      label {Mine Chance}
+      xywh {115 120 80 30} minimum 0.01 hide
+    }
+    Fl_Button okButtonFixedAmount {
+      label OK
+      callback {GenerateNewBoardWithFixedAmount(heightInputBox->value(), widthInputBox->value(), mineAmountBox->value())}
+      xywh {165 160 90 30}
+    }
+    Fl_Button okButtonRandomChance {
+      label OK
+      callback {GenerateNewBoardWithRandomChance(heightInputBox->value(), widthInputBox->value(), mineChanceBox->value())}
+      xywh {165 160 90 30} hide deactivate
+    }
+    Fl_Button cancelButton {
+      label Cancel
+      callback {customGameWindow->hide()}
+      xywh {270 160 90 30}
+    }
+  }
+}
+
+Function {} {open
+} {
+  Fl_Window mainWindow {
+    label Minesweeper
+    callback {std::cout<<"Closing main window!!!"<<std::endl;
+mainWindow->hide();} open
+    xywh {897 294 350 425} type Double resizable visible
+  } {
+    Fl_Menu_Bar menuBar {
+      label {Tool Bar} open
+      xywh {0 0 350 30}
+    } {
+      Submenu newGameMenu {
+        label {New Game}
+        xywh {0 0 100 20} labeltype SHADOW_LABEL labelfont 13 labelsize 18
+      } {
+        MenuItem customGameOption {
+          label Custom
+          callback {customGameWindow = MakeCustomBoardWindow();
+customGameWindow->show();
+std::cout<<"Make a new windoe!"<<std::endl}
+          xywh {0 0 100 20}
+        }
+      }
+      MenuItem uselessTestButton {
+        label Test
+        callback {uiTestButton->image(image_1.copy());}
+        xywh {0 0 100 20}
+      }
+    }
+    Fl_Group statBar {open
+      xywh {0 30 350 45} box ENGRAVED_BOX color 38 selection_color 81
+    } {
+      Fl_Value_Output remainingFlagCountDisplay {
+        image {Images/flag.png} xywh {40 35 75 35} box EMBOSSED_BOX color 0 labelsize 26 minimum -999 maximum 999 value 696 textfont 14 textsize 28 textcolor 7 resizable
+      }
+    }
+    Fl_Group gameArea {open
+      xywh {0 75 350 350} box BORDER_BOX resizable
+    } {
+      Fl_Button uiTestButton {
+        image {Images/6.png} xywh {25 100 30 30} box GTK_UP_BOX down_box GTK_DOWN_BOX color 37 selection_color 33 deactivate
+      }
+    }
+  }
+}

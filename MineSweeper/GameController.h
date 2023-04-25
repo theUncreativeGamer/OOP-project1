@@ -71,6 +71,11 @@ public:
 	// Post:
 	void Quit();
 
+	// Intent: Gets read-only reference of the board member inside the class.
+	// Pre: The board pointer needs to be not null.
+	// Post: Returns the reference.
+	const GameBoard& GetBoard() const;
+
 };
 
 

@@ -4,7 +4,7 @@
 
 enum class TileState
 {
-	Clean,
+	Clean, // Not flagged and not marked. Just nothing.
 	Flagged,
 	QuestionMark
 };
@@ -28,44 +28,44 @@ public:
 	// Intent: To get the state of a tile.
 	// Pre: Tile object must be instantiated.
 	// Post: Returns the state of the tile (clean, flagged, question mark or error)
-	TileState GetState();
+	TileState GetState() const;
 
 
 	// Intent: To get the mask of a tile.
 	// Pre: Tile object must be instantiated.
 	// Post: Returns the mask of the tile, which can be a clean tile, flagged tile, question mark or error.
-	std::string GetMask();
+	std::string GetMask() const;
 	
 	// Intent: Get the answer of the tile (mine or number of surrounding mines)
 	// Pre: None
 	// Post: Return the answer in string format (either "X" for mine or a number for surrounding mines)
-	std::string getAnswer();
+	std::string getAnswer() const;
 
 	
 	// Intent: Check if the tile is a mine.
 	// Pre: None.
 	// Post: Return true if the tile is a mine, false otherwise.
-	bool IsMine();
+	bool IsMine() const;
 
 	// Intent: Check if the tile is masked.
 	// Pre: None.
 	// Post: Return true if the tile is masked, false otherwise.
-	bool IsMasking();
+	bool IsMasking() const;
 	
 	// Intent: Check if the tile is clean.
 	// Pre: None.
 	// Post: Return true if the tile is in clean state, false otherwise.
-	bool IsClean();
+	bool IsClean() const;
 	
 	// Intent: Check if the tile is flagged.
 	// Pre: None.
 	// Post: Return true if the tile is in flagged state, false otherwise.
-	bool IsFlagged();
+	bool IsFlagged() const;
 
 	// Intent: Check if the tile is marked with a question mark.
 	// Pre: None.
 	// Post: Return true if the tile is marked with a question mark, false otherwise.
-	bool IsQuestionMarked();
+	bool IsQuestionMarked() const;
 
 	// Intent: Set the tile as a mine
 	// Pre: None
@@ -90,6 +90,6 @@ public:
 	// Intent: To get the number of mines surrounding a Tile.
 	// Pre: The Tile exists.
 	// Post: The number of mines surrounding the Tile is returned.
-	int GetMineCount();
+	int GetMineCount() const;
 
 };

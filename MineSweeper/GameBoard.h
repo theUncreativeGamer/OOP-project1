@@ -119,12 +119,12 @@ public:
 	// Intent: This function loads a game board with randomly generated mines
 	// Pre: The height, width, and mineCount parameters are valid integers
 	// Post: A game board is created with randomly generated mines and all other tiles are initialized with no mine and with the mine count for surrounding tiles calculated. The game state is set to Playing, the flag count is set to 0, the opened tile count is set to 0, and the remaining closed blank tile count is set to the total number of tiles minus the mine count.
-	void LoadRandomGenerateMine(int height, int width, int mineCount);
+	void LoadRandomCountMine(int height, int width, int mineCount);
 	
 	// Intent: This function loads a game board with randomly generated mines
 	// Pre: The height, width, and mineCount parameters are valid integers
 	// Post: A game board is created with randomly generated mines and all other tiles are initialized with no mine and with the mine count for surrounding tiles calculated. The game state is set to Playing, the flag count is set to 0, the opened tile count is set to 0, and the remaining closed blank tile count is set to the total number of tiles minus the mine count.
-	void LoadRandomCountMine(int height, int width, float mineGenerateRate);
+	void LoadRandomGenerateMine(int height, int width, float mineGenerateRate);
 
 // printer
 	// Intent: Prints the current game state to the console.
@@ -177,33 +177,53 @@ public:
 	// Intent: Get the number of mines on the game board.
 	// Pre: None.
 	// Post: Return an integer representing the number of mines on the game board.
-	int getMineCount() { return mineCount; };
+	int getMineCount() const { return mineCount; };
 	
 	// Intent: Get the number of flagged tiles on the game board.
 	// Pre: None.
 	// Post: Return an integer representing the number of flagged tiles on the game board.
-	int getFlagCount() { return flagCount; };
+	int getFlagCount() const { return flagCount; };
 	
 	// Intent: Get the number of opened tiles on the game board.
 	// Pre: None.
 	// Post: Return an integer representing the number of opened tiles on the game board.
-	int getOpenedTileCount() { return openedTileCount; };
+	int getOpenedTileCount() const { return openedTileCount; };
 	
 	// Intent: Get the number of remain closed blank tiles on the game board.
 	// Pre: None.
 	// Post: Return an integer representing the number of remain closed blank tiles on the game board.
 	// rename it as getRemainClosedBlankTileCount()
-	int getRemainClosedTileCount() { return remainClosedBlankTileCount; };
+	int getRemainClosedTileCount() const { return remainClosedBlankTileCount; };
 	
 	// Intent: Get whether the game input is enabled.
 	// Pre: None.
 	// Post: Return a boolean indicating whether the game input is enabled.
-	bool getIsEnableGameInput() { return isEnableGameInput; };
+	bool getIsEnableGameInput() const { return isEnableGameInput; };
 	
 	// Intent: To get the game state as a string.
 	// Pre: GameBoard object must be instantiated.
 	// Post: Returns the game state as a string.
 	std::string GetGameStateString();
+
+	// Intent: Get a read-only reference to a specific tile.
+	// Pre: The tile needs to exist on the board.
+	// Post: Returns stuff.
+	const Tile& GetTile(const int& row, const int& column) const;
+
+	// Intent: Do we really need a description for every simple getter?
+	// Pre: Nope.
+	// Post: Blah blah blah.
+	const GameBoardState& GetGameState() const;
+
+	// Intent: Do we really need a description for every simple getter?
+	// Pre: Nope.
+	// Post: Blah blah blah.
+	const int& GetHeight() const;
+
+	// Intent: Do we really need a description for every simple getter?
+	// Pre: Nope.
+	// Post: Blah blah blah.
+	const int& GetWidth() const;
 
 };
 

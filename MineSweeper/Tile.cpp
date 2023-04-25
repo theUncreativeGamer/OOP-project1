@@ -9,28 +9,28 @@ Tile::Tile()
 	mineSurroundCount = 0;
 }
 
-bool Tile::IsMine()
+bool Tile::IsMine() const
 {
 	return isMine;
 }
 
-bool Tile::IsMasking()
+bool Tile::IsMasking() const
 {
 	return mask;
 }
 
 
-bool Tile::IsClean()
+bool Tile::IsClean() const
 {
 	return state == TileState::Clean;
 }
 
-bool Tile::IsFlagged()
+bool Tile::IsFlagged() const
 {
 	return state == TileState::Flagged;
 }
 
-bool Tile::IsQuestionMarked()
+bool Tile::IsQuestionMarked() const
 {
 	return state == TileState::QuestionMark;
 }
@@ -40,12 +40,12 @@ void Tile::AddMineCount()
 	++mineSurroundCount;
 }
 
-TileState Tile::GetState()
+TileState Tile::GetState() const
 {
 	return state;
 }
 
-std::string Tile::GetMask()
+std::string Tile::GetMask() const
 {
 	if (mask)
 	{
@@ -72,7 +72,7 @@ std::string Tile::GetMask()
 	}
 
 }
-std::string Tile::getAnswer()
+std::string Tile::getAnswer() const
 {
 	if (isMine)
 	{
@@ -119,7 +119,7 @@ TileState Tile::FlagMark()
 	return state;
 }
 
-int Tile::GetMineCount()
+int Tile::GetMineCount() const
 {
 	return mineSurroundCount;
 }

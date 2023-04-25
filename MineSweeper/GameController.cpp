@@ -211,6 +211,11 @@ void GameController::Quit()
 	}
 }
 
+const GameBoard& GameController::GetBoard() const
+{
+	return *board;
+}
+
 
 
 

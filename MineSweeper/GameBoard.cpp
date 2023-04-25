@@ -204,7 +204,7 @@ bool GameBoard::LoadBoardFile(std::string relative_path)
 }
 
 
-void GameBoard::LoadRandomGenerateMine(int height, int width, int mineCount)
+void GameBoard::LoadRandomCountMine(int height, int width, int mineCount)
 {
 	//set width and height
 	this->width = width;
@@ -261,7 +261,7 @@ void GameBoard::LoadRandomGenerateMine(int height, int width, int mineCount)
 	CalculateMines();
 }
 
-void GameBoard::LoadRandomCountMine(int height, int width, float mineGenerateRate)
+void GameBoard::LoadRandomGenerateMine(int height, int width, float mineGenerateRate)
 {
 	//assign width, height
 	//allocate board
@@ -337,6 +337,31 @@ std::string GameBoard::GetGameStateString()
 {
 	//print game state
 	return GameBoardStateString[gameBoardState];
+}
+
+const Tile& GameBoard::GetTile(const int& row, const int& column) const
+{
+	if (row >= height || column >= width)
+	{
+		throw(GameBoardException("Hey this tile is not on the board, dude!"));
+	}
+
+	return board[width * row + column];
+}
+
+const GameBoardState& GameBoard::GetGameState() const
+{
+	return gameBoardState;
+}
+
+const int& GameBoard::GetHeight() const
+{
+	return height;
+}
+
+const int& GameBoard::GetWidth() const
+{
+	return width;
 }
 
 GameBoardState GameBoard::getBoardState()
