@@ -205,17 +205,30 @@ bool GameBoard::LoadBoardFile(std::string relative_path)
 }
 
 
-void GameBoard::LoadRandomCountMine(int height, int width, int mineCount)
+bool GameBoard::LoadRandomCountMine(int height, int width, int mineCount)
 {
 	//set width and height
 	this->width = width;
 	this->height = height;
+
+	if (height < 1 || width < 1)
+	{
+		*oStream << "Error: Width and height can't be less than 1." << std::endl;
+		return false;
+	}
+
+	if (height > 199 || width > 199)
+	{
+		*oStream << "Error: If we actually let you make a mine field this big, your computer may explode." << std::endl;
+		return false;
+	}
 
 	// if mineCount is bigger than total tiles, then throw exception
 	if (mineCount >= width * height)
 	{
 		//throw GameBoardException("Mine count is bigger than total tiles");
 		*oStream << "Error: Mine count is bigger than total tiles" << std::endl;
+		return false;
 	}
 
 	//set mine count
@@ -260,21 +273,32 @@ void GameBoard::LoadRandomCountMine(int height, int width, int mineCount)
 	remainClosedBlankTileCount = width * height - mineCount;// all tiles are closed at begin
 
 	CalculateMines();
+	return true;
 }
 
-void GameBoard::LoadRandomGenerateMine(int height, int width, float mineGenerateRate)
+bool GameBoard::LoadRandomGenerateMine(int height, int width, float mineGenerateRate)
 {
 	//assign width, height
 	//allocate board
 	//generate mines
-	
+	if (height < 1 || width < 1)
+	{
+		*oStream << "Error: Width and height can't be less than 1." << std::endl;
+		return false;
+	}
+
+	if (height > 199 || width > 199)
+	{
+		*oStream << "Error: If we actually let you make a mine field this big, your computer may explode." << std::endl;
+		return false;
+	}
 
 	// if rate is not between 0 and 1, then throw exception
 	if (mineGenerateRate < 0 || mineGenerateRate >= 1)
 	{
 		//throw GameBoardException("Invalid mine generate rate");
 		*oStream << "Invalid mine generate rate" << std::endl;
-		return;
+		return false;
 	}
 
 	//set width and height
@@ -324,6 +348,8 @@ void GameBoard::LoadRandomGenerateMine(int height, int width, float mineGenerate
 
 	//calculate mines
 	CalculateMines();
+
+	return true;
 }
 
 // printer
@@ -365,10 +391,12 @@ const int& GameBoard::GetWidth() const
 	return width;
 }
 
-const double& GameBoard::GetRemainingFlagCount() const
+const GameBoardResult& GameBoard::GetResult() const
 {
-	return (double)mineCount - flagCount;
+	return gameBoardResult;
 }
+
+
 
 GameBoardState GameBoard::getBoardState()
 {

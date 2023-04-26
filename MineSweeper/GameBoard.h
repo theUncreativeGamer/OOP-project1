@@ -119,12 +119,14 @@ public:
 	// Intent: This function loads a game board with randomly generated mines
 	// Pre: The height, width, and mineCount parameters are valid integers
 	// Post: A game board is created with randomly generated mines and all other tiles are initialized with no mine and with the mine count for surrounding tiles calculated. The game state is set to Playing, the flag count is set to 0, the opened tile count is set to 0, and the remaining closed blank tile count is set to the total number of tiles minus the mine count.
-	void LoadRandomCountMine(int height, int width, int mineCount);
+	//		 Also return true if sucess.
+	bool LoadRandomCountMine(int height, int width, int mineCount);
 	
 	// Intent: This function loads a game board with randomly generated mines
 	// Pre: The height, width, and mineCount parameters are valid integers
 	// Post: A game board is created with randomly generated mines and all other tiles are initialized with no mine and with the mine count for surrounding tiles calculated. The game state is set to Playing, the flag count is set to 0, the opened tile count is set to 0, and the remaining closed blank tile count is set to the total number of tiles minus the mine count.
-	void LoadRandomGenerateMine(int height, int width, float mineGenerateRate);
+	//		 Also return true if sucess.
+	bool LoadRandomGenerateMine(int height, int width, float mineGenerateRate);
 
 // printer
 	// Intent: Prints the current game state to the console.
@@ -225,10 +227,10 @@ public:
 	// Post: Blah blah blah.
 	const int& GetWidth() const;
 
-	// Intent: Get (mineCount - flagCount). Also it's for ui sync function. That's why it needs to return double.
+	// Intent: Do we really need a description for every simple getter?
 	// Pre: Nope.
 	// Post: Blah blah blah.
-	const double& GetRemainingFlagCount() const;
+	const GameBoardResult& GetResult() const;
 
 };
 

@@ -25,21 +25,27 @@ public:
 		this->oStream = oStream;
 		board = new GameBoard(oStream);
 	};
+
+	~GameController()
+	{
+		delete board;
+	}
 	
 	// Intent: Load the game board from a file specified by the input path.
 	// Pre: GameController object is created and a valid path is provided.
 	// Post: If the game board state is idle, load the board from the file and set the game board state to Playing. Otherwise, output an error message indicating that the board cannot be loaded while a game is in progress.
-	void LoadPath(string path);
+	//		 Also, if success, returns true. Returns false, otherwise.
+	bool LoadPath(string path);
 	
 	// Intent:
 	// Pre:
-	// Post:
-	void LoadRate(int m, int n, float rate);
+	// Post: If success, returns true. Returns false, otherwise.
+	bool LoadRate(int m, int n, float rate);
 
 	// Intent:
 	// Pre:
-	// Post:
-	void LoadCount(int m, int n, int c);
+	// Post: If success, returns true. Returns false, otherwise.
+	bool LoadCount(int m, int n, int c);
 
 	// Intent:
 	// Pre:
@@ -53,8 +59,8 @@ public:
 	
 	// Intent:
 	// Pre:
-	// Post:
-	void LeftClick(int rol, int col);
+	// Post: Returns true if the game is over, false otherwise.
+	bool LeftClick(int rol, int col);
 	
 	// Intent:
 	// Pre:

@@ -4,7 +4,7 @@
 
 #include "GameController.h"
 
-void GameController::LoadPath(string path) 
+bool GameController::LoadPath(string path) 
 {
 	string outputString = "<Load BoardFile " + path + "> : ";
 	*oStream << outputString ;
@@ -16,42 +16,64 @@ void GameController::LoadPath(string path)
 		if (allRight)
 		{
 			*oStream << "Success\n";
+			return true;
 		}
 		else
 		{
 			*oStream << "Failed\n";
+			return false;
 		}
 	}
 	else
 	{
 		*oStream << "Failed\n";
+		return false;
 	}
 }
 
-void GameController::LoadRate(int m, int n, float rate) 
+bool GameController::LoadRate(int m, int n, float rate) 
 {
 	
 	if (board->getBoardState() == GameBoardState::Idle) 
 	{
-		board->LoadRandomGenerateMine(m, n, rate);
-		*oStream << "< Success >\n";
+		if (board->LoadRandomGenerateMine(m, n, rate))
+		{
+			*oStream << "< Success >\n";
+			return true;
+		}
+		else
+		{
+			*oStream << "< Failed >\n";
+			return false;
+		}
 	}
 	else 
 	{
 		*oStream << "< Failed >\n";
+		return false;
 	}
 }
 
-void GameController::LoadCount(int m, int n, int c) 
+bool GameController::LoadCount(int m, int n, int c) 
 {
 	if (board->getBoardState() == GameBoardState::Idle) 
 	{
-		board->LoadRandomCountMine(m, n, c);
-		*oStream << "< Success >\n";
+		if (board->LoadRandomCountMine(m, n, c))
+		{
+			*oStream << "< Success >\n";
+			return true;
+		}
+		else 
+		{
+			*oStream << "< Failed >\n";
+			return false;
+		}
+		
 	}
 	else
 	{
 		*oStream << "< Failed >\n";
+		return false;
 	}
 }
 
@@ -133,7 +155,7 @@ void GameController::Print(string inst)
 	}
 }
 
-void GameController::LeftClick(int rol, int col) 
+bool GameController::LeftClick(int rol, int col) 
 {
 	// <LeftClick 5 1> :
 	string outputString = "<LeftClick " + to_string(rol) + " " + to_string(col) + "> : ";
@@ -152,12 +174,14 @@ void GameController::LeftClick(int rol, int col)
 			*oStream << "Failed\n";
 		}
 		
-		board->CheckGame();
+		return board->CheckGame();
 	}
 	else 
 	{
 		*oStream << "Failed\n";
 	}
+
+	return false;
 }
 
 void GameController::RightClick(int rol, int col) 
@@ -189,6 +213,7 @@ void GameController::Replay()
 {
 	if (board->getBoardState() == GameBoardState::End) 
 	{
+		delete board;
 		board = new GameBoard(oStream);
 		*oStream << "Success\n";
 	}
@@ -202,6 +227,7 @@ void GameController::Quit()
 {
 	if (board->getBoardState() == GameBoardState::End) 
 	{
+		delete board;
 		*oStream << "<Quit> : Success\n";
 		exit(0);
 	}

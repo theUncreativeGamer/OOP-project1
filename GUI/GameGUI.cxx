@@ -63,6 +63,7 @@ void Updateable::UpdateAll() {
   for(Updateable* u : stuffsToUpdate) {
     u->Update();
   }
+  //Fl::flush();
 }
 void TileButton::Update()
 {
@@ -100,8 +101,10 @@ void TileButton::Update()
     }
     else
     {
+        
         if (tile->IsMine())
         {
+            deactivate();
             if (tile->IsFlagged())
             {
                 image(image_succMine);
@@ -115,15 +118,24 @@ void TileButton::Update()
         {
             if (tile->IsFlagged())
             {
+                deactivate();
                 image(image_failFlag);
             }
             else
             {
-                image(image_empty);
+                if (!tile->IsMasking())
+                {
+                    deactivate();
+                    image(image_number[tile->GetMineCount()]);
+                }
+                else
+                {
+                    image(image_empty);
+                }
             }
         }
     }
-    redraw();
+    redraw_label();
 }
 TileButton::TileButton(const GameBoard& boardReference, int gridY, int gridX)
     : Fl_Button(tile00PositionX + width * gridX, tile00PositionY + height * gridY, width, height),
@@ -138,11 +150,11 @@ TileButton::TileButton(const GameBoard& boardReference, int gridY, int gridX)
     this->down_box(FL_GTK_DOWN_BOX);
     this->color((Fl_Color)37);
     this->selection_color((Fl_Color)33);
-    this->labeltype(FL_NO_LABEL);
+    this->labeltype(FL_NORMAL_LABEL);
     this->labelfont(0);
     this->labelsize(26);
     this->labelcolor(FL_FOREGROUND_COLOR);
-    this->align(Fl_Align(FL_ALIGN_TOP));
+    this->align(Fl_Align(FL_ALIGN_CENTER));
     this->when(FL_WHEN_RELEASE);
     this->activate();
     this->set_visible();
@@ -155,8 +167,13 @@ void TileButton::ButtonCallback(Fl_Widget* widget, void* data)
     TileButton* theButton = static_cast<TileButton*>(data);
     if (Fl::event_button() == FL_LEFT_MOUSE)
     {
-        gameController.LeftClick(theButton->row, theButton->column);
+        bool endGame = gameController.LeftClick(theButton->row, theButton->column);
         Updateable::UpdateAll();
+        if (endGame)
+        {
+            std::cout << "Game has ended\n";
+            MakeResultWindow();
+        }
     }
     else if (Fl::event_button() == FL_RIGHT_MOUSE)
     {
@@ -165,27 +182,27 @@ void TileButton::ButtonCallback(Fl_Widget* widget, void* data)
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
 void GenerateNewBoardWithFixedAmount(const int& height, const int& width, const int& mineCount) {
   std::cout<<"Generating new board with Height: "<<height<<" Width: "<<width<<" Mine count: "<<mineCount << std::endl;
-  gameController.LoadCount(height, width, mineCount);
-  GenerateButtonsForTheNewBoard();
+  if(gameController.LoadCount(height, width, mineCount))
+    GenerateButtonsForTheNewBoard();
 }
 
 void GenerateNewBoardWithRandomChance(const int& height, const int& width, const float& mineRate) {
   std::cout<<"Generating new board with Height: "<<height<<" Width: "<<width<<" Mine rate: "<<mineRate << std::endl;
-  gameController.LoadRate(height, width, mineRate);
-  GenerateButtonsForTheNewBoard();
+  if(gameController.LoadRate(height, width, mineRate))
+    GenerateButtonsForTheNewBoard();
+}
+
+void DeleteAllMineButtons()
+{
+    for (auto p : gameBoardUIButtons)
+    {
+        gameArea->remove(p);
+        delete p;
+    }
+
+    gameBoardUIButtons.clear();
 }
 
 void GenerateButtonsForTheNewBoard()
@@ -197,11 +214,9 @@ void GenerateButtonsForTheNewBoard()
     mainWindow->resize(mainWindow->x(), mainWindow->y(), 30 * boardWidth + 50, 30 * boardHeight + 125);
 
     std::cout << "Generating buttons for a board with height: " << boardHeight << " and width: " << boardWidth << std::endl;
-    for (auto p : gameBoardUIButtons)
-    {
-        delete p;
-    }
-    gameBoardUIButtons.clear();
+    
+    DeleteAllMineButtons();
+
     gameBoardUIButtons.resize(boardHeight * boardWidth);
     for (int y = 0; y < boardHeight; y++)
     {
@@ -322,7 +337,7 @@ Fl_Double_Window* MakeCustomBoardWindow() {
   return customGameWindow;
 }
 
-const double& SyncFunction_remainingFlagCountDisplay()
+double SyncFunction_remainingFlagCountDisplay()
 {
     int mineCount = gameController.GetBoard().getMineCount();
     int flagCount = gameController.GetBoard().getFlagCount();
@@ -334,7 +349,9 @@ Fl_Double_Window *mainWindow=(Fl_Double_Window *)0;
 
 static void cb_mainWindow(Fl_Double_Window*, void*) {
   std::cout<<"Closing main window!!!"<<std::endl;
-mainWindow->hide();
+  if (resultWindow != NULL)resultWindow->hide();
+  if (customGameWindow != NULL)customGameWindow->hide();
+  mainWindow->hide();
 }
 
 Fl_Menu_Bar *menuBar=(Fl_Menu_Bar *)0;
@@ -370,6 +387,7 @@ Fl_Button *uiTestButton=(Fl_Button *)0;
 int main(int argc, char **argv) {
   { mainWindow = new Fl_Double_Window(350, 425, "Minesweeper");
     mainWindow->callback((Fl_Callback*)cb_mainWindow);
+    mainWindow->default_icon(&image_mine);
     { menuBar = new Fl_Menu_Bar(0, 0, 350, 30, "Tool Bar");
       menuBar->menu(menu_menuBar);
     } // Fl_Menu_Bar* menuBar
@@ -389,7 +407,6 @@ int main(int argc, char **argv) {
         remainingFlagCountDisplay->textsize(28);
         remainingFlagCountDisplay->textcolor(FL_BACKGROUND2_COLOR);
         remainingFlagCountDisplay->SetSyncFunction(SyncFunction_remainingFlagCountDisplay);
-        Fl_Group::current()->resizable(remainingFlagCountDisplay);
       } // Fl_Value_Output* remainingFlagCountDisplay
       statBar->end();
     } // Fl_Group* statBar
@@ -412,7 +429,7 @@ SyncedValueOutput::SyncedValueOutput(int X, int Y, int W, int H, char* L)
     syncFunction = NULL;
 }
 
-void SyncedValueOutput::SetSyncFunction(const double& (*function)(void))
+void SyncedValueOutput::SetSyncFunction(double (*function)(void))
 {
     syncFunction = function;
 }
@@ -424,4 +441,73 @@ void SyncedValueOutput::Update()
         std::cout << "Setting value to " << (*syncFunction)() << std::endl;
         value((*syncFunction)());
     }
+}
+
+Fl_Double_Window* resultWindow = (Fl_Double_Window*)0;
+
+Fl_Output* resultText = (Fl_Output*)0;
+
+static Fl_Button* yesButton = (Fl_Button*)0;
+static void cb_yesButton(Fl_Menu_*, void*)
+{
+    gameController.Replay();
+    DeleteAllMineButtons();
+    resultWindow->hide();
+}
+
+static Fl_Button* noButton = (Fl_Button*)0;
+static void cb_noButton(Fl_Menu_*, void*)
+{
+    gameController.Quit();
+    mainWindow->hide();
+    resultWindow->hide();
+    customGameWindow->hide();
+}
+
+void MakeResultWindow() {
+    { resultWindow = new Fl_Double_Window(360, 200, "Game Result");
+    { resultText = new Fl_Output(70, 30, 200, 65, "You ");
+    resultText->box(FL_NO_BOX);
+    resultText->labelfont(13);
+    resultText->labelsize(25);
+    resultText->textfont(14);
+    resultText->textsize(40);
+    resultText->align(Fl_Align(FL_ALIGN_LEFT_TOP));
+    // set this text to win or lose
+    switch (gameController.GetBoard().GetResult())
+    {
+    case GameBoardResult::Lose:
+        resultText->value("Lose!");
+        break;
+    case GameBoardResult::Win:
+        resultText->value("Win!");
+        break;
+    default:
+        resultText->value("WHAT?");
+        break;
+    }
+    } // Fl_Output* resultText
+    { Fl_Group* o = new Fl_Group(20, 140, 325, 55, "Start a new game?");
+    o->align(Fl_Align(FL_ALIGN_TOP_LEFT));
+    { yesButton = new Fl_Button(45, 140, 180, 50, "YES");
+    yesButton->color((Fl_Color)225);
+    yesButton->selection_color(FL_BLUE);
+    yesButton->labelfont(7);
+    yesButton->labelsize(48);
+    yesButton->labelcolor((Fl_Color)79);
+    yesButton->callback((Fl_Callback*)cb_yesButton);
+    } // Fl_Button* yesButton
+    { noButton = new Fl_Button(265, 155, 80, 35, "nah");
+    noButton->color((Fl_Color)34);
+    noButton->selection_color((Fl_Color)33);
+    noButton->labelfont(8);
+    noButton->labelsize(15);
+    noButton->labelcolor((Fl_Color)55);
+    noButton->callback((Fl_Callback*)cb_noButton);
+    } // Fl_Button* yesButton
+    o->end();
+    } // Fl_Group* o
+    resultWindow->end();
+    } // Fl_Double_Window* resultWindow
+    resultWindow->show();
 }
