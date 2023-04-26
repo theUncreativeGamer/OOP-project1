@@ -25,6 +25,7 @@ GameBoard::GameBoard()
 	openedTileCount = 0;
 	remainClosedBlankTileCount = 0;
 
+	oStream = &std::cout;
 }
 
 GameBoard::GameBoard(std::ostream* oStream)
