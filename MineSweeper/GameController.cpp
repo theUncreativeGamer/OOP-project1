@@ -2,7 +2,13 @@
 // then  let Command Handler to handle the command
 // then let GameBoard to handle the command
 
+#ifndef GAMECONTROLLER_CPP
+#define GAMECONTROLLER_CPP
+
 #include "GameController.h"
+
+#endif // GAMECONTROLLER_CPP
+
 
 void GameController::LoadPath(string path) 
 {
@@ -161,7 +167,7 @@ void GameController::LeftClick(int rol, int col)
 void GameController::RightClick(int rol, int col) 
 {
 	string outputString = "<RightClick " + to_string(rol) + " " + to_string(col) + "> : ";
-	//*oStream << outputString;
+	*oStream << outputString;
 	
 	if (board->getBoardState() == GameBoardState::Playing) 
 	{
@@ -169,22 +175,17 @@ void GameController::RightClick(int rol, int col)
 
 		if (allRight)
 		{
-			//*oStream << "Success\n";
-			outputString += "Success\n";
+			*oStream << "Success\n";
 		}
 		else
 		{
-			//*oStream << "Failed\n";
-			outputString += "Failed\n";
+			*oStream << "Failed\n";
 		}
 	}
 	else 
 	{
-		//*oStream << "Failed\n";
-		outputString += "Failed\n";
+		*oStream << "Failed\n";
 	}
-
-	*oStream << outputString;
 }
 
 void GameController::Replay() 

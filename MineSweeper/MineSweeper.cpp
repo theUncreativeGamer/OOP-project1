@@ -1,7 +1,10 @@
 ﻿// Author: 沈登獻 謝嘉銘 蔡耀羽
 // Created Date: Apr.11 2023
-// Last Modified Date: Apr.19 2023
+// Last Modified Date: Apr.26 2023
 // Description: This program is a game of MineSweeper. with multi mode and layered class design.
+
+#ifndef MINESWEEPER_H
+#define MINESWEEPER_H
 
 #include <iostream>
 #include <vector>
@@ -10,19 +13,22 @@
 
 #include "GameController.h"
 
+#endif // MINESWEEPER_H
+
 
 int main(int argc, char* argv[])
 {
-	//default set I/O to console
+	// default set I/O to console
 	istream* iStream = &cin;
 	ostream* oStream = &cout;
 	
+	// if there is a file input, set I/O to file
 	ifstream commandFile;
 	ofstream outputFile;
 	
 	if (argc == 4 && string(argv[1]) == "CommandFile") 
 	{
-		//MineSweeper.exe CommandFile command.txt output.txt
+		// MineSweeper.exe CommandFile command.txt output.txt
 		commandFile.open(argv[2]);
 		outputFile.open(argv[3]);
 		
@@ -31,27 +37,29 @@ int main(int argc, char* argv[])
 	}
 	else if (argc == 2 && string(argv[1]) == "CommandInput") 
 	{
-		//MineSweeper.exe CommandInput
+		// MineSweeper.exe CommandInput
 		iStream = &cin;
 	}
 	else if (argc == 2 && string(argv[1]) == "GUI") 
 	{ 
-		//MineSweeper.exe GUI
+		// MineSweeper.exe GUI
 		return 0;
 	}
 	else 
 	{
-		//fail, due to wrong syntax
+		// fail, due to wrong syntax
 		std::cout << "Wrong syntax, please follow syntax like:\n";
 		std::cout << "MineSweeper.exe CommandFile <command.txt> <output.txt>\n";
 		std::cout << "MineSweeper.exe CommandInput\n";
 		std::cout << "MineSweeper.exe GUI\n";
-		//return 0;
+		// return 0;
 	}
 
-	//command input
+	// command input
 	GameController game(oStream);
 	string input;
+
+	// get input by seperated spaces, and pass parameters to game controller
 	while (*iStream >> input) 
 	{
 		if (input == "Load") 

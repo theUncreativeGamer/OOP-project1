@@ -1,5 +1,9 @@
+#ifndef TILE_CPP
+#define TILE_CPP
+
 #include "Tile.h"
 
+#endif // TILE_CPP
 
 Tile::Tile()
 {
