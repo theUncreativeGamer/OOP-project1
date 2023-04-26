@@ -123,7 +123,6 @@ void TileButton::Update()
             }
         }
     }
-    image(image_flag);
     redraw();
 }
 TileButton::TileButton(const GameBoard& boardReference, int gridY, int gridX)
@@ -147,24 +146,29 @@ TileButton::TileButton(const GameBoard& boardReference, int gridY, int gridX)
     this->when(FL_WHEN_RELEASE);
     this->activate();
     this->set_visible();
-    this->callback((Fl_Callback*)TileButton::ButtonCallback, new std::pair<int, int>(row, column));
+    this->callback((Fl_Callback*)TileButton::ButtonCallback, this);
     gameArea->add(this);
 }
 
-void TileButton::ButtonCallback(Fl_Widget*, std::pair<int, int>* stuff)
+void TileButton::ButtonCallback(Fl_Widget* widget, void* data)
 {
+    TileButton* theButton = static_cast<TileButton*>(data);
     if (Fl::event_button() == FL_LEFT_MOUSE)
     {
-        gameController.LeftClick(stuff->first, stuff->second);
+        gameController.LeftClick(theButton->row, theButton->column);
         Updateable::UpdateAll();
     }
     else if (Fl::event_button() == FL_RIGHT_MOUSE)
     {
-        gameController.RightClick(stuff->first, stuff->second);
+        gameController.RightClick(theButton->row, theButton->column);
         Updateable::UpdateAll();
     }
-    delete stuff;
 }
+
+
+
+
+
 
 
 

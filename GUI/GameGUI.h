@@ -46,7 +46,7 @@ private:
 	void Update();
 public:
 	TileButton(const GameBoard& boardReference, int row, int column);
-	static void ButtonCallback(Fl_Widget*, std::pair<int,int> *stuff);
+	static void ButtonCallback(Fl_Widget* widget, void* data);
 };
 
 void GenerateNewBoardWithFixedAmount(const int& height, const int& width, const int& mineCount);
