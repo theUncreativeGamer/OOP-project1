@@ -225,5 +225,10 @@ public:
 	// Post: Blah blah blah.
 	const int& GetWidth() const;
 
+	// Intent: Get (mineCount - flagCount). Also it's for ui sync function. That's why it needs to return double.
+	// Pre: Nope.
+	// Post: Blah blah blah.
+	const double& GetRemainingFlagCount() const;
+
 };
 

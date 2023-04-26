@@ -318,6 +318,14 @@ Fl_Double_Window* MakeCustomBoardWindow() {
   return customGameWindow;
 }
 
+const double& SyncFunction_remainingFlagCountDisplay()
+{
+    int mineCount = gameController.GetBoard().getMineCount();
+    int flagCount = gameController.GetBoard().getFlagCount();
+    std::cout << mineCount << ", " << flagCount << std::endl;
+    return (double)gameController.GetBoard().getMineCount() - gameController.GetBoard().getFlagCount();
+}
+
 Fl_Double_Window *mainWindow=(Fl_Double_Window *)0;
 
 static void cb_mainWindow(Fl_Double_Window*, void*) {
@@ -347,7 +355,7 @@ Fl_Menu_Item menu_menuBar[] = {
 
 Fl_Group *statBar=(Fl_Group *)0;
 
-Fl_Value_Output *remainingFlagCountDisplay=(Fl_Value_Output *)0;
+SyncedValueOutput *remainingFlagCountDisplay=(SyncedValueOutput*)0;
 
 #include <FL/Fl_Image.H>
 
@@ -365,17 +373,18 @@ int main(int argc, char **argv) {
       statBar->box(FL_ENGRAVED_BOX);
       statBar->color((Fl_Color)38);
       statBar->selection_color((Fl_Color)81);
-      { remainingFlagCountDisplay = new Fl_Value_Output(40, 35, 75, 35);
+      { remainingFlagCountDisplay = new SyncedValueOutput(40, 35, 75, 35);
         remainingFlagCountDisplay->box(FL_EMBOSSED_BOX);
         remainingFlagCountDisplay->color(FL_FOREGROUND_COLOR);
         remainingFlagCountDisplay->image( image_flag );
         remainingFlagCountDisplay->labelsize(26);
         remainingFlagCountDisplay->minimum(-999);
         remainingFlagCountDisplay->maximum(999);
-        remainingFlagCountDisplay->value(696);
+        remainingFlagCountDisplay->value(000);
         remainingFlagCountDisplay->textfont(14);
         remainingFlagCountDisplay->textsize(28);
         remainingFlagCountDisplay->textcolor(FL_BACKGROUND2_COLOR);
+        remainingFlagCountDisplay->SetSyncFunction(SyncFunction_remainingFlagCountDisplay);
         Fl_Group::current()->resizable(remainingFlagCountDisplay);
       } // Fl_Value_Output* remainingFlagCountDisplay
       statBar->end();
@@ -390,4 +399,25 @@ int main(int argc, char **argv) {
   } // Fl_Double_Window* mainWindow
   mainWindow->show(argc, argv);
   return Fl::run();
+}
+
+SyncedValueOutput::SyncedValueOutput(int X, int Y, int W, int H, char* L)
+    : Fl_Value_Output(X, Y, W, H, L), 
+      Updateable()
+{
+    syncFunction = NULL;
+}
+
+void SyncedValueOutput::SetSyncFunction(const double& (*function)(void))
+{
+    syncFunction = function;
+}
+
+void SyncedValueOutput::Update()
+{
+    if (syncFunction != NULL)
+    {
+        std::cout << "Setting value to " << (*syncFunction)() << std::endl;
+        value((*syncFunction)());
+    }
 }

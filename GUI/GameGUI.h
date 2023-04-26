@@ -48,6 +48,7 @@ public:
 	TileButton(const GameBoard& boardReference, int row, int column);
 	static void ButtonCallback(Fl_Widget*, std::pair<int,int> *stuff);
 };
+
 void GenerateNewBoardWithFixedAmount(const int& height, const int& width, const int& mineCount);
 void GenerateNewBoardWithRandomChance(const int& height, const int& width, const float& mineRate);
 static std::vector<TileButton *> gameBoardUIButtons;
@@ -72,7 +73,17 @@ extern Fl_Double_Window *mainWindow;
 extern Fl_Menu_Bar *menuBar;
 extern Fl_Group *statBar;
 #include <FL/Fl_Value_Output.H>
-extern Fl_Value_Output *remainingFlagCountDisplay;
+class SyncedValueOutput : public Fl_Value_Output, protected Updateable
+{
+protected:
+	const double& (*syncFunction)(void);
+public:
+	SyncedValueOutput(int X, int Y, int W, int H, char* L = 0);
+	void SetSyncFunction(const double& (*function)(void));
+	void Update();
+};
+extern SyncedValueOutput *remainingFlagCountDisplay;
+const double& SyncFunction_remainingFlagCountDisplay();
 extern Fl_Group *gameArea;
 extern Fl_Menu_Item menu_menuBar[];
 #define newGameMenu (menu_menuBar+0)

@@ -218,7 +218,7 @@ void GameBoard::LoadRandomCountMine(int height, int width, int mineCount)
 	}
 
 	//set mine count
-	mineCount = mineCount;
+	this->mineCount = mineCount;
 
 	//set board
 	board = new Tile[height * width];//construct
@@ -362,6 +362,11 @@ const int& GameBoard::GetHeight() const
 const int& GameBoard::GetWidth() const
 {
 	return width;
+}
+
+const double& GameBoard::GetRemainingFlagCount() const
+{
+	return (double)mineCount - flagCount;
 }
 
 GameBoardState GameBoard::getBoardState()
