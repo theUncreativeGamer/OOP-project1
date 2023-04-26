@@ -113,23 +113,27 @@ void GameController::Print(string inst)
 		}
 		else if (state == GameBoardState::End) 
 		{
-			*oStream << "GameOver";
+			*oStream << "GameOver\n";
 		}
 	}
 	else if (inst == "BombCount") 
 	{
+		*oStream << "<Print BombCount> : ";
 		*oStream << board->getMineCount() << '\n';
 	}
 	else if (inst == "FlagCount") 
 	{
+		*oStream << "<Print FlagCount> : ";
 		*oStream << board->getFlagCount() << '\n';
 	}
 	else if (inst == "OpenBlankCount") 
 	{
+		*oStream << "<Print OpenBlankCount> : ";
 		*oStream << board->getOpenedTileCount() << '\n';
 	}
 	else if (inst == "RemainBlankCount") 
 	{
+		*oStream << "<Print RemainBlankCount> : ";
 		*oStream << board->getRemainClosedTileCount() << '\n';
 	}
 	else 
@@ -193,11 +197,11 @@ void GameController::Replay()
 	if (board->getBoardState() == GameBoardState::End) 
 	{
 		board = new GameBoard(((ofstream*)oStream));
-		*oStream << "Success\n";
+		*oStream << "<Replay> : Success\n";
 	}
 	else
 	{
-		*oStream << "Failed\n";
+		*oStream << "<Replay> : Failed\n";
 	}
 }
 
@@ -210,6 +214,6 @@ void GameController::Quit()
 	}
 	else 
 	{
-		*oStream << "You can't quit now.\n";
+		*oStream << "<Quit> : Failed\n";
 	}
 }

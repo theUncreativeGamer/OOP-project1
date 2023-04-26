@@ -78,7 +78,8 @@ int main(int argc, char* argv[])
 			}
 			else if (input == "RandomRate") 
 			{
-				int m, n, r;
+				int m, n;
+				float r;
 				*iStream >> m >> n >> r;
 				game.LoadRate(m, n, r);
 			}
@@ -114,7 +115,10 @@ int main(int argc, char* argv[])
 		}
 		else 
 		{
-			cout << "Input Error, try again.\n";
+			std::string remainString;
+			getline(*iStream, remainString);
+			*oStream << "<" << input << remainString << "> : Failed\n";
+			//cout << "Input Error, try again.\n";
 		}
 		fflush(stdin);
 		oStream->flush();

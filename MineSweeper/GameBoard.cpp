@@ -68,7 +68,8 @@ void GameBoard::DisableGameInput()
 bool GameBoard::ValidPosition(int x, int y)
 {
 	// check if the given coordinates are within the game board range
-	if (x < 0 || x >= width || y < 0 || y >= height)
+	//
+	if (x < 0 || x >= height || y < 0 || y >= width)
 	{
 		return false;
 	}
@@ -140,7 +141,7 @@ bool GameBoard::LoadBoardFile(std::string relative_path)
 
 	// load these two integers as width and height
 	std::stringstream ss(line);
-	ss >> width >> height;
+	ss >> height >> width;
 
 	// create board (allocate)
 	board = new Tile[height * width];
@@ -302,9 +303,9 @@ GameBoardState GameBoard::getBoardState()
 void GameBoard::PrintBoard()
 {
 	// print board in answer
-	for (int i = 0; i < width; i++)
+	for (int i = 0; i < height; i++)
 	{
-		for (int j = 0; j < height; j++)
+		for (int j = 0; j < width; j++)
 		{
 			*oStream << board[i * width + j].getAnswer() << " ";
 		}
@@ -315,9 +316,9 @@ void GameBoard::PrintBoard()
 void GameBoard::PrintBoardWithMask()
 {
 	// print board with mask
-	for (int i = 0; i < width; i++)
+	for (int i = 0; i < height; i++)
 	{
-		for (int j = 0; j < height; j++)
+		for (int j = 0; j < width; j++)
 		{
 			*oStream << board[i * width + j].GetMask() << " ";
 		}
@@ -342,8 +343,8 @@ bool GameBoard::RevealTile(int row, int col)
 	}
 	// if flagged or question marked, return error message
 	// only unmarked tiles can be opened
-	else if (board[row * width + col].IsFlagged() || 
-		board[row * width + col].IsQuestionMarked())
+	else if (board[row * width + col].IsFlagged() /* ||
+		board[row * width + col].IsQuestionMarked()*/)
 	{
 		return false;
 	}
