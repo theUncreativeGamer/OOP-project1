@@ -233,7 +233,6 @@ void GameBoard::LoadRandomGenerateMine(int height, int width, int mineCount)
 
 	// initialize members
 	EnableGameInput(); // enable game input
-	gameBoardState = GameBoardState::Playing; // set game board state to playing
 	flagCount = 0;// no flags will be set at begin
 	openedTileCount = 0;// no tiles will be opened at begin
 	remainClosedBlankTileCount = width * height - mineCount;// all tiles are closed at begin
@@ -257,7 +256,6 @@ void GameBoard::LoadRandomCountMine(int height, int width, float mineGenerateRat
 	// set mine count
 	this->mineCount = floor(height * width * mineGenerateRate);
 
-
 	// set construct board
 	board = new Tile[this->height * this->width];
 	
@@ -272,7 +270,6 @@ void GameBoard::LoadRandomCountMine(int height, int width, float mineGenerateRat
 
 	// initialize members
 	EnableGameInput(); // enable game input
-	gameBoardState = GameBoardState::Playing; // set game board state to playing
 	flagCount = 0;// no flags will be set at begin
 	openedTileCount = 0;// no tiles will be opened at begin
 	remainClosedBlankTileCount = width * height - mineCount;// all tiles are closed at begin

@@ -42,7 +42,7 @@ void GameController::LoadRate(int m, int n, float rate)
 	
 	if (board->getBoardState() == GameBoardState::Idle) 
 	{
-		board->LoadRandomGenerateMine(m, n, rate);
+		board->LoadRandomCountMine(m, n, rate);
 		*oStream << "Success\n";
 	}
 	else 
@@ -58,7 +58,7 @@ void GameController::LoadCount(int m, int n, int c)
 	
 	if (board->getBoardState() == GameBoardState::Idle) 
 	{
-		board->LoadRandomCountMine(m, n, c);
+		board->LoadRandomGenerateMine(m, n, c);
 		*oStream << "Success\n";
 	}
 	else
