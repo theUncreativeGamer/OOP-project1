@@ -80,7 +80,7 @@ private:
 	// Intent: Check if the given coordinates are within the game board range and not already opened.
 	// Pre: x and y are valid integers.
 	// Post: Return true if the given coordinates are within the game board range and not already opened; otherwise, return false.
-	bool ValidPosition(int x, int y);
+	bool ValidPosition(int y, int x);
 
 	// Intent: To increment the mine count for surrounding tiles of a given tile.
 	// Pre: GameBoard object must be instantiated and the given tile must be a mine.

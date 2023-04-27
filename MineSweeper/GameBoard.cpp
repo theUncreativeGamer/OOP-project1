@@ -65,7 +65,7 @@ void GameBoard::DisableGameInput()
 	isEnableGameInput = false;
 }
 
-bool GameBoard::ValidPosition(int x, int y)
+bool GameBoard::ValidPosition(int y, int x)
 {
 	//if already opened return false;
 	//if out of range return false
