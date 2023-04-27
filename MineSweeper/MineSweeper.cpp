@@ -2,6 +2,7 @@
 // Created Date: Apr.11 2023
 // Last Modified Date: Apr.19 2023
 // Description: This program is a game of MineSweeper. with multi mode and layered class design.
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -9,6 +10,7 @@
 #include <functional>
 
 #include "GameController.h"
+#include "../GUI/GameGUI.h"
 
 
 int main(int argc, char* argv[])
@@ -39,7 +41,7 @@ int main(int argc, char* argv[])
 	else if (argc == 2 && string(argv[1]) == "GUI") 
 	{
 		//MineSweeper.exe GUI
-		return 0;
+		return gui::MakeMainWindow(argc, argv);
 	}
 	else 
 	{
